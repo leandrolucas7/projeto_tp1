@@ -1,5 +1,5 @@
-#ifndef HOSPEDAGEM_V0_HPP_INCLUDED
-#define HOSPEDAGEM_V0_HPP_INCLUDED
+#ifndef HOSPEDAGEM_HPP
+#define HOSPEDAGEM_HPP
 
 #include "../dominios/DOMINIOS.hpp"
 
