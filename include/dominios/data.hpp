@@ -8,7 +8,7 @@ class Data
 {
     private:
         string valor;
-        bool validar(string);
+        void validar(string);
 
     public:
         bool set_valor(string);

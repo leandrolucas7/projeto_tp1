@@ -6,7 +6,7 @@ class SuperDominio
 {
     protected:
         T valor;
-        virtual bool validar(T) = 0;
+        virtual void validar(T) = 0;
     public:
         bool set_valor(T);
         T get_valor() const;

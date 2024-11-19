@@ -2,9 +2,9 @@
 #include <cctype> // isalnum()
 #include <regex>
 
-bool Senha::validar(string v)
+void Senha::validar(string v)
 {
-    bool crescente = true;
+    /*bool crescente = true;
     bool decrescente = true;
     
     if (v.length() != 5)
@@ -38,13 +38,13 @@ bool Senha::validar(string v)
 
     if (crescente || decrescente)
         return false;
-    return true;
+    return true;*/
 }
 
 bool Senha::set_valor(string v)
 {
-    if (!validar(v))
-        return false;
+    //if (!validar(v))
+    //    return false;
     valor = v;
     return true;
 }

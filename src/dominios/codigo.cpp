@@ -2,9 +2,9 @@
 #include <cctype> // isalnum()
 #include <regex>
 
-bool Codigo::validar(string v)
+void Codigo::validar(string v)
 {
-    const int TAMANHO_CODIGO = 6;
+    /*const int TAMANHO_CODIGO = 6;
     if (v.length() != TAMANHO_CODIGO)
         return false;
     for (int i = 0; i < TAMANHO_CODIGO; i++)
@@ -12,13 +12,13 @@ bool Codigo::validar(string v)
         if (! isalnum(v[i]))
             return false;
     }
-    return true;
+    return true;*/
 }
 
 bool Codigo::set_valor(string v)
 {
-    if (!validar(v))
-        return false;
+    //if (!validar(v))
+    //    return false;
     valor = v;
     return true;
 }

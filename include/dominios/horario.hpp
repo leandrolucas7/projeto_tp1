@@ -8,7 +8,7 @@ using namespace std;
 class Horario : public SuperDominio<string>
 {
     private:
-        bool validar(string) override;
+        void validar(string) override;
 };
 
 

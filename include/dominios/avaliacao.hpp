@@ -8,7 +8,7 @@ class Avaliacao
 {
     private:
         int valor;
-        bool validar(int);
+        void validar(int);
     public:
         bool set_valor(int);
         int get_valor() const;
