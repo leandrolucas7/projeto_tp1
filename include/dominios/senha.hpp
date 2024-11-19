@@ -1,20 +1,15 @@
 #ifndef SENHA_HPP
 #define SENHA_HPP
 
+#include "super_dominio.hpp"
 #include <string>
+
 using namespace std;
 
-class Senha
+class Senha : public SuperDominio<string> 
 {
     private:
-        string valor;
         bool validar(string);
-    public:
-        bool set_valor(string);
-        string get_valor() const;
 };
-
-inline string Senha::get_valor() const
-{ return valor; }
 
 #endif

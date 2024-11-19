@@ -21,4 +21,9 @@ int main()
     Horario hora;
     hora.set_valor("20:45");
     cout << hora.get_valor() << endl;
+
+    Senha numero;
+    numero.set_valor("48956");
+    cout << numero.get_valor() << endl;
+
 }
