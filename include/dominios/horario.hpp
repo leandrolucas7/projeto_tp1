@@ -1,24 +1,15 @@
 #ifndef HORARIO_HPP
 #define HORARIO_HPP
 
-
+#include "super_dominio.hpp"
 #include <string>
 using namespace std;
 
-class Horario
+class Horario : public SuperDominio<string>
 {
     private:
-        string valor;
-        bool validar(string);
-    public:
-        bool set_valor(string);
-        // Precisam que o valor esteja definido
-        string get_valor() const;
-        int get_hora() const;
-        int get_minutos() const;
+        bool validar(string) override;
 };
 
-inline string Horario::get_valor() const
-{ return valor; }
 
 #endif

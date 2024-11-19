@@ -17,6 +17,7 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)horario.cpp \
       $(DOM)nome.cpp \
       $(DOM)senha.cpp \
+      $(DOM)super_dominio.cpp \
       teste_dominios.cpp
 
 OBJ = $(SRC:.cpp=.o)

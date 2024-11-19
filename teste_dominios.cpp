@@ -14,5 +14,11 @@ int main()
     meu_nome.set_valor("ABC");
     cout << meu_nome.get_valor() << endl;
 
-    cout << "MUDANÇA TESTE!" << endl;
+    Duracao tempo;
+    tempo.set_valor(50);
+    cout << tempo.get_valor() << endl;
+
+    Horario hora;
+    hora.set_valor("20:45");
+    cout << hora.get_valor() << endl;
 }

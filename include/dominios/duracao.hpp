@@ -1,21 +1,12 @@
 #ifndef DURACAO_HPP
 #define DURACAO_HPP
 
+#include "super_dominio.hpp"
 
-#include <string>
-using namespace std;
-
-class Duracao
+class Duracao : public SuperDominio<int>
 {
     private:
-        int valor;
-        bool validar(int);
-    public:
-        bool set_valor(int);
-        int get_valor() const;
+        bool validar(int) override;
 };
-
-inline int Duracao::get_valor() const
-{ return valor; }
 
 #endif

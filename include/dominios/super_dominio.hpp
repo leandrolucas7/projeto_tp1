@@ -1,28 +1,19 @@
 #ifndef SUPER_DOMINIO_HPP
 #define SUPER_DOMINIO_HPP
 
-#include <iostream>
-using namespace std;
-
+template <typename T>
 class SuperDominio
 {
     protected:
-        string valor;
-        virtual bool validar(string) = 0;
+        T valor;
+        virtual bool validar(T) = 0;
     public:
-        bool set_valor(string);
-        string get_valor() const;
+        bool set_valor(T);
+        T get_valor() const;
 };
 
-inline string SuperDominio::get_valor() const
+template <typename T>
+inline T SuperDominio<T>::get_valor() const
 { return this->valor; }
-
-bool SuperDominio::set_valor(string valor)
-{
-    if (!validar(valor))
-        return false;
-    this->valor = valor;
-    return true;
-}
 
 #endif
