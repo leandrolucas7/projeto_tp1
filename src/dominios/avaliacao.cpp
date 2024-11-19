@@ -1,6 +1,3 @@
-#ifndef AVALIACAO_CPP
-#define AVALICAO_CPP
-
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
@@ -21,6 +18,3 @@ bool Avaliacao::set_valor(int v)
     valor = v;
     return true;
 }
-
-
-#endif

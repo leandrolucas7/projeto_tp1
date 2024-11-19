@@ -1,7 +1,3 @@
-#ifndef DATA_CPP
-#define DATA_CPP
-
-
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
@@ -44,5 +40,3 @@ bool Data::set_valor(string v)
     return true;
 }
 
-
-#endif

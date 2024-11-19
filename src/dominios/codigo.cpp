@@ -1,6 +1,3 @@
-#ifndef CODIGO_CPP
-#define CODIGO_CPP
-
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
@@ -25,6 +22,3 @@ bool Codigo::set_valor(string v)
     valor = v;
     return true;
 }
-
-
-#endif

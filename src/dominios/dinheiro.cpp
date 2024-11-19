@@ -1,6 +1,3 @@
-#ifndef DINHEIRO_CPP
-#define DINHEIRO_CPP
-
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
@@ -21,6 +18,3 @@ bool Dinheiro::set_valor(double v)
     valor = novo_valor;
     return true;
 }
-
-
-#endif
