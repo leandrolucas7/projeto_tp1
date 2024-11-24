@@ -6,7 +6,7 @@
 class Duracao : public SuperDominio<int>
 {
     private:
-        bool validar(int) override;
+        void validar(int) override;
 };
 
 #endif

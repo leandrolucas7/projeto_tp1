@@ -1,11 +1,13 @@
 #include "../../include/dominios/DOMINIOS.hpp"
-#include <cctype> // isalnum()
-#include <regex>
+#include <string>
+#include <stdexcept>
 
-bool Duracao::validar(int v)
+using namespace std;
+
+void Duracao::validar(int v)
 {
     if (v >= 0 && v <= 360)
-        return true;
-    return false;
+        return;
+    throw invalid_argument("Argumento (" + to_string(v) + ") inválido.");
 }
 

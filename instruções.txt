@@ -1,0 +1,25 @@
+A FAZER:
+    1 - Atualizar os dominios para herdarem do super dominios
+    2 - Atualizar as funções de validação para retornarem erros
+
+OBS1: Os arquivos .hpp e .cpp dos domínios 'duracao' e horario estão atualizados. Podem ser usados como referência para as mudanças.
+OBS2: Provavelmente o makefile só irá compilar quando todas as mudanças forem feitas. Por isso, não será possível testar até estar tudo padronizado.
+
+1.1 - TIPO CORRETO: 
+    -> Ao herdarem do super dominio, os domínios agora possuem os atributos e métodos do ancestral;
+    -> Contudo, o super dominio usa templates para definir o 'tipo' do atributo valor;
+    -> Ao estabelecer a herança é preciso definir o 'tipo' do super domínio.
+
+1.2 - MÉTODOS:
+    -> Com exceção do método 'validar', os demais métodos já estão implementados no super domínio;
+    -> Apagar demais métodos dos arquivos .hpp e .cpp dos domínios;
+    -> .hpp: Declarar o método 'validar' retornando 'void' e com o especificador 'overrride';
+    -> .cpp: Ajustar a definição do método validar para retornar 'void'.
+
+2.1 - LANÇAR ERRO:
+    -> Incluir a biblioteca '<stdexcept' nos arquivos .cpp dos domínios;
+    -> Lançar o erro, com descrição, quando a condição de validação não for atendida.
+
+2.2 - AJUSTAR CONDICIONAIS / RETORNOS:
+    -> Agora, caso a condicional seja válida, apenas retornar da função (Sem retornar 'true');
+    -> Já se a condição de validação não for atendida, lançar o erro (Sem retornar nada).

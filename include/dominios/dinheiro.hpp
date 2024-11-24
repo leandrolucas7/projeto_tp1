@@ -8,7 +8,7 @@ class Dinheiro
 {
     private:
         int valor;
-        bool validar(double);
+        void validar(double);
     public:
         bool set_valor(double);
         double get_valor() const;

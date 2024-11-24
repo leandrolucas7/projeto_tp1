@@ -3,9 +3,9 @@
 #include <regex>
 
 
-bool Data::validar(string v) 
+void Data::validar(string v) 
 {
-    int dia, mes, ano;
+   /* int dia, mes, ano;
     if (v.length() != 8) 
         return false;
     if (v[2] != '-' || v[5] != '-') 
@@ -29,13 +29,13 @@ bool Data::validar(string v)
         return false;
     if (dia == 31 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) 
         return false;
-    return true;
+    return true;*/
 }
 
 bool Data::set_valor(string v) 
 {
-    if (!validar(v))
-        return false;
+    //if (!validar(v))
+    //    return false;
     valor = v;
     return true;
 }

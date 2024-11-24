@@ -2,7 +2,7 @@
 #include <cctype> // isalnum()
 #include <regex>
 
-bool Senha::validar(string v)
+void Senha::validar(string v)
 {
     bool crescente = true;
     bool decrescente = true;
