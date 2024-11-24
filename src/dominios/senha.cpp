@@ -40,11 +40,3 @@ bool Senha::validar(string v)
         return false;
     return true;
 }
-
-bool Senha::set_valor(string v)
-{
-    if (!validar(v))
-        return false;
-    valor = v;
-    return true;
-}
