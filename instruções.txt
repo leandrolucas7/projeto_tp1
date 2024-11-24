@@ -2,7 +2,7 @@ A FAZER:
     1 - Atualizar os dominios para herdarem do super dominios
     2 - Atualizar as funções de validação para retornarem erros
 
-OBS1: Os arquivos .hpp e .cpp dos domínios 'duracao' e horario estão atualizados. Podem ser usados como referência para as mudanças.
+OBS1: Os arquivos .hpp e .cpp dos domínios 'duracao' e 'horario' estão atualizados. Podem ser usados como referência para as mudanças.
 OBS2: Provavelmente o makefile só irá compilar quando todas as mudanças forem feitas. Por isso, não será possível testar até estar tudo padronizado.
 
 1.1 - TIPO CORRETO: 
@@ -17,7 +17,7 @@ OBS2: Provavelmente o makefile só irá compilar quando todas as mudanças forem
     -> .cpp: Ajustar a definição do método validar para retornar 'void'.
 
 2.1 - LANÇAR ERRO:
-    -> Incluir a biblioteca '<stdexcept' nos arquivos .cpp dos domínios;
+    -> Incluir a biblioteca '<stdexcept>' nos arquivos .cpp dos domínios;
     -> Lançar o erro, com descrição, quando a condição de validação não for atendida.
 
 2.2 - AJUSTAR CONDICIONAIS / RETORNOS:
