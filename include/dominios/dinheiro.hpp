@@ -1,20 +1,15 @@
 #ifndef DINHEIRO_HPP
 #define DINHEIRO_HPP
 
+#include "super_dominio.hpp"
 #include <string>
 using namespace std;
 
-class Dinheiro
+class Dinheiro : public SuperDominio<double>
 {
     private:
-        int valor;
-        void validar(double);
-    public:
-        bool set_valor(double);
-        double get_valor() const;
+        void validar(double) override;
 };
 
-inline double Dinheiro::get_valor() const
-{ return static_cast<double>(valor); }
 
 #endif

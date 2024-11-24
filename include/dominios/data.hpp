@@ -1,21 +1,15 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
+#include "super_dominio.hpp"
 #include <string>
 using namespace std;
 
-class Data 
+class Data : public SuperDominio<string>
 {
     private:
-        string valor;
-        void validar(string);
-
-    public:
-        bool set_valor(string);
-        string get_valor() const;
+        void validar(string) override;
 };
 
-inline string Data::get_valor() const 
-{ return valor; }
 
 #endif
