@@ -1,20 +1,12 @@
 #ifndef AVALIACAO_HPP
 #define AVALIACAO_HPP
 
-#include <string>
-using namespace std;
+#include "super_dominio.hpp"
 
-class Avaliacao
+class Avaliacao : public SuperDominio<int>
 {
     private:
-        int valor;
-        void validar(int);
-    public:
-        bool set_valor(int);
-        int get_valor() const;
+        void validar(int) override;
 };
-
-inline int Avaliacao::get_valor() const
-{ return valor; }
 
 #endif

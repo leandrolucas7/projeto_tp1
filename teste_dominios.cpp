@@ -49,4 +49,8 @@ int main()
     {
         cout << "Excecao: " << exp.what() << endl;
     }
+
+    Senha numero;
+    numero.set_valor("48956");
+    cout << numero.get_valor() << endl;
 }

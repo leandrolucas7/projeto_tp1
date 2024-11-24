@@ -4,7 +4,7 @@
 
 void Senha::validar(string v)
 {
-    /*bool crescente = true;
+    bool crescente = true;
     bool decrescente = true;
     
     if (v.length() != 5)
@@ -38,13 +38,5 @@ void Senha::validar(string v)
 
     if (crescente || decrescente)
         return false;
-    return true;*/
-}
-
-bool Senha::set_valor(string v)
-{
-    //if (!validar(v))
-    //    return false;
-    valor = v;
     return true;
 }
