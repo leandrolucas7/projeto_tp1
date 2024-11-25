@@ -5,7 +5,7 @@
 
 void Senha::validar(string v)
 {
-    bool flag;
+    bool flag = true;
     bool crescente = true;
     bool decrescente = true;
     
