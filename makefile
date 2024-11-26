@@ -18,12 +18,12 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)nome.cpp \
       $(DOM)senha.cpp \
       $(DOM)super_dominio.cpp \
-      teste_dominios.cpp
+      teste_basicos.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = teste_dominios
+TARGET = testes_basicos
 
 # Rule to build the target executable
 $(TARGET): $(OBJ)
