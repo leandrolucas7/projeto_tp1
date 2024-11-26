@@ -1,24 +1,21 @@
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
+#include <stdexcept>
 
 void Codigo::validar(string v)
 {
-    /*const int TAMANHO_CODIGO = 6;
+    bool flag = true;
+    const int TAMANHO_CODIGO = 6;
     if (v.length() != TAMANHO_CODIGO)
-        return false;
+        flag = false;
     for (int i = 0; i < TAMANHO_CODIGO; i++)
     {
         if (! isalnum(v[i]))
-            return false;
+            flag = false;
     }
-    return true;*/
+    if (flag)
+        return;
+    throw invalid_argument("Argumento (" + v + ") inválido.");
 }
 
-bool Codigo::set_valor(string v)
-{
-    //if (!validar(v))
-    //    return false;
-    valor = v;
-    return true;
-}
