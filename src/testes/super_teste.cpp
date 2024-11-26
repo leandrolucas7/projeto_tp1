@@ -4,6 +4,7 @@
 #include <string>
 #include <type_traits>
 #include "../../include/testes/super_teste.hpp"
+#include "../../include/utils/to_string_util.hpp"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ template class SuperTeste<std::string>;
 template <typename T>
 void SuperTeste<T>::set_teste()
 {
-    dominio = new SuperDominio<T>();
+    //dominio = new SuperDominio<T>();
     estado = SUCESSO;
 }
 
@@ -36,17 +37,14 @@ void SuperTeste<T>::testar_valores_validos()
             if (dominio->get_valor() != valor)
                 estado = FALHA;
         }
-        catch (invalid_argument)
+        catch (invalid_argument &exp)
         {
             estado = FALHA;
         }
 
         if (estado == FALHA)
         {
-            if (typeid(valor) == typeid(string))
-                throw invalid_argument("FALHA: Argumento válido (" + valor + ") não validado");
-            else
-                throw invalid_argument("FALHA: Argumento válido (" + to_string(valor) + ") não validado");
+            throw invalid_argument("FALHA: Argumento válido (" + to_string_custom(valor) + ") não validado");
         }
     }
 }
@@ -62,7 +60,7 @@ void SuperTeste<T>::testar_valores_invalidos()
             dominio->set_valor(valor);
             estado = FALHA;
         }
-        catch (invalid_argument)
+        catch (invalid_argument &exp)
         {
             if (dominio->get_valor() == valor)
                 estado = FALHA;
@@ -70,10 +68,7 @@ void SuperTeste<T>::testar_valores_invalidos()
 
         if (estado == FALHA)
         {
-            if (typeid(valor) == typeid(string))
-                throw invalid_argument("FALHA: Argumento inválido (" + valor + ") validado");
-            else
-                throw invalid_argument("FALHA: Argumento inválido (" + to_string(valor) + ") validado");
+            throw invalid_argument("FALHA: Argumento inválido (" + to_string_custom(valor) + ") validado");
         }
     }
 }

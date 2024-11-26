@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     TesteAvaliacao teste_avaliacao;
-    cout << "AVALIAÇÃO:" << endl;
+    cout << "AVALIAÇÃO:" << endl << "    ";
     if (teste_avaliacao.run() == TesteAvaliacao::SUCESSO)
         cout << "Teste 'AVALIAÇÃO' bem-sucedido" << endl;
 }
