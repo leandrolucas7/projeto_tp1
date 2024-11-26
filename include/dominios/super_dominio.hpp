@@ -8,6 +8,7 @@ class SuperDominio
         T valor;
         virtual void validar(T) = 0;
     public:
+        virtual ~SuperDominio() = default;
         bool set_valor(T);
         T get_valor() const;
 };
