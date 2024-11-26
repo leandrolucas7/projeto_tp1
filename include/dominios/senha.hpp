@@ -9,7 +9,7 @@ using namespace std;
 class Senha : public SuperDominio<string> 
 {
     private:
-        void validar(string);
+        void validar(string) override;
 };
 
 #endif

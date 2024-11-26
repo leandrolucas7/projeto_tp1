@@ -1,20 +1,15 @@
 #ifndef NOME_HPP
 #define NOME_HPP
 
+#include "super_dominio.hpp"
 #include <string>
 using namespace std;
 
-class Nome
+class Nome: public SuperDominio<string>
 {
     private:
-        string valor;
-        void validar(string);
-    public:
-        bool set_valor(string);
-        string get_valor() const;
+        void validar(string) override;
 };
 
-inline string Nome::get_valor() const
-{ return valor; }
 
 #endif

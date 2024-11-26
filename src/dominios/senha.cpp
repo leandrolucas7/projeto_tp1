@@ -1,20 +1,22 @@
 #include "../../include/dominios/DOMINIOS.hpp"
 #include <cctype> // isalnum()
 #include <regex>
+#include <stdexcept>
 
 void Senha::validar(string v)
 {
+    bool flag = true;
     bool crescente = true;
     bool decrescente = true;
     
     if (v.length() != 5)
-        return false;
+        flag = false;
 
     // verificando se é digito
     for (char c: v)
     {
         if (!isdigit(c))
-            return false;
+            flag = false;
     }
 
     // verificando se há digitos repetidos
@@ -23,7 +25,7 @@ void Senha::validar(string v)
         for (int j = i + 1; j < 5; j++)
         {
             if (v[i] == v[j])
-                return false;
+                flag = false;
         }
     }
     
@@ -37,6 +39,8 @@ void Senha::validar(string v)
     }
 
     if (crescente || decrescente)
-        return false;
-    return true;
+        flag = false;
+    if (flag)
+        return;
+    throw invalid_argument("Argumento (" + v + ") inválido.");
 }
