@@ -4,5 +4,6 @@
 
 #include "./super_teste.hpp"
 #include "./teste_avaliacao.hpp"
+#include "./teste_senha.hpp"
 
 #endif
