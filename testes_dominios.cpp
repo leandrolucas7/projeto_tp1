@@ -10,4 +10,15 @@ int main()
     cout << "AVALIAÇÃO:" << endl << "    ";
     if (teste_avaliacao.run() == TesteAvaliacao::SUCESSO)
         cout << "Teste 'AVALIAÇÃO' bem-sucedido" << endl;
+
+
+    TesteSenha teste_senha;
+    cout << "SENHA:" << endl << "    ";
+    if (teste_senha.run() == TesteSenha::SUCESSO)
+        cout << "Teste 'SENHA' bem-sucedido" << endl;
+
+    TesteHorario teste_horario;
+    cout << "HORÁRIO:" << endl << "    ";
+    if (teste_horario.run() == TesteHorario::SUCESSO)
+        cout << "Teste 'HORÁRIO' bem bem-sucedido" << endl;
 }
