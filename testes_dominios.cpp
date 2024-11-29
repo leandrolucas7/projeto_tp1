@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include "include/dominios/DOMINIOS.hpp"
-#include "include/testes/TESTES.hpp"
+#include "include/dominios/testes/TESTES.hpp"
+#include "include/entidades/testes/teste_conta.hpp"
 
 using namespace std;
 int main()
@@ -46,6 +47,11 @@ int main()
     if (teste_senha.run() == TesteSenha::SUCESSO)
         cout << "Teste 'SENHA' bem-sucedido" << endl;
 
-    
+    // ----------------------------------------------------------
+
+    TesteConta teste_conta;
+    cout << "CONTA" << endl << "    ";;
+    if (teste_conta.run() == TesteConta::SUCESSO)
+        cout << "Teste 'CONTA' bem-sucedido" << endl;
 
 }

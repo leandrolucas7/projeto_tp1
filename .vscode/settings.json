@@ -1,6 +1,11 @@
 {
     "makefile.configureOnOpen": true,
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "string": "cpp",
+        "stdexcept": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "ostream": "cpp"
     }
 }

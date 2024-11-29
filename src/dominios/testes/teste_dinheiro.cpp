@@ -1,5 +1,5 @@
-#include "../../include/dominios/DOMINIOS.hpp"
-#include "../../include/testes/TESTES.hpp"
+#include "../../../include/dominios/DOMINIOS.hpp"
+#include "../../../include/dominios/testes/TESTES.hpp"
 
 void TesteDinheiro::set_valores()
 {
