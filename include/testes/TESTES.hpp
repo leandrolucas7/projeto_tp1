@@ -10,5 +10,6 @@
 #include "./teste_nome.hpp"
 #include "./teste_senha.hpp"
 #include "./teste_horario.hpp"
+#include "./teste_codigo.hpp"
 
 #endif

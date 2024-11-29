@@ -20,9 +20,14 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)super_dominio.cpp \
 	  src/testes/super_teste.cpp \
 	  src/testes/teste_avaliacao.cpp \
+      src/testes/teste_codigo.cpp \
+      src/testes/teste_data.cpp \
+      src/testes/teste_dinheiro.cpp \
+      src/testes/teste_duracao.cpp \
+	  src/testes/teste_horario.cpp \
+	  src/testes/teste_nome.cpp \
+	  src/testes/teste_senha.cpp \
 	  testes_dominios.cpp \
-    src/testes/teste_senha.cpp \
-	  src/testes/teste_horario.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
