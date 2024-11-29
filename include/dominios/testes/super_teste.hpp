@@ -2,7 +2,7 @@
 #define SUPER_TESTE_HPP
 
 #include <vector>
-#include "../dominios/super_dominio.hpp"
+#include "../super_dominio.hpp"
 
 // Tipo do Valor do Domínio
 template <typename T>
