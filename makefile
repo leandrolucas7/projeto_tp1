@@ -18,15 +18,15 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)nome.cpp \
       $(DOM)senha.cpp \
       $(DOM)super_dominio.cpp \
-	  src/testes/super_teste.cpp \
-	  src/testes/teste_avaliacao.cpp \
-      src/testes/teste_codigo.cpp \
-      src/testes/teste_data.cpp \
-      src/testes/teste_dinheiro.cpp \
-      src/testes/teste_duracao.cpp \
-	  src/testes/teste_horario.cpp \
-	  src/testes/teste_nome.cpp \
-	  src/testes/teste_senha.cpp \
+	  src/dominios/testes/super_teste.cpp \
+	  src/dominios/testes/teste_avaliacao.cpp \
+      src/dominios/testes/teste_codigo.cpp \
+      src/dominios/testes/teste_data.cpp \
+      src/dominios/testes/teste_dinheiro.cpp \
+      src/dominios/testes/teste_duracao.cpp \
+	  src/dominios/testes/teste_horario.cpp \
+	  src/dominios/testes/teste_nome.cpp \
+	  src/dominios/testes/teste_senha.cpp \
 	  testes_dominios.cpp \
 
 

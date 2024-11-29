@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "include/dominios/DOMINIOS.hpp"
-#include "include/testes/TESTES.hpp"
+#include "include/dominios/testes/TESTES.hpp"
 
 using namespace std;
 int main()
