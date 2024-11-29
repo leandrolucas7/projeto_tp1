@@ -3,8 +3,8 @@
 #include <typeinfo>
 #include <string>
 #include <type_traits>
-#include "../../include/dominios/testes/super_teste.hpp"
-#include "../../include/utils/to_string_util.hpp"
+#include "../../../include/dominios/testes/super_teste.hpp"
+#include "../../../include/utils/to_string_util.hpp"
 
 using namespace std;
 

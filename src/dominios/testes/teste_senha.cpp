@@ -1,5 +1,5 @@
-#include "../../include/dominios/DOMINIOS.hpp"
-#include "../../include/dominios/testes/TESTES.hpp"
+#include "../../../include/dominios/DOMINIOS.hpp"
+#include "../../../include/dominios/testes/TESTES.hpp"
 
 void TesteSenha::set_valores() 
 {
