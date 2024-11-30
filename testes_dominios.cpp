@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include "include/dominios/DOMINIOS.hpp"
-#include "include/dominios/testes/TESTES.hpp"
-#include "include/entidades/testes/teste_conta.hpp"
+#include "include/dominios/testes/TESTES_DOMINIOS.hpp"
+#include "include/entidades/testes/TESTES_ENTIDADES.hpp"
 
 using namespace std;
 int main()
@@ -33,9 +33,9 @@ int main()
         cout << "Teste 'DURACAO' bem-sucedido" << endl;
 
     TesteHorario teste_horario;
-    cout << "HORÁRIO:" << endl << "    ";
+    cout << "HORARIO:" << endl << "    ";
     if (teste_horario.run() == TesteHorario::SUCESSO)
-        cout << "Teste 'HORÁRIO' bem-sucedido" << endl;
+        cout << "Teste 'HORARIO' bem-sucedido" << endl;
 
     TesteNome teste_nome;
     cout << "NOME:" << endl << "    ";
@@ -50,8 +50,23 @@ int main()
     // ----------------------------------------------------------
 
     TesteConta teste_conta;
-    cout << "CONTA" << endl << "    ";;
+    cout << "CONTA" << endl << "    ";
     if (teste_conta.run() == TesteConta::SUCESSO)
         cout << "Teste 'CONTA' bem-sucedido" << endl;
+
+    TesteDestino teste_destino;
+    cout << "DESTINO" << endl << "    ";
+    if (teste_destino.run() == TesteDestino::SUCESSO)
+        cout << "Teste 'DESTINO' bem-sucedido" << endl;
+
+    TesteHospedagem teste_hospedagem;
+    cout << "HOSPEDAGEM" << endl << "    ";
+    if (teste_hospedagem.run() == TesteHospedagem::SUCESSO)
+        cout << "Teste 'HOSPEDAGEM' bem-sucedido" << endl;
+    
+    TesteAtividade teste_atividade;
+    cout << "ATIVIDADE" << endl << "    ";
+    if (teste_atividade.run() == TesteAtividade::SUCESSO)
+        cout << "Teste 'ATIVIDADE' bem-sucedido" << endl;
 
 }

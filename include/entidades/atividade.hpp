@@ -13,7 +13,7 @@ class Atividade
         Data data;
         Horario horario;
         Duracao duracao;
-        Dinheiro dinheiro;
+        Dinheiro preco;
         Avaliacao avaliacao;
     public:
         void set_codigo(const Codigo&);
@@ -21,14 +21,14 @@ class Atividade
         void set_data(const Data&);
         void set_horario(const Horario&);
         void set_duracao(const Duracao&);
-        void set_dinheiro(const Dinheiro&);
+        void set_preco(const Dinheiro&);
         void set_avaliacao(const Avaliacao&);
         Codigo get_codigo() const;
         Nome get_nome() const;
         Data get_data() const;
         Horario get_horario() const;
         Duracao get_duracao() const;
-        Dinheiro get_dinheiro() const;
+        Dinheiro get_preco() const;
         Avaliacao get_avaliacao() const;
 };
 
@@ -57,9 +57,9 @@ inline void Atividade::set_duracao(const Duracao &duracao)
     this->duracao = duracao;
 }
 
-inline void Atividade::set_dinheiro(const Dinheiro &dinheiro)
+inline void Atividade::set_preco(const Dinheiro &preco)
 {
-    this->dinheiro = dinheiro;
+    this->preco = preco;
 }
 
 inline void Atividade::set_avaliacao(const Avaliacao &avaliacao)
@@ -92,9 +92,9 @@ inline Duracao Atividade::get_duracao() const
     return duracao;
 }
 
-inline Dinheiro Atividade::get_dinheiro() const
+inline Dinheiro Atividade::get_preco() const
 {
-    return dinheiro;
+    return preco;
 }
 
 inline Avaliacao Atividade::get_avaliacao() const
