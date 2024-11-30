@@ -18,18 +18,16 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)nome.cpp \
       $(DOM)senha.cpp \
       $(DOM)super_dominio.cpp \
-
-	src/dominios/testes/super_teste.cpp \
-	src/dominios/testes/teste_avaliacao.cpp \
-      src/dominios/testes/teste_codigo.cpp \
-      src/dominios/testes/teste_data.cpp \
-      src/dominios/testes/teste_dinheiro.cpp \
-      src/dominios/testes/teste_duracao.cpp \
-	src/dominios/testes/teste_horario.cpp \
-	src/dominios/testes/teste_nome.cpp \
-	src/dominios/testes/teste_senha.cpp \
-	testes_dominios.cpp \
-
+            src/dominios/testes/super_teste.cpp \
+            src/dominios/testes/teste_avaliacao.cpp \
+            src/dominios/testes/teste_codigo.cpp \
+            src/dominios/testes/teste_data.cpp \
+            src/dominios/testes/teste_dinheiro.cpp \
+            src/dominios/testes/teste_duracao.cpp \
+            src/dominios/testes/teste_horario.cpp \
+            src/dominios/testes/teste_nome.cpp \
+            src/dominios/testes/teste_senha.cpp \
+            testes_dominios.cpp \
       src/entidades/testes/teste_conta.cpp \
 
 OBJ = $(SRC:.cpp=.o)
