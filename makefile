@@ -29,6 +29,10 @@ SRC = $(DOM)avaliacao.cpp \
             src/dominios/testes/teste_senha.cpp \
             testes_dominios.cpp \
       src/entidades/testes/teste_conta.cpp \
+	  src/entidades/testes/teste_destino.cpp \
+	  src/entidades/testes/teste_hospedagem.cpp \
+	  src/entidades/testes/teste_atividade.cpp \
+
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -46,6 +50,7 @@ $(TARGET): $(OBJ)
 # Rule to clean up generated files
 clean:
 	rm -f $(OBJ) $(TARGET)
+	rm -f *.o *.exe
 
 # Rule to force recompilation of the target
 rebuild: clean $(TARGET)

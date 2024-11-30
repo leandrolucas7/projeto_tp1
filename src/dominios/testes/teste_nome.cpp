@@ -1,5 +1,5 @@
 #include "../../../include/dominios/DOMINIOS.hpp"
-#include "../../../include/dominios/testes/TESTES.hpp"
+#include "../../../include/dominios/testes/TESTES_DOMINIOS.hpp"
 
 void TesteNome::set_valores()
 {
