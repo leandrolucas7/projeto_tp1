@@ -17,14 +17,15 @@
 using namespace std;
 
 /**
- * @brief Classe responsável pela validação de uma credencial de senha.
+ * @brief Classe responsável pela validação de uma sequência de caracteres usada para autenticação.
  * 
- * A senha deve cumprir os seguintes requisitos:
- * - Contar com exatamente 5 dígitos.
- * - Não possuir dígitos repetidos.
+ * A sequência de autenticação deve atender aos seguintes requisitos:
+ *
+ * - Contar com exatamente 5 dígitos numéricos.
+ * - Não conter dígitos repetidos.
  * - Não estar em uma sequência crescente ou decrescente.
  * 
- * Caso algum desses requisitos não seja atendido, uma exceção do tipo `std::invalid_argument` será lançada.
+ * Caso algum desses requisitos não seja atendido, será lançada uma exceção do tipo `std::invalid_argument`.
  * 
  * @note Esta classe herda os métodos `set` e `get` da classe base `SuperDominio`.
  * 
@@ -33,15 +34,16 @@ using namespace std;
 class Senha : public SuperDominio<string> 
 {
     private:
-        /**
-         * @brief Valida a senha fornecida conforme os critérios especificados.
-         * 
-         * Este método verifica se a senha atende aos requisitos de validade.
-         * 
-         * @param T String representando a senha a ser validada.
-         * 
-         * @throw std::invalid_argument Se a senha não atender aos critérios.
-         */
+    /**
+     * @brief Valida a sequência fornecida conforme os critérios especificados.
+     * 
+     * Este método verifica se a sequência de autenticação atende aos requisitos de validade.
+     * 
+     * @param T String representando a sequência a ser validada.
+     * 
+     * @throw std::invalid_argument Se a sequência não atender aos critérios.
+     */
+
         void validar(string) override;
 };
 
