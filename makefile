@@ -2,7 +2,7 @@
 	# Não vai reconhecer mudanças nos headers
 
 # Compiler and flags
-CXX = g++
+CXX = E:\tdm\bin\g++.exe
 CXXFLAGS = -Wall -O2 -std=c++17
 
 # Directories
