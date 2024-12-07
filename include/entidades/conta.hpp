@@ -13,7 +13,7 @@
 #include "../dominios/DOMINIOS.hpp"
 
 /**
- * @brief Representa uma conta de usuário no sistema.
+ * @brief Representa as informações de usuário no sistema.
  * 
  * A classe armazena dois atributos principais:
  * 
