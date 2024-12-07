@@ -1,10 +1,8 @@
 // Matrícula: 222025852
 /**
  * @file Horario.hpp
- * @brief Declaração da classe `Horario`, que representa um horário no formato de string.
+ * @brief Declaração da classe `Horario`.
  * 
- * A classe `Horario` herda de `SuperDominio` e implementa a validação específica 
- * para valores do tipo `std::string` que representam horários.
  */
 
 #ifndef HORARIO_HPP
@@ -16,26 +14,21 @@ using namespace std;
 
 /**
  * @class Horario
- * @brief Classe que representa um horário como uma string.
+ * @brief Classe representa um valor de tempo em formato textual.
  * 
- * A classe `Horario` deriva de `SuperDominio<std::string>` e implementa o método de validação
- * para garantir que o valor fornecido seja um horário válido em formato adequado.
+ * Armazena a representação textual de um instante de tempo como string.
  * 
- * O formato esperado pode seguir, por exemplo, o padrão `HH:MM` (24 horas). 
- * A lógica de validação deve ser implementada no método `validar`.
+ * Regras de validação implementadas no método privado `validar`.
+ * 
+ * <b>Regras de formato:</b>
+ * 
+ * - O Conteúdo da string deve ser "HH:MM", com:
+ *  - HH entre "00" e "23", extremos inclusos; 
+ *  - MM entre "00" e "59", extremos inclusos.
  */
 class Horario : public SuperDominio<string>
 {
 private:
-    /**
-     * @brief Valida o valor do horário.
-     * 
-     * Implementa as regras específicas de validação para horários, garantindo que 
-     * o valor fornecido esteja em um formato adequado (ex.: `HH:MM`) e dentro do intervalo válido.
-     * 
-     * @param[in] valor Valor string representando o horário a ser validado.
-     * @throws std::invalid_argument Caso o valor não esteja no formato ou intervalo esperado.
-     */
     void validar(string valor) override;
 };
 

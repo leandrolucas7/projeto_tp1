@@ -1,7 +1,7 @@
 // Matrícula: 222025852
 /**
  * @file Avaliacao.hpp
- * @brief Declara a classe Avaliacao.
+ * @brief Declaração da classe `Avaliacao`.
  * 
  */
 
@@ -12,16 +12,15 @@
 
 /**
  * @class Avaliacao
- * @brief Classe que representa a pontuação de determinado serviço.
+ * @brief Classe representa a pontuação de determinado serviço.
  * 
- * Armazena o valor da pontuação
+ * Armazena o valor da pontuação como um número inteiro.
  * 
  * Regras de validação implementadas no método privado `validar`.
  * 
- * 
  * <b>Regras de formato:</b>
  * 
- * - Armazena apenas valores inteiros de 0 a 5, extremos inclusos
+ * - Armazena apenas valores inteiros de 0 a 5, extremos inclusos.
  * 
  */
 
