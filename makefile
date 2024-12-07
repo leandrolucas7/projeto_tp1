@@ -32,6 +32,8 @@ SRC = $(DOM)avaliacao.cpp \
 	  src/entidades/testes/teste_destino.cpp \
 	  src/entidades/testes/teste_hospedagem.cpp \
 	  src/entidades/testes/teste_atividade.cpp \
+	  src/entidades/testes/teste_viagem.cpp \
+
 
 
 OBJ = $(SRC:.cpp=.o)
