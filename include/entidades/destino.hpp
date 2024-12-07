@@ -127,4 +127,4 @@ inline void Destino::set_avaliacao(const Avaliacao &avaliacao)
 inline Avaliacao Destino::get_avaliacao() const
 { return avaliacao; }
 
-#endif
+#endif // DESTINO_HPP_INCLUDED

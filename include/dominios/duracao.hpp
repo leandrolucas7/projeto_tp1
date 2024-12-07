@@ -29,4 +29,4 @@ class Duracao : public SuperDominio<int>
         void validar(int) override;
 };
 
-#endif
+#endif // DURACAO_HPP
