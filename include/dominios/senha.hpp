@@ -4,9 +4,9 @@
  * @file senha.hpp
  * @brief Declaração da classe 'Senha'.
  * 
+ * Este arquivo define a classe `Senha`, que valida uma credencial com base em critérios específicos.
+ * 
  */
-
-/// Declaração da classe Senha
 
 #ifndef SENHA_HPP
 #define SENHA_HPP
@@ -17,17 +17,16 @@
 using namespace std;
 
 /**
- * @class Senha
- * @brief Classe responsável por validar uma senha seguindo critérios específicos.
+ * @brief Classe responsável pela validação de uma credencial de senha.
  * 
- * A senha deve atender aos seguintes critérios:
- * - Conter exatamente 5 dígitos.
+ * A senha deve cumprir os seguintes requisitos:
+ * - Contar com exatamente 5 dígitos.
  * - Não possuir dígitos repetidos.
- * - Não estar em ordem crescente ou decrescente.
+ * - Não estar em uma sequência crescente ou decrescente.
  * 
- * Caso algum dos critérios não seja atendido, será lançada uma exceção do tipo `std::invalid_argument`.
+ * Caso algum desses requisitos não seja atendido, uma exceção do tipo `std::invalid_argument` será lançada.
  * 
- * @note Esta classe herda os métodos 'set' e 'get' da classe base 'SuperDominio'.
+ * @note Esta classe herda os métodos `set` e `get` da classe base `SuperDominio`.
  * 
  */
 
@@ -35,13 +34,13 @@ class Senha : public SuperDominio<string>
 {
     private:
         /**
-         * @brief Valida a senha fornecida.
+         * @brief Valida a senha fornecida conforme os critérios especificados.
          * 
-         * Este método é utilizado internamente para verificar os critérios de validade da senha.
+         * Este método verifica se a senha atende aos requisitos de validade.
          * 
-         * @param T String contendo a senha a ser validada.
+         * @param T String representando a senha a ser validada.
          * 
-         * @throw std::invalid_argument Se a senha for inválida.
+         * @throw std::invalid_argument Se a senha não atender aos critérios.
          */
         void validar(string) override;
 };

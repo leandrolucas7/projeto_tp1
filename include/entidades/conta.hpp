@@ -3,7 +3,7 @@
  * @file conta.hpp
  * @brief Declaração da classe `Conta`.
  * 
- * Esse arquivo define a classe 'Conta', que representa uma conta de usuário com informações de código e uma senha associada.
+ * Este arquivo define a classe `Conta`, que armazena informações de um usuário, como um código único e uma senha associada.
  * 
  */
 
@@ -13,15 +13,14 @@
 #include "../dominios/DOMINIOS.hpp"
 
 /**
- * @class Conta
  * @brief Representa uma conta de usuário no sistema.
  * 
- * A classe armazena os dados de uma conta:
+ * A classe armazena dois atributos principais:
  * 
- * - Um código único ('Codigo').
- * - Uma senha segura ('Senha').
+ * - Um código único (`Codigo`).
+ * - Uma senha segura (`Senha`).
  * 
- * Esta classe fornece métodos para definir e obter os valoresdocódigo e da senha.
+ * Além disso, fornece métodos para definir e obter esses atributos.
  * 
  */
 
@@ -33,30 +32,30 @@ class Conta
     
     public:
         /**
-         * @brief Define o código da conta.
+         * @brief Define o código associado à conta.
          * 
-         * @param codigo Instância da classe `Codigo` representando o código único.
+         * @param codigo Instância de `Codigo` que será atribuída à conta.
          */
         void set_codigo(const Codigo& codigo);
 
         /**
-         * @brief Retorna o código da conta.
+         * @brief Retorna o código associado à conta.
          * 
-         * @return Instância da classe `Codigo` representando o código único da conta.
+         * @return Instância de `Codigo` que representa o código da conta.
          */
         Codigo get_codigo() const;
 
         /**
-         * @brief Define a senha da conta.
+         * @brief Define a senha associada à conta.
          * 
-         * @param senha Instância da classe `Senha` representando a senha da conta.
+         * @param senha Instância de `Senha` que será atribuída à conta.
          */
         void set_senha(const Senha& senha);
 
         /**
-         * @brief Retorna a senha da conta.
+         * @brief Retorna a senha associada à conta.
          * 
-         * @return Instância da classe `Senha` representando a senha da conta.
+         * @return Instância de `Senha` que representa a senha da conta.
          */
         Senha get_senha() const;
 };
