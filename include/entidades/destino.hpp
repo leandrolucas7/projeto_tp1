@@ -42,7 +42,7 @@ class Destino {
         /**
          * @brief Retorna o código identificador do destino da viagem.
          * 
-         * @return Instância de 'Codigo' que representa o código indentificador do destino da viagem.
+         * @return Instância de `Codigo` que representa o código indentificador do destino da viagem.
          */
         Codigo get_codigo() const;
         /**
