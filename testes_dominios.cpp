@@ -69,4 +69,9 @@ int main()
     if (teste_atividade.run() == TesteAtividade::SUCESSO)
         cout << "Teste 'ATIVIDADE' bem-sucedido" << endl;
 
+    TesteViagem teste_viagem;
+    cout << "VIAGEM" << endl << "    ";
+    if (teste_viagem.run() == TesteViagem::SUCESSO)
+        cout << "Teste 'VIAGEM' bem-sucedido" << endl;
+
 }

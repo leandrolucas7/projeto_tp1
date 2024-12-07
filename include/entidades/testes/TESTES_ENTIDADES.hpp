@@ -5,5 +5,6 @@
 #include "teste_destino.hpp"
 #include "teste_hospedagem.hpp"
 #include "teste_atividade.hpp"
+#include "teste_viagem.hpp"
 
 #endif
