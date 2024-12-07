@@ -3,7 +3,7 @@
  * @file conta.hpp
  * @brief Declaração da classe `Conta`.
  * 
- * Este arquivo define a classe `Conta`, que armazena informações de um usuário, como um código único e uma senha associada.
+ * Este arquivo define a classe `Conta`, que armazena informações de um usuário, como um código único de identificação e uma sequência de autenticação associada.
  * 
  */
 
@@ -13,12 +13,12 @@
 #include "../dominios/DOMINIOS.hpp"
 
 /**
- * @brief Representa as informações de usuário no sistema.
+ * @brief Representa as informações de identificação e autenticação de um usuário no sistema.
  * 
  * A classe armazena dois atributos principais:
  * 
- * - Um código único (`Codigo`).
- * - Uma senha segura (`Senha`).
+ * - Um código único de identificação (`Codigo`).
+ * - Uma sequência de autenticação segura (`Senha`).
  * 
  * Além disso, fornece métodos para definir e obter esses atributos.
  * 
@@ -27,35 +27,35 @@
 class Conta 
 {
     private:
-        Codigo codigo; ///< Código único associado à conta.
-        Senha senha;   ///< Senha segura da conta.
+        Codigo codigo; ///< Código único associado ao usuário.
+        Senha senha;   ///< Sequência de autenticação segura do usuário.
     
     public:
         /**
-         * @brief Define o código associado à conta.
+         * @brief Define o código de identificação associado ao usuário.
          * 
-         * @param codigo Instância de `Codigo` que será atribuída à conta.
+         * @param codigo Instância de `Codigo` que será atribuída ao usuário.
          */
         void set_codigo(const Codigo& codigo);
 
         /**
-         * @brief Retorna o código associado à conta.
+         * @brief Retorna o código de identificação associado ao usuário.
          * 
-         * @return Instância de `Codigo` que representa o código da conta.
+         * @return Instância de `Codigo` que representa o código de identificação do usuário.
          */
         Codigo get_codigo() const;
 
         /**
-         * @brief Define a senha associada à conta.
+         * @brief Define a sequência de autenticação associada ao usuário.
          * 
-         * @param senha Instância de `Senha` que será atribuída à conta.
+         * @param senha Instância de `Senha` que será atribuída ao usuário.
          */
         void set_senha(const Senha& senha);
 
         /**
-         * @brief Retorna a senha associada à conta.
+         * @brief Retorna a sequência de autenticação associada ao usuário.
          * 
-         * @return Instância de `Senha` que representa a senha da conta.
+         * @return Instância de `Senha` que representa a sequência de autenticação do usuário.
          */
         Senha get_senha() const;
 };
