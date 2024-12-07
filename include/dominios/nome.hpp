@@ -45,4 +45,4 @@ class Nome: public SuperDominio<string>
 };
 
 
-#endif // SENHA_HPP
+#endif // NOME_HPP
