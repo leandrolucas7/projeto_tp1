@@ -14,7 +14,7 @@ using namespace std;
 
 /**
  * @class Horario
- * @brief Classe representa um valor de tempo em formato textual.
+ * @brief Classe que representa um valor de tempo em formato textual.
  * 
  * Armazena a representação textual de um instante de tempo como string.
  * 

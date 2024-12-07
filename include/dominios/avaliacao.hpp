@@ -12,7 +12,7 @@
 
 /**
  * @class Avaliacao
- * @brief Classe representa a pontuação de determinado serviço.
+ * @brief Classe que representa a pontuação de determinado serviço.
  * 
  * Armazena o valor da pontuação como um número inteiro.
  * 

@@ -3,10 +3,6 @@
  * @file SuperDominio.hpp
  * @brief Declaração da classe base genérica `SuperDominio`, utilizada como modelo para classes de domínio.
  * 
- * A classe `SuperDominio` é um template abstrato que define a interface básica para classes de domínio.
- * Cada classe derivada deve implementar o método de validação específico para o tipo de valor utilizado.
- * 
- * @tparam T Tipo do valor armazenado e validado pela classe.
  */
 
 #ifndef SUPER_DOMINIO_HPP
@@ -16,10 +12,10 @@
  * @class SuperDominio
  * @brief Classe base abstrata para definição de domínios genéricos.
  * 
- * A `SuperDominio` fornece métodos para armazenar, recuperar e validar valores. 
+ * Fornece métodos para validar, armazenar, e acessar valores. 
  * É necessário que classes derivadas implementem o método de validação específico para o tipo de dado usado.
  * 
- * @tparam T Tipo do valor que será manipulado pela classe.
+ * @tparam T Tipo do valor que será manipulado pela classe derivada.
  */
 template <typename T>
 class SuperDominio
@@ -27,6 +23,8 @@ class SuperDominio
 protected:
     /**
      * @brief Valor armazenado pelo domínio.
+     * 
+     * O tipo de 'T' será definido na declaração da classe derivada.
      */
     T valor;
 
@@ -34,10 +32,10 @@ protected:
      * @brief Método abstrato para validação do valor.
      * 
      * Deve ser implementado nas classes derivadas para verificar se o valor fornecido atende 
-     * às regras de negócio ou restrições definidas.
+     * às regras/restrições definidas.
      * 
      * @param[in] valor Valor a ser validado.
-     * @throws std::exception Caso o valor não seja válido.
+     * @throws std::invalid_argument Caso o valor não seja válido.
      */
     virtual void validar(T valor) = 0;
 
