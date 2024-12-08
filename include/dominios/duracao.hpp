@@ -9,7 +9,7 @@
 #define DURACAO_HPP
 
 /**
- * @class Horario
+ * @class Duracao
  * @brief Classe responsável por armazenar um período de tempo com critérios de validação.
  * 
  * Armazena o valor do período de tempo como um inteiro.
