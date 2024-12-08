@@ -70,6 +70,7 @@ class Viagem
 /**
  * @brief Implementação inline dos métodos da classe `Viagem`.
 **/
+
 inline void Viagem::set_codigo(const Codigo &codigo) 
 {
     this->codigo = codigo;
