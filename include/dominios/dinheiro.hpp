@@ -1,8 +1,8 @@
 //Matrícula: 232006215
 
 /**
- * @file horario.hpp
- * @brief Declaração da classe `Data`.
+ * @file dinheiro.hpp
+ * @brief Declaração da classe `Dinheiro`.
  * 
  */
 
