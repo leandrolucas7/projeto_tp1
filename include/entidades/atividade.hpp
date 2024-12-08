@@ -19,7 +19,7 @@ using namespace std;
 
 /**
  * @class Atividade
- * @brief Classe que armazena informações relativas a um serviço provido ao usuário durante uma viagem, em determinado destino.
+ * @brief Classe que armazena informações relativas a um serviço provido ao usuário durante uma viagem0, em determinado destino, tais quais a data, horário, duração, preço e uma avaliação do serviço prestado.
  */
 
 class Atividade
