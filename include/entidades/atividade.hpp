@@ -19,7 +19,7 @@ using namespace std;
 
 /**
  * @class Atividade
- * @brief Classe que armazena informações relativas a um serviço provido ao usuário durante uma viagem, em determinado destino.
+ * @brief Classe que armazena informações relativas a um serviço provido ao usuário durante uma viagem0, em determinado destino, tais quais a data, horário, duração, preço e uma avaliação do serviço prestado.
  */
 
 class Atividade
@@ -74,7 +74,7 @@ class Atividade
          */
         Horario get_horario() const;
         /**
-         * @brief Define o príodo de tempo em que o serviço prolongou-se.
+         * @brief Define o príodo de tempo durante o qual o serviço prolongou-se.
          * @param duracao Referência constante para uma instância da classe `Duracao`.
          */
         void set_duracao(const Duracao&);
