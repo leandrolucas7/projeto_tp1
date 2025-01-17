@@ -16,11 +16,11 @@ int main()
     ModAprAutenticacao mod_apr_autenticacao;
     if (mod_apr_autenticacao.autenticar(&codigo_teste, &senha_teste))
     {
-        std::cout << "Autenticação bem-sucedida!" << std::endl;
+        std::cout << "Autenticacao bem-sucedida!" << std::endl;
     }
     else
     {
-        std::cout << "Falha na autenticação!" << std::endl;
+        std::cout << "Falha na autenticacao!" << std::endl;
     }
 
     return 0;

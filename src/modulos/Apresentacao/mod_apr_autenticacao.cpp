@@ -1,5 +1,5 @@
 #include "../../../include/modulos/apresentacao/mod_apr_autenticacao.hpp"
-#include "../stubs/stub_mod_ser_autenticacao.cpp"
+#include "../../stubs/stub_mod_ser_autenticacao.cpp"
 #include "../../../include/entidades/conta.hpp"
 
 bool ModAprAutenticacao::autenticar(Codigo* codigo, Senha* senha)

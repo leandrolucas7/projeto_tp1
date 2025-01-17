@@ -1,4 +1,4 @@
-#include "../../entidades/conta.hpp"
+#include "../../include/entidades/conta.hpp"
 
 class StubModSerAutenticacao
 {
