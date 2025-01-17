@@ -1,14 +1,13 @@
 #ifndef IntAprAutenticacao_HPP
 #define IntAprAutenticacao_HPP
 
-#include "../../dominios/codigo.hpp"
-#include "../../dominios/senha.hpp"
+#include "../../entidades/conta.hpp"
 
 
 class IntAprAutenticacao
 {
     public:
-        virtual bool autenticar(Codigo*,Senha*) = 0;
+        virtual bool autenticar(Conta*) = 0;
 };
 
 #endif

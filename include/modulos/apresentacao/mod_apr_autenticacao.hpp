@@ -6,7 +6,7 @@
 class ModAprAutenticacao : public IntAprAutenticacao
 {
     public:
-        bool autenticar(Codigo*,Senha*) override;
+        bool autenticar(Conta*) override;
 };
 
 #endif
