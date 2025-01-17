@@ -1,0 +1,27 @@
+#include <iostream>
+#include "../../include/entidades/ENTIDADES.hpp"
+#include "../../include/interfaces/INTERFACES.hpp"
+#include "../../include/modulos/MODULOS.hpp"
+
+int main()
+{
+    // Criando instâncias de Codigo e Senha
+    Codigo codigo_teste;
+    Senha senha_teste;
+
+    codigo_teste.set_valor("123456");
+    senha_teste.set_valor("69130");
+
+    // Criando uma instância de ModAprAutenticacao e testando autenticação
+    ModAprAutenticacao mod_apr_autenticacao;
+    if (mod_apr_autenticacao.autenticar(&codigo_teste, &senha_teste))
+    {
+        std::cout << "Autenticação bem-sucedida!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Falha na autenticação!" << std::endl;
+    }
+
+    return 0;
+}
