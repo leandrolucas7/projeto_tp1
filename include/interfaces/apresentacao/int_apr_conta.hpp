@@ -1,7 +1,7 @@
 #ifndef IntAprConta_HPP
 #define IntAprConta_HPP
 
-#include 
+#include "../../entidades/conta.hpp"
 
 class IntAprConta
 {
