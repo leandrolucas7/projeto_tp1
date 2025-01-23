@@ -3,6 +3,7 @@
 #include "./stubs.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
+#include <iostream>
 
 class ModAprAutenticacao : public IntAprAutenticacao
 {
