@@ -52,7 +52,8 @@ $(TARGET): $(OBJ)
 # Rule to clean up generated files
 clean:
 	rm -f $(OBJ) $(TARGET)
-	rm -f *.o *.exe
+	find . -name '*.o' -delete
+	rm -f *.exe
 
 # Rule to force recompilation of the target
 rebuild: clean $(TARGET)
