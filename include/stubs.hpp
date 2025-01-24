@@ -3,11 +3,32 @@
 
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
+#include "interfaces.hpp"
 
-class StubCntrSerAutenticacao
+class StubCntrAprCriarConta: public IntAprCriarConta
 {
     public:
-    bool autenticar(Conta);
+        void criar();
+};
+
+class StubCntrAprAutenticacao:public IntAprAutenticacao
+{
+    public:
+        bool autenticar(Conta*) override;
+};
+
+class StubAprEscolha: public IntAprEscolha
+{
+    public:
+        void escolher_entidade() override;
+};
+
+class StubCntrSerAutenticacao: public IntSerAutenticacao
+{
+    private:
+    
+    public:
+    bool autenticar(Conta) override;
 };
 
 

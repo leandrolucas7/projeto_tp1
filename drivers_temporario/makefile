@@ -14,13 +14,13 @@ MOD = ../src/
 # Source files and object files
 SRC =   $(wildcard $(DOM)*.cpp) \
 		$(wildcard $(MOD)*.cpp) \
-		driver_cntr_apr_autenticacao.cpp \
+		driver_cntr_apr_inicial.cpp \
 
 
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = driver_cntr_apr_autenticacao
+TARGET = driver_cntr_apr_inicial
 
 # Rule to build the target executable
 $(TARGET): $(OBJ)

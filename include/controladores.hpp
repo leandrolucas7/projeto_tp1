@@ -8,6 +8,20 @@
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
 
+class CntrAprInicial
+{
+    private:
+        bool usuarioLogado;
+        IntAprCriarConta* cntrAprCriarConta;
+        IntAprAutenticacao* cntrAprAutenticacao;
+        IntAprEscolha* cntrAprEscolha;
+    public:
+        CntrAprInicial();
+        void executar();
+};
+
+
+
 class CntrAprAutenticacao : public IntAprAutenticacao
 {
     public:

@@ -4,6 +4,63 @@
 
 using namespace std;
 
+CntrAprInicial::CntrAprInicial()
+{
+    this->cntrAprCriarConta = new StubCntrAprCriarConta();
+    this->cntrAprAutenticacao = new StubCntrAprAutenticacao();
+    this->cntrAprEscolha = new StubAprEscolha();
+};
+
+
+void CntrAprInicial::executar()
+{
+    Conta* conta_ptr = nullptr;
+    usuarioLogado = false;
+    int entrada_do_usuario;
+    while (!usuarioLogado)
+    {
+        cout << "Essa eh a tela inicial. Selecione uma das opcoes abaixo:" << endl;
+        cout << "1. Criar conta" << endl;
+        cout << "2. Login" << endl;
+        cout << "3. Sair" << endl;
+        cin >> entrada_do_usuario;
+        switch(entrada_do_usuario)
+        {
+        case 1:
+            this->cntrAprCriarConta->criar();
+            continue;
+        case 2:
+            usuarioLogado = this->cntrAprAutenticacao->autenticar(conta_ptr);
+            break;
+        case 3: 
+            return;
+        default:
+            cout << "Essa opcao nao existe !" << endl;
+        }
+
+        while (usuarioLogado)
+        {
+            cout << "Essa eh a tela para usuarios logados. Selecione uma das opcoes" << endl;
+            cout << "1. Logout" << endl;
+            cout << "2. Entrar" << endl;
+            cin >> entrada_do_usuario;
+            switch (entrada_do_usuario)
+            {
+            case 1:
+                conta_ptr = nullptr;
+                usuarioLogado = false;
+                break;
+            case 2:
+                this->cntrAprEscolha->escolher_entidade();
+                continue;
+            default:
+                break;
+            }
+        }
+    }
+    
+}
+
 bool CntrAprAutenticacao::autenticar(Conta* conta)
 {   
     Codigo codigo;
