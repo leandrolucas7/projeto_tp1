@@ -1,3 +1,6 @@
+#ifndef controladores_HPP
+#define controladores_HPP
+
 #include "./interfaces.hpp"
 #include "./commands.hpp"
 #include "./stubs.hpp"
@@ -5,7 +8,7 @@
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
 
-class ModAprAutenticacao : public IntAprAutenticacao
+class CntrAprAutenticacao : public IntAprAutenticacao
 {
     public:
         bool autenticar(Conta*) override;
@@ -13,8 +16,10 @@ class ModAprAutenticacao : public IntAprAutenticacao
 
 
 
-class ModSerAutenticacao : public IntSerAutenticacao
+class CntrSerAutenticacao : public IntSerAutenticacao
 {
     public:
         bool autenticar(Conta) override;
 };
+
+#endif

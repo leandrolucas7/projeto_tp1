@@ -1,3 +1,6 @@
+#ifndef interfacesHPP
+#define interfacesHPP
+
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
 
@@ -19,3 +22,5 @@ class IntSerAutenticacao
     public:
         virtual bool autenticar(Conta) = 0;
 };
+
+#endif

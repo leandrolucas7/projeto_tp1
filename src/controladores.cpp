@@ -4,14 +4,7 @@
 
 using namespace std;
 
-class ModAprAutenticacao : public IntAprAutenticacao
-{
-    public:
-        bool autenticar(Conta*) override;
-};
-
-
-bool ModAprAutenticacao::autenticar(Conta* conta)
+bool CntrAprAutenticacao::autenticar(Conta* conta)
 {   
     Codigo codigo;
     Senha senha;
@@ -59,6 +52,6 @@ bool ModAprAutenticacao::autenticar(Conta* conta)
     conta->set_codigo(codigo);
     conta->set_senha(senha);
 
-    StubModSerAutenticacao* mod_ser_autenticacao = new StubModSerAutenticacao();
+    StubCntrSerAutenticacao* mod_ser_autenticacao = new StubCntrSerAutenticacao();
     return mod_ser_autenticacao->autenticar(*conta);
 }
