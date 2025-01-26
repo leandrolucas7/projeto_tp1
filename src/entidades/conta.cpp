@@ -1,5 +1,13 @@
 #include "../../include/entidades/conta.hpp"
 
+Conta::~Conta()
+{
+    for (int i = 0; i < this->viagens_ptr.size(); i++)
+    {
+        delete this->viagens_ptr[i];
+    }
+}
+
 int Conta::get_viagem_index(Codigo viagem_id)
 {
     for (int i = 0; i < this->viagens_ptr.size(); i++)
@@ -31,6 +39,7 @@ void Conta::add_viagem(Viagem* viagem)
 void Conta::remove_viagem(Codigo viagem_id)
 {
     int index = this->get_viagem_index(viagem_id);
+    delete this->viagens_ptr[index];
     this->viagens_ptr.erase(this->viagens_ptr.begin() + index);
 }
 

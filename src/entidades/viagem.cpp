@@ -1,5 +1,13 @@
 #include "../../include/entidades/viagem.hpp"
 
+Viagem::~Viagem()
+{
+    for (int i = 0; i < this->destinos_ptr.size(); i++)
+    {
+        delete this->destinos_ptr[i];
+    }
+}
+
 
 int Viagem::get_destino_index(Codigo destino_id)
 {
@@ -32,6 +40,7 @@ void Viagem::add_destino(Destino* destino)
 void Viagem::remove_destino(Codigo destino_id)
 {
     int index = this->get_destino_index(destino_id);
+    delete this->destinos_ptr[index];
     this->destinos_ptr.erase(this->destinos_ptr.begin() + index);
 }
 

@@ -39,6 +39,7 @@ class Destino {
         vector<Atividade*> atividades_ptr; ///< Vetor de atividades associadas ao destino da viagem.
         vector<Hospedagem*> hospedagens_ptr; ///< Vetor de hospedagens associadas ao destino da viagem.
     public:
+        ~Destino();
 
         /**
          * @brief Define o código de identificação do destino da viagem.

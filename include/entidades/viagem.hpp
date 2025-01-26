@@ -34,6 +34,7 @@ class Viagem
         vector<Destino*> destinos_ptr; /**< Vetor de destinos associados à viagem. */
 
     public:
+        ~Viagem();
         /**
          * @brief Define o código da viagem.
          * @param codigo Objeto do tipo `Codigo` a ser atribuído.

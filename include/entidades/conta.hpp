@@ -34,6 +34,7 @@ class Conta
         Senha senha;   ///< Sequência de autenticação segura do usuário.
         vector<Viagem*> viagens_ptr; ///< Vetor de viagens associadas ao usuário.
     public:
+        ~Conta();   
         /**
          * @brief Define o código de identificação associado ao usuário.
          * 
