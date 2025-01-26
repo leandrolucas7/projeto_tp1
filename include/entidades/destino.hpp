@@ -8,6 +8,9 @@
 #define DESTINO_HPP_INCLUDED
 
 #include "../dominios/DOMINIOS.hpp"
+#include "atividade.hpp"
+#include "hospedagem.hpp"
+#include <vector>
 
 /**
  * @class Destino
@@ -28,11 +31,15 @@
 class Destino {
     private:
         Codigo codigo; ///< Código identificador do destino da viagem.
+        Codigo viagem_id; ///< Código identificador da viagem associada ao destino.
         Nome nome; ///< Nome do destino da viagem.
         Data data_inicio; ///< Data de início da viagem.
         Data data_termino; ///< Data de término da viagem.
         Avaliacao avaliacao; ///< Avaliação atribuída ao destino pelo usuário.
+        vector<Atividade*> atividades_ptr; ///< Vetor de atividades associadas ao destino da viagem.
+        vector<Hospedagem*> hospedagens_ptr; ///< Vetor de hospedagens associadas ao destino da viagem.
     public:
+
         /**
          * @brief Define o código de identificação do destino da viagem.
          * 
@@ -50,6 +57,22 @@ class Destino {
          * 
          * @param nome Referência constante para um objeto do tipo `Nome` representando o nome que será atribuído ao destino da viagem.
          */
+
+        /**
+         * @brief Define o código identificador da viagem associada ao destino.
+         * 
+         * @param viagem_id Referência constante para um objeto do tipo `Codigo` representando o código identificador da viagem associada ao destino.
+         */
+        void set_viagem_id(const Codigo& viagem_id);
+
+        /**
+         * @brief Retorna o código identificador da viagem associada ao destino.
+         * 
+         * @return Instância de `Codigo` que representa o código identificador da viagem associada ao destino.
+         */
+        Codigo get_viagem_id() const;
+
+
         void set_nome(const Nome& nome);
         /**
          * @brief Retorna o nome do destino da viagem.
@@ -93,6 +116,58 @@ class Destino {
          * @return Instância de `Avaliacao` que representa a avaliação atribuída ao destino pelo usuário.
          */
         Avaliacao get_avaliacao() const;
+
+        /**
+         * @brief Obtém o índice de uma atividade associada ao destino.
+         * @param atividade_id Código da atividade a ser buscada.
+         * @return Índice da atividade no vetor de atividades associadas ao destino.
+         */
+        int get_atividade_index(Codigo atividade_id);
+
+        /**
+         * @brief Obtém um ponteiro para uma atividade associada ao destino.
+         * @param atividade_id Código da atividade a ser buscada.
+         * @return Ponteiro para a atividade associada ao destino.
+         */
+        Atividade* get_atividade_ptr(Codigo atividade_id);
+
+        /**
+         * @brief Adiciona uma atividade ao vetor de atividades associadas ao destino.
+         * @param atividade Ponteiro para a atividade a ser adicionada.
+         */
+        void add_atividade(Atividade* atividade);
+
+        /**
+         * @brief Remove uma atividade do vetor de atividades associadas ao destino.
+         * @param atividade_id Código da atividade a ser removida.
+         */
+        void remove_atividade(Codigo atividade_id);
+
+        /**
+         * @brief Obtém o índice de uma hospedagem associada ao destino.
+         * @param hospedagem_id Código da hospedagem a ser buscada.
+         * @return Índice da hospedagem no vetor de hospedagens associadas ao destino.
+         */
+        int get_hospedagem_index(Codigo hospedagem_id);
+
+        /**
+         * @brief Obtém um ponteiro para uma hospedagem associada ao destino.
+         * @param hospedagem_id Código da hospedagem a ser buscada.
+         * @return Ponteiro para a hospedagem associada ao destino.
+         */
+        Hospedagem* get_hospedagem_ptr(Codigo hospedagem_id);
+
+        /**
+         * @brief Adiciona uma hospedagem ao vetor de hospedagens associadas ao destino.
+         * @param hospedagem Ponteiro para a hospedagem a ser adicionada.
+         */
+        void add_hospedagem(Hospedagem* hospedagem);
+
+        /**
+         * @brief Remove uma hospedagem do vetor de hospedagens associadas ao destino.
+         * @param hospedagem_id Código da hospedagem a ser removida.
+         */
+        void remove_hospedagem(Codigo hospedagem_id);
 };
 
 // Implementação inline dos métodos
@@ -102,6 +177,12 @@ inline void Destino::set_codigo(const Codigo &codigo)
 
 inline Codigo Destino::get_codigo() const
 { return codigo; }
+
+inline void Destino::set_viagem_id(const Codigo& viagem_id)
+{ this->viagem_id = viagem_id; }
+
+inline Codigo Destino::get_viagem_id() const
+{ return viagem_id; }
 
 inline void Destino::set_nome(const Nome &nome)
 { this->nome = nome; }

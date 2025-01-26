@@ -24,6 +24,28 @@ class IntAprEscolha
         virtual void escolher_entidade() = 0;
 };
 
+template <typename T, typename U>
+class IntAprCRU
+{
+      private:
+            IntSerCUD* servico;
+      public:
+            virtual void create(T*) = 0;
+            virtual void read(U*) = 0;
+            virtual void update(U*) = 0;
+            //virtual void remove() = 0;
+};
+
+class IntSerCUD
+{
+    public:
+        virtual void create() = 0;
+        //virtual void read() = 0;
+        virtual void update() = 0;
+        virtual void remove() = 0;
+};
+
+
 class IntSerAutenticacao
 {
     public:

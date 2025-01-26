@@ -112,3 +112,9 @@ bool CntrAprAutenticacao::autenticar(Conta* conta)
     StubCntrSerAutenticacao* mod_ser_autenticacao = new StubCntrSerAutenticacao();
     return mod_ser_autenticacao->autenticar(*conta);
 }
+
+
+void cntrAprCRUViagem::create(Conta*)
+{
+    
+}

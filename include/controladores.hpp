@@ -29,6 +29,14 @@ class CntrAprAutenticacao : public IntAprAutenticacao
 };
 
 
+class cntrAprCRUViagem : public IntAprCRU<Conta, Viagem>
+{
+    public:
+        void create(Conta*) override;
+        void read(Viagem*) override;
+        void update(Viagem*) override;
+};
+
 
 class CntrSerAutenticacao : public IntSerAutenticacao
 {

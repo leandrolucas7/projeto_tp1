@@ -19,3 +19,8 @@ void Codigo::validar(string v)
     throw invalid_argument("Argumento (" + v + ") inválido.");
 }
 
+bool operator==(const Codigo &codigo1, const Codigo &codigo2)
+{
+    return codigo1.valor == codigo2.valor;
+}
+

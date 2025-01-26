@@ -32,6 +32,7 @@ void StubCntrAprCriarConta :: criar()
             senha.set_valor(senha_string);
             if (codigo_string != "654321")
                 {
+                    
                     //A conta seria adicionada ao banco de dados
                     cout << "Dados cadastrados no sistema!"  << endl;
                     return;

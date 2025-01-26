@@ -37,6 +37,8 @@ class Codigo: public SuperDominio<string>
          * @throws invalid_argument Caso o código não seja válido.
          */
         void validar(string codigo) override;
+    public:
+        friend bool operator==(const Codigo&, const Codigo&);
 };
 
 #endif

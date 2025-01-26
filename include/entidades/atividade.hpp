@@ -26,6 +26,7 @@ class Atividade
 {
     private:
         Codigo codigo; ///< Age como identificador do serviço prestado
+        Codigo destino_id; ///< Age como identificador do destino associado ao serviço
         Nome nome;
         Data data;
         Horario horario;
@@ -43,6 +44,16 @@ class Atividade
          * @return Instância de `Codigo` .
          */
         Codigo get_codigo() const;
+        /**
+         * @brief Define um identificador para o destino associado ao serviço.
+         * @param destino_id Referência constante para uma instância da classe `Codigo`.
+         */
+        void set_destino_id(const Codigo&);
+        /**
+         * @brief Retorna o identificador do destino associado ao serviço.
+         * @return Instância de `Codigo`.
+         */
+        Codigo get_destino_id() const;
         /**
          * @brief Define um rótulo para serviço fornecido.
          * @param nome Referência constante para uma instância da classe `Nome`.
@@ -113,6 +124,16 @@ inline void Atividade::set_codigo(const Codigo &codigo)
 inline Codigo Atividade::get_codigo() const
 {
     return codigo;
+}
+
+inline void Atividade::set_destino_id(const Codigo &destino_id)
+{
+    this->destino_id = destino_id;
+}
+
+inline Codigo Atividade::get_destino_id() const
+{
+    return destino_id;
 }
 
 
