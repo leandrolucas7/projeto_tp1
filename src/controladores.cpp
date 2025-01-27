@@ -114,6 +114,47 @@ bool CntrAprAutenticacao::autenticar(Conta* conta)
 }
 
 
+void CntrAprCRUDConta::create(Conta* conta_ptr)
+{
+    cout << "Tela de criacao de conta" << endl;
+    Codigo codigo; string codigo_string;
+    Senha senha; string senha_string;
+    cout << "Codigo da conta: " << endl; cin >> codigo_string;
+    cout << "Senha da conta: " << endl; cin >> senha_string;
+    try
+    {
+        codigo.set_valor(codigo_string);
+        senha.set_valor(senha_string);
+    }
+    catch(const invalid_argument& e)
+    {
+        cerr << "Valor inválido" << '\n';
+        return;
+    }
+    //Codigo a ser implementado
+}
+
+void CntrAprCRUDConta::read(Conta* conta_ptr)
+{
+    cout << "Tela de leitura de conta" << endl;
+    cout << "Detalhes da conta " << conta_ptr->get_codigo().get_valor() << ":" << endl;
+    cout << "Senha da conta: " << conta_ptr->get_senha().get_valor() << endl;
+    if (conta_ptr->is_viagem_ptr_empty())
+    cout << "Ainda nao ha nenhuma viagem associada a essa conta" << endl;
+    else
+        {
+            cout << "Viagens associadas a essa conta:" << endl;
+            for (Viagem* viagem_ptr : conta_ptr->get_viagens_ptr())
+            {
+                cout << viagem_ptr->get_nome().get_valor() << "(codigo " <<  viagem_ptr->get_codigo().get_valor() << ")" << endl;
+            }
+        }
+    cout << "Escolha uma opcao:" << endl;
+    cout << "1. Atualizar conta" << endl;
+    cout << "2. Deletar conta" << endl;
+    cout << "3. Voltar" << endl;
+    //Codigo a ser implementado
+}
 
 
 
@@ -180,7 +221,7 @@ void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
             cout << "Destinos associados a essa viagem:" << endl;
             for (Destino* destino_ptr : viagem_ptr->get_destinos_ptr())
             {
-                cout << destino_ptr->get_nome().get_valor() << "(codigo" <<  destino_ptr->get_codigo().get_valor() << ")" << endl;
+                cout << destino_ptr->get_nome().get_valor() << "(codigo " <<  destino_ptr->get_codigo().get_valor() << ")" << endl;
             }
         }
     cout << "Escolha uma opcao:" << endl;
@@ -256,7 +297,7 @@ void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
             cout << "Hospedagens associadas a esse destino:" << endl;
             for (Hospedagem* hospedagem_ptr : destino_ptr->get_hospedagens_ptr())
             {
-                cout << hospedagem_ptr->get_nome().get_valor() << "(codigo" <<  hospedagem_ptr->get_codigo().get_valor() << ")" << endl;
+                cout << hospedagem_ptr->get_nome().get_valor() << "(codigo " <<  hospedagem_ptr->get_codigo().get_valor() << ")" << endl;
             }
         }
     cout << "Escolha uma opcao:" << endl;
