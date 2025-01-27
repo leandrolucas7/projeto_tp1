@@ -1,5 +1,5 @@
-#ifndef interfacesHPP
-#define interfacesHPP
+#ifndef interfacesApr_HPP
+#define interfacesApr_HPP
 
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
@@ -46,14 +46,7 @@ class IntAprCRUD
 };
 
 
-class IntSerCUD
-{
-    public:
-        virtual void create() = 0;
-        //virtual void read() = 0;
-        virtual void update() = 0;
-        virtual void remove() = 0;
-};
+
 
 
 class IntSerAutenticacao

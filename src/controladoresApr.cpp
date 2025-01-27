@@ -1,4 +1,4 @@
-#include "../include/controladores.hpp"
+#include "../include/controladoresApr.hpp"
 #include "../include/stubs.hpp"
 
 
@@ -156,6 +156,36 @@ void CntrAprCRUDConta::read(Conta* conta_ptr)
     //Codigo a ser implementado
 }
 
+void CntrAprCRUDConta::update(Conta* conta_ptr)
+{
+    cout << "Tela de atualizacao de conta" << endl;
+    cout << "Atualizando conta " << conta_ptr->get_codigo().get_valor() << endl;
+    Senha senha; string senha_string;
+    cout << "Nova senha da conta: " << endl; cin >> senha_string;
+    try
+    {
+        senha.set_valor(senha_string);
+    }
+    catch(const invalid_argument& e)
+    {
+        cerr << "Valor inválido" << '\n';
+        return;
+    }
+    //Codigo a ser implementado
+}
+
+void CntrAprCRUDConta::destroy(Conta* conta_ptr)
+{
+    cout << "Tela de delecao de conta" << endl;
+    cout << "Deletando conta " << conta_ptr->get_codigo().get_valor() << endl;
+    cout << "Deseja realmente deletar essa conta?" << endl;
+    cout << "1. Sim" << endl;
+    cout << "2. Nao" << endl;
+    int entrada_do_usuario;
+    cin >> entrada_do_usuario;
+    //switch (entrada_do_usuario)
+}
+
 
 
 void CntrAprCRUDViagem::create(Conta* conta_ptr)
@@ -182,31 +212,6 @@ void CntrAprCRUDViagem::create(Conta* conta_ptr)
 }
 
 
-void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
-{   
-    cout << "Tela de atualizacao de viagem" << endl;
-    cout << "Atualizando viagem da conta " << conta_ptr->get_codigo().get_valor() << endl;
-    Nome nome; string nome_string;
-    Avaliacao avaliacao; int avaliacao_int;
-
-    cout << "Novo nome da viagem: " << endl;
-    cin >> nome_string;
-    cout << "Nova avaliacao da viagem: " << endl;
-    cin >> avaliacao_int;
-    try
-    {
-        nome.set_valor(nome_string);
-        avaliacao.set_valor(avaliacao_int);
-    }
-    catch(const invalid_argument& e)
-    {
-        cerr << "Valor inválido" << '\n';
-        return;
-    }
-    //Codigo a ser implementado
-}
-
-
 void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
 {
     cout << "Tela de leitura de viagem" << endl;
@@ -230,6 +235,30 @@ void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
     cout << "3. Adicionar destino" << endl;
     cout << "4.Escolher destino" << endl;
     cout << "5. Voltar" << endl;
+}
+
+void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
+{   
+    cout << "Tela de atualizacao de viagem" << endl;
+    cout << "Atualizando viagem da conta " << conta_ptr->get_codigo().get_valor() << endl;
+    Nome nome; string nome_string;
+    Avaliacao avaliacao; int avaliacao_int;
+
+    cout << "Novo nome da viagem: " << endl;
+    cin >> nome_string;
+    cout << "Nova avaliacao da viagem: " << endl;
+    cin >> avaliacao_int;
+    try
+    {
+        nome.set_valor(nome_string);
+        avaliacao.set_valor(avaliacao_int);
+    }
+    catch(const invalid_argument& e)
+    {
+        cerr << "Valor inválido" << '\n';
+        return;
+    }
+    //Codigo a ser implementado
 }
 
 void CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)

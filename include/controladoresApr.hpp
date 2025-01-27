@@ -1,9 +1,9 @@
-#ifndef controladores_HPP
-#define controladores_HPP
+#ifndef controladoresApr_HPP
+#define controladoresApr_HPP
 
-#include "./interfaces.hpp"
-#include "./commands.hpp"
-#include "./stubs.hpp"
+#include "./interfacesApr.hpp"
+#include "./interfacesSer.hpp"
+#include "../stubs.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
