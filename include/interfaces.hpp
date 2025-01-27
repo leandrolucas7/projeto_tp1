@@ -24,17 +24,27 @@ class IntAprEscolha
         virtual void escolher_entidade() = 0;
 };
 
-template <typename T, typename U>
-class IntAprCRU
+class IntAprCRUDConta
 {
-      private:
-            IntSerCUD* servico;
-      public:
-            virtual void create(T*) = 0;
-            virtual void read(U*) = 0;
-            virtual void update(U*) = 0;
-            //virtual void remove() = 0;
+    public:
+        virtual void create(Conta*) = 0;
+        virtual void read(Conta*) = 0;
+        virtual void update(Conta*) = 0;
+        virtual void destroy(Conta*) = 0;
 };
+
+template <typename T, typename U>
+class IntAprCRUD
+{
+    private:
+        IntSerCUD* servico;
+    public:
+        virtual void create(T*) = 0;
+        virtual void read(T*,U*) = 0;
+        virtual void update(T*,U*) = 0;
+        virtual void destroy(T*,U*) = 0;
+};
+
 
 class IntSerCUD
 {

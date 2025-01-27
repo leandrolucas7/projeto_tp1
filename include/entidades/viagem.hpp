@@ -88,6 +88,19 @@ class Viagem
          * @param destino_id Código do destino a ser buscado.
          * @return Índice do destino no vetor de destinos associados à viagem.
          */
+
+        /**
+         * @brief Verifica se o vetor de destinos associados à viagem está vazio.
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_destino_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para os destinos associados à viagem.
+         * @return Vetor de ponteiros para os destinos associados à viagem.
+         */
+        vector<Destino*> get_destinos_ptr();
+
         int get_destino_index(Codigo destino_id);
 
         /**
@@ -152,6 +165,16 @@ inline void Viagem::set_avaliacao(const Avaliacao &avaliacao)
 inline Avaliacao Viagem::get_avaliacao() const
 {
     return avaliacao;
+}
+
+inline bool Viagem::is_destino_ptr_empty()
+{
+    return destinos_ptr.empty();
+}
+
+inline vector<Destino*> Viagem::get_destinos_ptr()
+{
+    return destinos_ptr;
 }
 
 #endif

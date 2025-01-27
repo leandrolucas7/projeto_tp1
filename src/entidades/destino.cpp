@@ -1,4 +1,5 @@
 #include "../../include/entidades/destino.hpp"
+#include <stdexcept>
 
 Destino::~Destino()
 {
@@ -10,6 +11,35 @@ Destino::~Destino()
     {
         delete hospedagens_ptr[i];
     }
+}
+
+void Destino::set_data_termino(const Data &data_termino)
+{   
+    int dia_data_inicio = stoi(data_inicio.get_valor().substr(0, 2));
+    int mes_data_inicio = stoi(data_inicio.get_valor().substr(3, 2));
+    int ano_data_inicio = stoi(data_inicio.get_valor().substr(6, 2));
+    int dia_data_termino = stoi(data_termino.get_valor().substr(0, 2));
+    int mes_data_termino = stoi(data_termino.get_valor().substr(3, 2));
+    int ano_data_termino = stoi(data_termino.get_valor().substr(6, 2));
+    if(ano_data_termino < ano_data_inicio)
+    {
+        throw invalid_argument("Data de término inválida.");
+    }
+    if (ano_data_termino == ano_data_inicio)
+    {
+        if (mes_data_termino < mes_data_inicio && ano_data_termino == ano_data_inicio)
+        {
+            throw invalid_argument("Data de término inválida.");
+        }
+        if(mes_data_termino == mes_data_inicio)
+        {
+            if(dia_data_termino < dia_data_inicio)
+            {
+                throw invalid_argument("Data de término inválida.");
+            }
+        }
+    }
+    this->data_termino = data_termino;
 }
 
 

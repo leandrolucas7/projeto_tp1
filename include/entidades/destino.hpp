@@ -10,6 +10,7 @@
 #include "../dominios/DOMINIOS.hpp"
 #include "atividade.hpp"
 #include "hospedagem.hpp"
+#include <stdexcept>
 #include <vector>
 
 /**
@@ -47,17 +48,13 @@ class Destino {
          * @param codigo Referência constante para um objeto do tipo `Codigo` representando o código identificador que será atribuído ao destino da viagem.
          */
         void set_codigo(const Codigo& codigo);
+
         /**
          * @brief Retorna o código identificador do destino da viagem.
          * 
          * @return Instância de `Codigo` que representa o código indentificador do destino da viagem.
          */
         Codigo get_codigo() const;
-        /**
-         * @brief Define o nome do destino da viagem.
-         * 
-         * @param nome Referência constante para um objeto do tipo `Nome` representando o nome que será atribuído ao destino da viagem.
-         */
 
         /**
          * @brief Define o código identificador da viagem associada ao destino.
@@ -73,50 +70,75 @@ class Destino {
          */
         Codigo get_viagem_id() const;
 
-
+        /**
+         * @brief Define o nome do destino da viagem.
+         * 
+         * @param nome Referência constante para um objeto do tipo `Nome` representando o nome que será atribuído ao destino da viagem.
+         */
         void set_nome(const Nome& nome);
+
         /**
          * @brief Retorna o nome do destino da viagem.
          * 
          * @return Instância de `Nome` que representa o nome do destino da viagem.
          */
         Nome get_nome() const;
+
         /**
          * @brief Define a data de início da viagem.
          * 
          *@param data_inicio Referência constante para um objeto do tipo `Data` representando a data que será atribuída ao início da viagem.
          */
         void set_data_inicio(const Data& data_inicio);
+
         /**
          * @brief Retorna a data de início da viagem.
          * 
          * @return Instância de `Data` que representa a data de início da viagem.
          */
         Data get_data_inicio() const;
+
         /**
-         * @brief Define a data de término da viagem.
+         * @brief Define a data de término da viagem. A data de término deve ser posterior à data de início.
          * 
          *@param data_termino Referência constante para um objeto do tipo `Data` representando a data que será atribuída ao término da viagem.
          */
         void set_data_termino(const Data& data_termino);
+
         /**
          * @brief Retorna a data de término da viagem.
          * 
          * @return Instância de `Data` que representa a data de início da viagem.
          */
         Data get_data_termino() const;
+
         /**
          * @brief Define a avaliação atribuída ao destino pelo usuário.
          * 
          *@param avaliacao Referência constante para um objeto do tipo `Avaliacao` representando a avaliação que será atribuída ao destino pelo usuário.
          */       
         void set_avaliacao(const Avaliacao& avaliacao);
+
         /**
          * @brief Retorna a avaliação atribuída ao destino pelo usuário.
          * 
          * @return Instância de `Avaliacao` que representa a avaliação atribuída ao destino pelo usuário.
          */
         Avaliacao get_avaliacao() const;
+
+        /**
+         * @brief Verifica se o vetor de atividades associadas ao destino está vazio.
+         * 
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_atividade_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para as atividades associadas ao destino.
+         * 
+         * @return Vetor de ponteiros para as atividades associadas ao destino.
+         */
+        vector<Atividade*> get_atividades_ptr();
 
         /**
          * @brief Obtém o índice de uma atividade associada ao destino.
@@ -143,6 +165,20 @@ class Destino {
          * @param atividade_id Código da atividade a ser removida.
          */
         void remove_atividade(Codigo atividade_id);
+
+        /**
+         * @brief Verifica se o vetor de hospedagens associadas ao destino está vazio.
+         * 
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_hospedagem_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para as hospedagens associadas ao destino.
+         * 
+         * @return Vetor de ponteiros para as hospedagens associadas ao destino.
+         */
+        vector<Hospedagem*> get_hospedagens_ptr();
 
         /**
          * @brief Obtém o índice de uma hospedagem associada ao destino.
@@ -197,9 +233,6 @@ inline void Destino::set_data_inicio(const Data &data_inicio)
 inline Data Destino::get_data_inicio() const
 { return data_inicio; }
 
-inline void Destino::set_data_termino(const Data &data_termino)
-{ this->data_termino = data_termino; }
-
 inline Data Destino::get_data_termino() const
 { return data_termino; }
 
@@ -208,5 +241,18 @@ inline void Destino::set_avaliacao(const Avaliacao &avaliacao)
 
 inline Avaliacao Destino::get_avaliacao() const
 { return avaliacao; }
+
+
+inline bool Destino::is_atividade_ptr_empty()
+{ return atividades_ptr.empty(); }
+
+inline vector<Atividade*> Destino::get_atividades_ptr()
+{ return atividades_ptr; }
+
+inline bool Destino::is_hospedagem_ptr_empty()
+{ return hospedagens_ptr.empty(); }
+
+inline vector<Hospedagem*> Destino::get_hospedagens_ptr()
+{ return hospedagens_ptr; }
 
 #endif // DESTINO_HPP_INCLUDED

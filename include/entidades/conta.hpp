@@ -64,6 +64,20 @@ class Conta
         Senha get_senha() const;
 
         /**
+         * @brief Verifica se o vetor de viagens associadas ao usuário está vazio.
+         * 
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_viagem_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para as viagens associadas ao usuário.
+         * 
+         * @return Vetor de ponteiros para as viagens associadas ao usuário.
+         */
+        vector<Viagem*> get_viagens_ptr();
+
+        /**
          * @brief Retorna o índice de uma viagem associada ao usuário.
          * 
          * @param viagem_id Código da viagem a ser buscada.
@@ -115,5 +129,16 @@ inline Senha Conta::get_senha() const
 {
     return senha;
 }
+
+inline bool Conta::is_viagem_ptr_empty()
+{
+    return viagens_ptr.empty();
+}
+
+inline vector<Viagem*> Conta::get_viagens_ptr()
+{
+    return viagens_ptr;
+}
+
 
 #endif // CONTA_HPP_INCLUDED
