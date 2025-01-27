@@ -13,8 +13,13 @@ MOD = ../src/
 
 # Source files and object files
 SRC =   $(wildcard $(DOM)*.cpp) \
+		$(wildcard $(ENT)*.cpp) \
 		$(wildcard $(MOD)*.cpp) \
-		driver_cntr_apr_inicial.cpp \
+		../src/controladoresSer.cpp \
+		../src/controladoresApr.cpp \
+		../src/container.cpp \
+		../src/builder.cpp \
+		driver_projeto_tp1.cpp \
 
 
 OBJ = $(SRC:.cpp=.o)

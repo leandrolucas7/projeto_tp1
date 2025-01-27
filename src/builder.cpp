@@ -48,6 +48,7 @@ CntrAprInicial* BuilderSistema::build_cntrAprInicial()
 
 BuilderSistema::~BuilderSistema()
 {
+    ContainerContas::delete_instancia();
     delete this->cntrAprInicial;
     delete this->cntrAprAutenticacao;
     delete this->cntrAprCRUDConta;
