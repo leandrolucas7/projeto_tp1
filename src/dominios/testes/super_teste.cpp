@@ -8,9 +8,6 @@
 
 using namespace std;
 
-template class SuperTeste<int>;
-template class SuperTeste<double>;
-template class SuperTeste<std::string>;
 
 template <typename T>
 void SuperTeste<T>::set_teste()
@@ -91,3 +88,8 @@ int SuperTeste<T>::run()
     tear_down();
     return estado;
 }
+
+
+template class SuperTeste<int>;
+template class SuperTeste<double>;
+template class SuperTeste<std::string>;
