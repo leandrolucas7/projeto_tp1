@@ -34,7 +34,7 @@ class IntAprCRUDConta
         virtual void create(Conta*) = 0;
         virtual void read(Conta*) = 0;
         virtual void update(Conta*) = 0;
-        virtual void destroy(Conta*) = 0;
+        virtual bool destroy(Conta*) = 0;
 };
 
 template <typename T, typename U>
@@ -44,7 +44,7 @@ class IntAprCRUD
         virtual void create(T*) = 0;
         virtual void read(T*,U*) = 0;
         virtual void update(T*,U*) = 0;
-        virtual void destroy(T*,U*) = 0;
+        virtual bool destroy(T*,U*) = 0;
 };
 
 class IntAprCRUDViagem : public IntAprCRUD<Conta, Viagem>
@@ -55,7 +55,7 @@ class IntAprCRUDViagem : public IntAprCRUD<Conta, Viagem>
         virtual void create(Conta*) = 0;
         virtual void read(Conta*,Viagem*) = 0;
         virtual void update(Conta*,Viagem*) = 0;
-        virtual void destroy(Conta*,Viagem*) = 0;
+        virtual bool destroy(Conta*,Viagem*) = 0;
 };
 
 class IntAprCRUDDestino : public IntAprCRUD<Viagem, Destino>
@@ -67,7 +67,7 @@ class IntAprCRUDDestino : public IntAprCRUD<Viagem, Destino>
         virtual void create(Viagem*) = 0;
         virtual void read(Viagem*,Destino*) = 0;
         virtual void update(Viagem*,Destino*) = 0;
-        virtual void destroy(Viagem*,Destino*) = 0;
+        virtual bool destroy(Viagem*,Destino*) = 0;
 };
 
 class IntAprCRUDHospedagem : public IntAprCRUD<Destino, Hospedagem>
@@ -77,7 +77,7 @@ class IntAprCRUDHospedagem : public IntAprCRUD<Destino, Hospedagem>
         virtual void create(Destino*) = 0;
         virtual void read(Destino*,Hospedagem*) = 0;
         virtual void update(Destino*,Hospedagem*) = 0;
-        virtual void destroy(Destino*,Hospedagem*) = 0;
+        virtual bool destroy(Destino*,Hospedagem*) = 0;
 };
 
 class IntAprCRUDAtividade : public IntAprCRUD<Destino, Atividade>
@@ -87,7 +87,7 @@ class IntAprCRUDAtividade : public IntAprCRUD<Destino, Atividade>
         virtual void create(Destino*) = 0;
         virtual void read(Destino*,Atividade*) = 0;
         virtual void update(Destino*,Atividade*) = 0;
-        virtual void destroy(Destino*,Atividade*) = 0;
+        virtual bool destroy(Destino*,Atividade*) = 0;
 };
 
 

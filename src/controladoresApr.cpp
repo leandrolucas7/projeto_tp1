@@ -81,35 +81,85 @@ void CntrAprCRUDConta::create(Conta* conta_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    this->cntrSerCUDConta->create(conta_ptr, codigo, senha);
+    bool ja_existe = this->cntrSerCUDConta->create(conta_ptr, codigo, senha);
+    if (ja_existe)
+    {
+        cout << "Essa conta ja existe" << endl;
+        return;
+    }
+    else
+    {
+        cout << "Conta criada com sucesso" << endl;
+        return;
+    }
 }
 
 void CntrAprCRUDConta::read(Conta* conta_ptr)
 {
-    cout << "Tela de leitura de conta" << endl;
-    cout << "Detalhes da conta " << conta_ptr->get_codigo().get_valor() << ":" << endl;
-    cout << "Senha da conta: " << conta_ptr->get_senha().get_valor() << endl;
-    if (conta_ptr->is_viagem_ptr_empty())
-    cout << "Ainda nao ha nenhuma viagem associada a essa conta" << endl;
-    else
-        {
-            cout << "Viagens associadas a essa conta:" << endl;
-            for (Viagem* viagem_ptr : conta_ptr->get_viagens_ptr())
+    while (true)
+    {
+        cout << "Tela de leitura de conta" << endl;
+        cout << "Detalhes da conta " << conta_ptr->get_codigo().get_valor() << ":" << endl;
+        cout << "Senha da conta: " << conta_ptr->get_senha().get_valor() << endl;
+        if (conta_ptr->is_viagem_ptr_empty())
+        cout << "Ainda nao ha nenhuma viagem associada a essa conta" << endl;
+        else
             {
-                cout << viagem_ptr->get_nome().get_valor() << "(codigo " <<  viagem_ptr->get_codigo().get_valor() << ")" << endl;
+                cout << "Viagens associadas a essa conta:" << endl;
+                for (Viagem* viagem_ptr : conta_ptr->get_viagens_ptr())
+                {
+                    cout << viagem_ptr->get_nome().get_valor() << "(codigo " <<  viagem_ptr->get_codigo().get_valor() << ")" << endl;
+                }
             }
+        int entrada_do_usuario;
+        cout << "Escolha uma opcao:" << endl;
+        cout << "1. Atualizar conta" << endl;
+        cout << "2. Deletar conta" << endl;
+        cout << "3. Escolher Viagem" << endl;
+        cout << "-1. Voltar" << endl;
+
+        Codigo viagem_codigo; string viagem_codigo_string;
+        Viagem* viagem_ptr = nullptr;
+        switch(entrada_do_usuario)
+        {
+        case 1:
+            update(conta_ptr);
+            break;
+        case 2:
+            if(destroy(conta_ptr)) return;
+            else break;
+        case 3:
+            cout << "Digite o codigo da viagem: " << endl;
+            
+            cin >> viagem_codigo_string;
+            try
+            {
+                viagem_codigo.set_valor(viagem_codigo_string);
+            }
+            catch(const invalid_argument& e)
+            {
+                cerr << "Valor inválido" << '\n';
+                break;
+            }
+            viagem_ptr = conta_ptr->get_viagem_ptr(viagem_codigo);
+            if (viagem_ptr == nullptr)
+            {
+                cout << "Viagem nao encontrada" << endl;
+                break;
+            }
+            else this->cntrAprCRUDViagem->read(conta_ptr, viagem_ptr);
+            break;
+        case -1:
+            return;
         }
-    cout << "Escolha uma opcao:" << endl;
-    cout << "1. Atualizar conta" << endl;
-    cout << "2. Deletar conta" << endl;
-    cout << "3. Voltar" << endl;
-    //Codigo a ser implementado
+    }
 }
 
 void CntrAprCRUDConta::update(Conta* conta_ptr)
 {
     cout << "Tela de atualizacao de conta" << endl;
     cout << "Atualizando conta " << conta_ptr->get_codigo().get_valor() << endl;
+    Codigo codigo; string codigo_string;
     Senha senha; string senha_string;
     cout << "Nova senha da conta: " << endl; cin >> senha_string;
     try
@@ -121,10 +171,11 @@ void CntrAprCRUDConta::update(Conta* conta_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDConta->update(conta_ptr, senha);
+    cout << "Conta atualizada com sucesso" << endl;
 }
 
-void CntrAprCRUDConta::destroy(Conta* conta_ptr)
+bool CntrAprCRUDConta::destroy(Conta* conta_ptr)
 {
     cout << "Tela de delecao de conta" << endl;
     cout << "Deletando conta " << conta_ptr->get_codigo().get_valor() << endl;
@@ -133,7 +184,15 @@ void CntrAprCRUDConta::destroy(Conta* conta_ptr)
     cout << "2. Nao" << endl;
     int entrada_do_usuario;
     cin >> entrada_do_usuario;
-    //switch (entrada_do_usuario)
+    switch (entrada_do_usuario)
+    {
+    case 1:
+        this->cntrSerCUDConta->destroy(conta_ptr);
+        cout << "Conta deletada com sucesso" << endl;
+        return true;
+    case 2:
+        return false;
+    }
 }
 
 
@@ -159,32 +218,73 @@ void CntrAprCRUDViagem::create(Conta* conta_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
+    this->cntrSerCUDViagem->create(conta_ptr, codigo, nome, avaliacao);
+    cout << "Viagem criada com sucesso" << endl;
 }
 
 
 void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
 {
-    cout << "Tela de leitura de viagem" << endl;
-    cout << "Detalhes da viagem " << viagem_ptr->get_codigo().get_valor() << ":" << endl;
-    cout << "Nome da viagem: " << viagem_ptr->get_nome().get_valor() << endl;
-    cout << "Avaliacao da viagem: " << viagem_ptr->get_avaliacao().get_valor() << endl;
-    cout << endl;
-    if (viagem_ptr->is_destino_ptr_empty())
-        cout << "Ainda nao ha nenhum destino associado a essa viagem" << endl;
-    else
-        {
-            cout << "Destinos associados a essa viagem:" << endl;
-            for (Destino* destino_ptr : viagem_ptr->get_destinos_ptr())
+    while (true)
+    {
+        cout << "Tela de leitura de viagem" << endl;
+        cout << "Detalhes da viagem " << viagem_ptr->get_codigo().get_valor() << ":" << endl;
+        cout << "Nome da viagem: " << viagem_ptr->get_nome().get_valor() << endl;
+        cout << "Avaliacao da viagem: " << viagem_ptr->get_avaliacao().get_valor() << endl;
+        cout << endl;
+        if (viagem_ptr->is_destino_ptr_empty())
+            cout << "Ainda nao ha nenhum destino associado a essa viagem" << endl;
+        else
             {
-                cout << destino_ptr->get_nome().get_valor() << "(codigo " <<  destino_ptr->get_codigo().get_valor() << ")" << endl;
+                cout << "Destinos associados a essa viagem:" << endl;
+                for (Destino* destino_ptr : viagem_ptr->get_destinos_ptr())
+                {
+                    cout << destino_ptr->get_nome().get_valor() << "(codigo " <<  destino_ptr->get_codigo().get_valor() << ")" << endl;
+                }
             }
+
+        int entrada_do_usuario;
+        cout << "Escolha uma opcao:" << endl;
+        cout << "1. Atualizar viagem" << endl;
+        cout << "2. Deletar viagem" << endl;
+        cout << "3. Escolher destino" << endl;
+        cout << "-1. Voltar" << endl;
+
+        Codigo destino_codigo; string destino_codigo_string;
+        Destino* destino_ptr = nullptr;
+        switch(entrada_do_usuario)
+        {
+        case 1:
+            update(conta_ptr,viagem_ptr);
+            break;
+        case 2:
+            if(destroy(conta_ptr,viagem_ptr)) return;
+            else break;
+        case 3:
+            cout << "Digite o codigo do destino: " << endl;
+            
+            cin >> destino_codigo_string;
+            try
+            {
+                destino_codigo.set_valor(destino_codigo_string);
+            }
+            catch(const invalid_argument& e)
+            {
+                cerr << "Valor inválido" << '\n';
+                break;
+            }
+            destino_ptr = viagem_ptr->get_destino_ptr(destino_codigo);
+            if (destino_ptr == nullptr)
+            {
+                cout << "Destino nao encontrado" << endl;
+                break;
+            }
+            else this->cntrAprCRUDDestino->read(viagem_ptr, destino_ptr);
+            break;
+        case -1:
+            return;
         }
-    cout << "Escolha uma opcao:" << endl;
-    cout << "1. Atualizar viagem" << endl;
-    cout << "2. Deletar viagem" << endl;
-    cout << "3. Adicionar destino" << endl;
-    cout << "4.Escolher destino" << endl;
-    cout << "5. Voltar" << endl;
+    }
 }
 
 void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
@@ -208,10 +308,11 @@ void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDViagem->update(viagem_ptr, nome, avaliacao);
+    cout << "Viagem atualizada com sucesso" << endl;
 }
 
-void CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)
+bool CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)
 {
     cout << "Tela de delecao de viagem" << endl;
     cout << "Deletando viagem da conta " << conta_ptr->get_codigo().get_valor() << endl;
@@ -222,7 +323,15 @@ void CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)
     cout << "2. Nao" << endl;
     int entrada_do_usuario;
     cin >> entrada_do_usuario;
-    //switch (entrada_do_usuario)
+    switch (entrada_do_usuario)
+    {
+    case 1:
+        this->cntrSerCUDViagem->destroy(conta_ptr, viagem_ptr);
+        cout << "Viagem deletada com sucesso" << endl;
+        return true;
+    case 2:
+        return false;
+    }
 }
 
 
@@ -257,36 +366,96 @@ void CntrAprCRUDDestino::create(Viagem* viagem_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDDestino->create(viagem_ptr, codigo, nome, data_inicio, data_termino, avaliacao);
+    cout << "Destino criado com sucesso" << endl;
 }
 
 void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
 {
-    cout << "Tela de leitura de destino" << endl;
-    cout << "Detalhes do destino " << destino_ptr->get_codigo().get_valor() << ":" << endl;
-    cout << "Nome do destino: " << destino_ptr->get_nome().get_valor() << endl;
-    cout << "Data de inicio do destino: " << destino_ptr->get_data_inicio().get_valor() << endl;
-    cout << "Data de termino do destino: " << destino_ptr->get_data_termino().get_valor() << endl;
-    cout << "Avaliacao do destino: " << destino_ptr->get_avaliacao().get_valor() << endl;
-    cout << endl;
-    if (destino_ptr->is_hospedagem_ptr_empty())
-        cout << "Ainda nao ha nenhuma hospedagem associada a esse destino" << endl;
-    else
-        {
-            cout << "Hospedagens associadas a esse destino:" << endl;
-            for (Hospedagem* hospedagem_ptr : destino_ptr->get_hospedagens_ptr())
+    while (true)
+    {
+        cout << "Tela de leitura de destino" << endl;
+        cout << "Detalhes do destino " << destino_ptr->get_codigo().get_valor() << ":" << endl;
+        cout << "Nome do destino: " << destino_ptr->get_nome().get_valor() << endl;
+        cout << "Data de inicio do destino: " << destino_ptr->get_data_inicio().get_valor() << endl;
+        cout << "Data de termino do destino: " << destino_ptr->get_data_termino().get_valor() << endl;
+        cout << "Avaliacao do destino: " << destino_ptr->get_avaliacao().get_valor() << endl;
+        cout << endl;
+        if (destino_ptr->is_hospedagem_ptr_empty())
+            cout << "Ainda nao ha nenhuma hospedagem associada a esse destino" << endl;
+        else
             {
-                cout << hospedagem_ptr->get_nome().get_valor() << "(codigo " <<  hospedagem_ptr->get_codigo().get_valor() << ")" << endl;
+                cout << "Hospedagens associadas a esse destino:" << endl;
+                for (Hospedagem* hospedagem_ptr : destino_ptr->get_hospedagens_ptr())
+                {
+                    cout << hospedagem_ptr->get_nome().get_valor() << "(codigo " <<  hospedagem_ptr->get_codigo().get_valor() << ")" << endl;
+                }
             }
+        int entrada_do_usuario;
+        cout << "Escolha uma opcao:" << endl;
+        cout << "1. Atualizar Destino" << endl;
+        cout << "2. Deletar Destino" << endl;
+        cout << "3. Escolher Hospedagem" << endl;
+        cout << "4. Escolher Atividade" << endl;
+        cout << "-1. Voltar" << endl;
+
+        Codigo codigo; string codigo_string;
+        Hospedagem* hospedagem_ptr = nullptr;
+        Atividade* atividade_ptr = nullptr;
+        switch(entrada_do_usuario)
+        {
+        case 1:
+            update(viagem_ptr, destino_ptr);
+            break;
+        case 2:
+            if(destroy(viagem_ptr,destino_ptr)) return;
+            else break;
+        case 3:
+            cout << "Digite o codigo da hospedagem: " << endl;
+            
+            cin >> codigo_string;
+            try
+            {
+                codigo.set_valor(codigo_string);
+            }
+            catch(const invalid_argument& e)
+            {
+                cerr << "Valor inválido" << '\n';
+                break;
+            }
+            hospedagem_ptr = destino_ptr->get_hospedagem_ptr(codigo);
+            if (hospedagem_ptr == nullptr)
+            {
+                cout << "Hospedagem nao encontrada" << endl;
+                break;
+            }
+            else this->cntrAprCRUDHospedagem->read(destino_ptr, hospedagem_ptr);
+            break;
+        case 4:
+            cout << "Digite o codigo da atividade: " << endl;
+            
+            cin >> codigo_string;
+            try
+            {
+                codigo.set_valor(codigo_string);
+            }
+            catch(const invalid_argument& e)
+            {
+                cerr << "Valor inválido" << '\n';
+                break;
+            }
+            atividade_ptr = destino_ptr->get_atividade_ptr(codigo);
+            if (atividade_ptr == nullptr)
+            {
+                cout << "Atividade nao encontrada" << endl;
+                break;
+            }
+            else this->cntrAprCRUDAtividade->read(destino_ptr, atividade_ptr);
+            break;
+        case -1:
+            return;
         }
-    cout << "Escolha uma opcao:" << endl;
-    cout << "1. Atualizar viagem" << endl;
-    cout << "2. Deletar viagem" << endl;
-    cout << "3. Adicionar destino" << endl;
-    cout << "4.Escolher hospedagem" << endl;
-    cout << "5. Escolher atividade" << endl;
-    cout << "6. Voltar" << endl;
-    //Codigo a ser implementado
+    }
 }
 
 void CntrAprCRUDDestino::update(Viagem* viagem_ptr, Destino* destino_ptr)
@@ -317,10 +486,11 @@ void CntrAprCRUDDestino::update(Viagem* viagem_ptr, Destino* destino_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDDestino->update(destino_ptr, nome, data_inicio, data_termino, avaliacao);
+    cout << "Destino atualizado com sucesso" << endl;
 }
 
-void CntrAprCRUDDestino::destroy(Viagem* viagem_ptr, Destino* destino_ptr)
+bool CntrAprCRUDDestino::destroy(Viagem* viagem_ptr, Destino* destino_ptr)
 {
     cout << "Tela de delecao de destino" << endl;
     cout << "Deletando destino da viagem " << viagem_ptr->get_nome().get_valor() << "(codigo" << viagem_ptr->get_codigo().get_valor() << endl;
@@ -329,7 +499,17 @@ void CntrAprCRUDDestino::destroy(Viagem* viagem_ptr, Destino* destino_ptr)
     cout << "Deseja realmente deletar esse destino?" << endl;
     cout << "1. Sim" << endl;
     cout << "2. Nao" << endl;
-    //Codigo a ser implementado
+    int entrada_do_usuario;
+    cin >> entrada_do_usuario;
+    switch (entrada_do_usuario)
+    {
+    case 1:
+        this->cntrSerCUDDestino->destroy(viagem_ptr, destino_ptr);
+        cout << "Destino deletado com sucesso" << endl;
+        return true;
+    case 2:
+        return false;
+    }
 }
 
 
@@ -359,22 +539,39 @@ void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDHospedagem->create(destino_ptr, codigo, nome, diaria, avaliacao);
+    cout << "Hospedagem criada com sucesso" << endl;
 }
 
 void CntrAprCRUDHospedagem::read(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
 {
-    cout << "Tela de leitura de hospedagem" << endl;
-    cout << "Detalhes da hospedagem " << hospedagem_ptr->get_codigo().get_valor() << ":" << endl;
-    cout << "Nome da hospedagem: " << hospedagem_ptr->get_nome().get_valor() << endl;
-    cout << "Diaria da hospedagem: " << hospedagem_ptr->get_diaria().get_valor() << endl;
-    cout << "Avaliacao da hospedagem: " << hospedagem_ptr->get_avaliacao().get_valor() << endl;
-    cout << endl;
-    cout << "Escolha uma opcao:" << endl;
-    cout << "1. Atualizar hospedagem" << endl;
-    cout << "2. Deletar hospedagem" << endl;
-    cout << "3. Voltar" << endl;
-    //Codigo a ser implementado
+    while (true)
+    {
+        cout << "Tela de leitura de hospedagem" << endl;
+        cout << "Detalhes da hospedagem " << hospedagem_ptr->get_codigo().get_valor() << ":" << endl;
+        cout << "Nome da hospedagem: " << hospedagem_ptr->get_nome().get_valor() << endl;
+        cout << "Diaria da hospedagem: " << hospedagem_ptr->get_diaria().get_valor() << endl;
+        cout << "Avaliacao da hospedagem: " << hospedagem_ptr->get_avaliacao().get_valor() << endl;
+        cout << endl;
+
+        int entrada_do_usuario;
+        cout << "Escolha uma opcao:" << endl;
+        cout << "1. Atualizar hospedagem" << endl;
+        cout << "2. Deletar hospedagem" << endl;
+        cout << "-1. Voltar" << endl;
+
+        switch(entrada_do_usuario)
+        {
+        case 1:
+            update(destino_ptr, hospedagem_ptr);
+            break;
+        case 2:
+            if(destroy(destino_ptr,hospedagem_ptr)) return;
+            else break;
+        case -1:
+            return;
+        }
+    }
 }
 
 void CntrAprCRUDHospedagem::update(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
@@ -398,11 +595,12 @@ void CntrAprCRUDHospedagem::update(Destino* destino_ptr, Hospedagem* hospedagem_
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDHospedagem->update(hospedagem_ptr, nome, diaria, avaliacao);
+    cout << "Hospedagem atualizada com sucesso" << endl;
 }
 
 
-void CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
+bool CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
 {
     cout << "Tela de delecao de hospedagem" << endl;
     cout << "Deletando hospedagem do destino " << destino_ptr->get_nome().get_valor() << "(codigo" << destino_ptr->get_codigo().get_valor() << endl;
@@ -411,7 +609,17 @@ void CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem
     cout << "Deseja realmente deletar essa hospedagem?" << endl;
     cout << "1. Sim" << endl;
     cout << "2. Nao" << endl;
-    //Codigo a ser implementado
+    int entrada_do_usuario;
+    cin >> entrada_do_usuario;
+    switch (entrada_do_usuario)
+    {
+    case 1:
+        this->cntrSerCUDHospedagem->destroy(destino_ptr, hospedagem_ptr);
+        cout << "Hospedagem deletada com sucesso" << endl;
+        return true;
+    case 2:
+        return false;
+    }
 }
 
 void CntrAprCRUDAtividade::create(Destino* destino_ptr)
@@ -447,7 +655,8 @@ void CntrAprCRUDAtividade::create(Destino* destino_ptr)
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDAtividade->create(destino_ptr, codigo, nome, data, horario, duracao, preco, avaliacao);
+    cout << "Atividade criada com sucesso" << endl;
 }
 
 void CntrAprCRUDAtividade::read(Destino* destino_ptr, Atividade* atividade_ptr)
@@ -461,11 +670,24 @@ void CntrAprCRUDAtividade::read(Destino* destino_ptr, Atividade* atividade_ptr)
     cout << "Preco da atividade: " << atividade_ptr->get_preco().get_valor() << endl;
     cout << "Avaliacao da atividade: " << atividade_ptr->get_avaliacao().get_valor() << endl;
     cout << endl;
+
+    int entrada_do_usuario;
     cout << "Escolha uma opcao:" << endl;
     cout << "1. Atualizar atividade" << endl;
     cout << "2. Deletar atividade" << endl;
-    cout << "3. Voltar" << endl;
-    //Codigo a ser implementado
+    cout << "-1. Voltar" << endl;
+
+    switch(entrada_do_usuario)
+    {
+    case 1:
+        update(destino_ptr, atividade_ptr);
+        break;
+    case 2:
+        if(destroy(destino_ptr,atividade_ptr)) return;
+        else break;
+    case -1:
+        return;
+    }
 }
 
 
@@ -499,11 +721,12 @@ void CntrAprCRUDAtividade::update(Destino* destino_ptr, Atividade* atividade_ptr
         cerr << "Valor inválido" << '\n';
         return;
     }
-    //Codigo a ser implementado
+    this->cntrSerCUDAtividade->update(atividade_ptr, nome, data, horario, duracao, preco, avaliacao);
+    cout << "Atividade atualizada com sucesso" << endl;
 }
 
 
-void CntrAprCRUDAtividade::destroy(Destino* destino_ptr, Atividade* atividade_ptr)
+bool CntrAprCRUDAtividade::destroy(Destino* destino_ptr, Atividade* atividade_ptr)
 {
     cout << "Tela de delecao de atividade" << endl;
     cout << "Deletando atividade do destino " << destino_ptr->get_nome().get_valor() << "(codigo" << destino_ptr->get_codigo().get_valor() << endl;
@@ -512,5 +735,15 @@ void CntrAprCRUDAtividade::destroy(Destino* destino_ptr, Atividade* atividade_pt
     cout << "Deseja realmente deletar essa atividade?" << endl;
     cout << "1. Sim" << endl;
     cout << "2. Nao" << endl;
-    //Codigo a ser implementado
+    int entrada_do_usuario;
+    cin >> entrada_do_usuario;
+    switch (entrada_do_usuario)
+    {
+    case 1:
+        this->cntrSerCUDAtividade->destroy(destino_ptr, atividade_ptr);
+        cout << "Atividade deletada com sucesso" << endl;
+        return true;
+    case 2:
+        return false;
+    }
 }

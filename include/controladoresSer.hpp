@@ -12,7 +12,7 @@ class CntrSerCUDConta : public IntSerCUDConta
 {
     public:
         bool create(Conta*,Codigo,Senha) override;
-        void update(Conta*,Codigo,Senha) override;
+        void update(Conta*,Senha) override;
         void destroy(Conta*) override;
 };
 

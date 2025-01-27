@@ -43,7 +43,7 @@ class CntrAprCRUDConta : public IntAprCRUDConta
         void create(Conta*) override;
         void read(Conta*) override;
         void update(Conta*) override;
-        void destroy(Conta*) override;
+        bool destroy(Conta*) override;
 };
 
 class CntrAprCRUDViagem : public IntAprCRUDViagem
@@ -57,7 +57,7 @@ class CntrAprCRUDViagem : public IntAprCRUDViagem
         void create(Conta*) override;
         void read(Conta*,Viagem*) override;
         void update(Conta*,Viagem*) override;
-        void destroy(Conta*,Viagem*) override;
+        bool destroy(Conta*,Viagem*) override;
 };
 
 class CntrAprCRUDDestino : public IntAprCRUDDestino
@@ -73,7 +73,7 @@ class CntrAprCRUDDestino : public IntAprCRUDDestino
         void create(Viagem*) override;
         void read(Viagem*,Destino*) override;
         void update(Viagem*,Destino*) override;
-        void destroy(Viagem*,Destino*) override;
+        bool destroy(Viagem*,Destino*) override;
 };
 
 class CntrAprCRUDHospedagem : public IntAprCRUDHospedagem
@@ -85,7 +85,7 @@ class CntrAprCRUDHospedagem : public IntAprCRUDHospedagem
         void create(Destino*) override;
         void read(Destino*,Hospedagem*) override;
         void update(Destino*,Hospedagem*) override;
-        void destroy(Destino*,Hospedagem*) override;
+        bool destroy(Destino*,Hospedagem*) override;
 };
 
 class CntrAprCRUDAtividade : public IntAprCRUDAtividade
@@ -97,7 +97,7 @@ class CntrAprCRUDAtividade : public IntAprCRUDAtividade
         void create(Destino*) override;
         void read(Destino*,Atividade*) override;
         void update(Destino*,Atividade*) override;
-        void destroy(Destino*,Atividade*) override;
+        bool destroy(Destino*,Atividade*) override;
 };
 
 

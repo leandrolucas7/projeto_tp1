@@ -9,9 +9,8 @@ bool CntrSerCUDConta::create(Conta* conta,Codigo codigo, Senha senha)
     return resultado;
 }
 
-void CntrSerCUDConta::update(Conta* conta, Codigo codigo, Senha senha)
+void CntrSerCUDConta::update(Conta* conta, Senha senha)
 {
-    conta->set_codigo(codigo);
     conta->set_senha(senha);
 }
 

@@ -19,7 +19,7 @@ class IntSerCUDConta
 {
     public:
         virtual bool create(Conta*,Codigo,Senha) = 0;
-        virtual void update(Conta*,Codigo,Senha) = 0;
+        virtual void update(Conta*,Senha) = 0;
         virtual void destroy(Conta*) = 0;
 };
 
