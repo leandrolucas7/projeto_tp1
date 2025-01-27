@@ -3,10 +3,17 @@
 
 #include "./interfacesApr.hpp"
 #include "./interfacesSer.hpp"
-#include "./stubs.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
+
+class CntrAprInicial;
+class CntrAprAutenticacao;
+class CntrAprCRUDConta;
+class CntrAprCRUDViagem;
+class CntrAprCRUDDestino;
+class CntrAprCRUDHospedagem;
+class CntrAprCRUDAtividade;
 
 class CntrAprInicial
 {
@@ -15,9 +22,9 @@ class CntrAprInicial
         IntAprCRUDConta* cntrAprCRUDConta;
         IntAprAutenticacao* cntrAprAutenticacao;
     public:
+        CntrAprInicial() {}
         void set_cntrAprCRUDConta(IntAprCRUDConta*);
         void set_cntrAprAutenticacao(IntAprAutenticacao*);
-        CntrAprInicial();
         void executar();
 };
 
@@ -101,11 +108,7 @@ class CntrAprCRUDAtividade : public IntAprCRUDAtividade
 };
 
 
-class CntrSerAutenticacao : public IntSerAutenticacao
-{
-    public:
-        bool autenticar(Conta) override;
-};
+
 
 
 inline void CntrAprInicial::set_cntrAprCRUDConta(IntAprCRUDConta* ptr)

@@ -3,10 +3,15 @@
 
 #include "./interfacesApr.hpp"
 #include "./interfacesSer.hpp"
-#include "./stubs.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
+
+class CntrSerCUDConta;
+class CntrSerCUDViagem;
+class CntrSerCUDDestino;
+class CntrSerCUDHospedagem;
+class CntrSerCUDAtividade;
 
 class CntrSerCUDConta : public IntSerCUDConta
 {
@@ -46,6 +51,12 @@ class CntrSerCUDAtividade : public IntSerCUDAtividade
         void create(Destino*,Codigo,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) override;
         void update(Atividade*,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) override;
         void destroy(Destino*,Atividade*) override;
+};
+
+class CntrSerAutenticacao : public IntSerAutenticacao
+{
+    public:
+        bool autenticar(Conta) override;
 };
 
 #endif

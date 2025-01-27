@@ -3,18 +3,17 @@
 
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
+#include "./interfacesSer.hpp"
 
-class IntAprCriarConta
-{
-    public:
-        virtual void criar() = 0;
-        //virtual void executar(Conta) = 0;
-};
-class IntAprEscolha
-{
-    public:
-        virtual void escolher_entidade() = 0;
-};
+class IntAprAutenticacao;
+class IntAprCRUDConta;
+template <typename T, typename U>
+class IntAprCRUD;
+class IntAprCRUDViagem;
+class IntAprCRUDDestino;
+class IntAprCRUDHospedagem;
+class IntAprCRUDAtividade;
+class IntSerAutenticacao;
 
 
 class IntAprAutenticacao
@@ -23,8 +22,6 @@ class IntAprAutenticacao
         virtual void set_cntrAprCRUDConta(IntAprCRUDConta*) = 0;
         virtual void autenticar(Conta*) = 0;
 };
-
-
 
 class IntAprCRUDConta
 {

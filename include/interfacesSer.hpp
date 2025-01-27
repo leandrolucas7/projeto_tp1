@@ -3,7 +3,16 @@
 
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
-#include "container.hpp"
+#include "./container.hpp"
+
+template <typename TipoAnterior, typename TipoAtual>
+class IntSerCUD;
+class IntSerCUDConta;
+class IntSerCUDViagem;
+class IntSerCUDDestino;
+class IntSerCUDHospedagem;
+class IntSerCUDAtividade;
+
 
 template <typename TipoAnterior, typename TipoAtual>
 class IntSerCUD

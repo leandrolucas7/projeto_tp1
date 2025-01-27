@@ -14,7 +14,6 @@ MOD = ../src/
 # Source files and object files
 SRC =   $(wildcard $(DOM)*.cpp) \
 		$(wildcard $(ENT)*.cpp) \
-		$(wildcard $(MOD)*.cpp) \
 		../src/controladoresSer.cpp \
 		../src/controladoresApr.cpp \
 		../src/container.cpp \
@@ -25,7 +24,7 @@ SRC =   $(wildcard $(DOM)*.cpp) \
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = driver_cntr_apr_inicial
+TARGET = driver_projeto_tp1
 
 # Rule to build the target executable
 $(TARGET): $(OBJ)

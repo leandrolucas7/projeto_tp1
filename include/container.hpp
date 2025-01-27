@@ -3,7 +3,6 @@
 
 #include "./interfacesApr.hpp"
 #include "./interfacesSer.hpp"
-#include "../stubs.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
 
