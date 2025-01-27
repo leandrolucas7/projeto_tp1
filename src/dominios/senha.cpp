@@ -44,3 +44,9 @@ void Senha::validar(string v)
         return;
     throw invalid_argument("Argumento (" + v + ") inválido.");
 }
+
+
+bool operator==(const Senha &senha1, const Senha &senha2)
+{
+    return senha1.valor == senha2.valor;
+}

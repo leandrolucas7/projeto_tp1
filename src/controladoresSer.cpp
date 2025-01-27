@@ -1,10 +1,12 @@
 #include "../include/controladoresSer.hpp"
 
-void CntrSerCUDConta::create(ContainerContas* container, Conta* conta,Codigo codigo, Senha senha)
+bool CntrSerCUDConta::create(Conta* conta,Codigo codigo, Senha senha)
 {
     conta->set_codigo(codigo);
     conta->set_senha(senha);
-    container->contas.push_back(*conta);
+    ContainerContas* container = ContainerContas::get_instancia();
+    bool resultado = container->add_conta(conta);
+    return resultado;
 }
 
 void CntrSerCUDConta::update(Conta* conta, Codigo codigo, Senha senha)
@@ -13,17 +15,10 @@ void CntrSerCUDConta::update(Conta* conta, Codigo codigo, Senha senha)
     conta->set_senha(senha);
 }
 
-void CntrSerCUDConta::destroy(ContainerContas* container, Conta* conta)
+void CntrSerCUDConta::destroy(Conta* conta_ptr)
 {
-    for (auto it = container->contas.begin(); it != container->contas.end(); it++)
-    {
-        if (it->get_codigo().get_valor() == conta->get_codigo().get_valor())
-        {
-            container->contas.erase(it);
-            break;
-        }
-    }
-    conta = nullptr;
+    ContainerContas* container = ContainerContas::get_instancia();
+    container->remove_conta(conta_ptr);
 }
 
 

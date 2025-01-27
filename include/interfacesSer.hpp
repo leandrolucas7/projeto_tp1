@@ -18,9 +18,9 @@ class IntSerCUD
 class IntSerCUDConta
 {
     public:
-        virtual void create(ContainerContas*,Conta*,Codigo,Senha) = 0;
+        virtual bool create(Conta*,Codigo,Senha) = 0;
         virtual void update(Conta*,Codigo,Senha) = 0;
-        virtual void destroy(ContainerContas*,Conta*) = 0;
+        virtual void destroy(Conta*) = 0;
 };
 
 class IntSerCUDViagem
