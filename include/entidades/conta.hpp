@@ -12,6 +12,8 @@
 #define CONTA_HPP_INCLUDED
 
 #include "../dominios/DOMINIOS.hpp"
+#include "viagem.hpp"
+#include <vector>
 
 /**
  * @brief Representa as informações de identificação e autenticação de um usuário no sistema.
@@ -30,8 +32,9 @@ class Conta
     private:
         Codigo codigo; ///< Código único associado ao usuário.
         Senha senha;   ///< Sequência de autenticação segura do usuário.
-    
+        vector<Viagem*> viagens_ptr; ///< Vetor de viagens associadas ao usuário.
     public:
+        ~Conta();   
         /**
          * @brief Define o código de identificação associado ao usuário.
          * 
@@ -59,6 +62,50 @@ class Conta
          * @return Instância de `Senha` que representa a sequência de autenticação do usuário.
          */
         Senha get_senha() const;
+
+        /**
+         * @brief Verifica se o vetor de viagens associadas ao usuário está vazio.
+         * 
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_viagem_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para as viagens associadas ao usuário.
+         * 
+         * @return Vetor de ponteiros para as viagens associadas ao usuário.
+         */
+        vector<Viagem*> get_viagens_ptr();
+
+        /**
+         * @brief Retorna o índice de uma viagem associada ao usuário.
+         * 
+         * @param viagem_id Código da viagem a ser buscada.
+         * @return Índice da viagem no vetor de viagens associadas ao usuário.
+         */
+        int get_viagem_index(Codigo viagem_id);
+
+        /**
+         * @brief Retorna um ponteiro para uma viagem associada ao usuário.
+         * 
+         * @param viagem_id Código da viagem a ser buscada.
+         * @return Ponteiro para a viagem associada ao usuário.
+         */
+        Viagem* get_viagem_ptr(Codigo viagem_id);
+
+        /**
+         * @brief Adiciona uma viagem ao vetor de viagens associadas ao usuário.
+         * 
+         * @param viagem Ponteiro para a viagem a ser adicionada.
+         */
+        void add_viagem(Viagem* viagem);
+
+        /**
+         * @brief Remove uma viagem do vetor de viagens associadas ao usuário.
+         * 
+         * @param viagem_id Código da viagem a ser removida.
+         */
+        void remove_viagem(Codigo viagem_id);
 };
 
 // Implementação inline dos métodos
@@ -82,5 +129,16 @@ inline Senha Conta::get_senha() const
 {
     return senha;
 }
+
+inline bool Conta::is_viagem_ptr_empty()
+{
+    return viagens_ptr.empty();
+}
+
+inline vector<Viagem*> Conta::get_viagens_ptr()
+{
+    return viagens_ptr;
+}
+
 
 #endif // CONTA_HPP_INCLUDED

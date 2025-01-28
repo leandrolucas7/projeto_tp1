@@ -8,6 +8,8 @@
 #define VIAGEM_HPP
 
 #include "../dominios/DOMINIOS.hpp"
+#include "destino.hpp"
+#include <vector>
 
 /**
  * @class Viagem
@@ -26,10 +28,13 @@ class Viagem
 {
     private:
         Codigo codigo; /**< Código identificador da viagem. */
+        Codigo conta_id; /**< Código da conta associada à viagem. */
         Nome nome; /**< Nome associado à viagem. */
         Avaliacao avaliacao; /**< Avaliação da viagem. */
+        vector<Destino*> destinos_ptr; /**< Vetor de destinos associados à viagem. */
 
     public:
+        ~Viagem();
         /**
          * @brief Define o código da viagem.
          * @param codigo Objeto do tipo `Codigo` a ser atribuído.
@@ -41,6 +46,18 @@ class Viagem
          * @return Objeto do tipo `Codigo` correspondente ao código da viagem.
          */
         Codigo get_codigo() const;
+
+        /**
+         * @brief Define o código da conta associada à viagem.
+         * @param codigo Objeto do tipo `Codigo` a ser atribuído.
+         */
+        void set_conta_id(const Codigo&);
+
+        /**
+         * @brief Obtém o código da conta associada à viagem.
+         * @return Objeto do tipo `Codigo` correspondente ao código da conta associada à viagem.
+         */
+        Codigo get_conta_id() const;
 
         /**
          * @brief Define o nome da viagem.
@@ -65,6 +82,50 @@ class Viagem
          * @return Objeto do tipo `Avaliacao` correspondente à avaliação da viagem.
          */
         Avaliacao get_avaliacao() const;
+
+        /**
+         * @brief Obtém o índice de um destino associado à viagem.
+         * @param destino_id Código do destino a ser buscado.
+         * @return Índice do destino no vetor de destinos associados à viagem.
+         */
+
+        /**
+         * @brief Verifica se o vetor de destinos associados à viagem está vazio.
+         * @return `true` se o vetor estiver vazio, `false` caso contrário.
+         */
+        bool is_destino_ptr_empty();
+
+        /**
+         * @brief Obtém um vetor de ponteiros para os destinos associados à viagem.
+         * @return Vetor de ponteiros para os destinos associados à viagem.
+         */
+        vector<Destino*> get_destinos_ptr();
+
+        /**
+         * @brief Obtém o índice de um destino na viagem. Retorna -1 caso o destino não exista.
+         * @param destino_id Código do destino a ser buscado.
+         * @return Índice do destino.
+         */
+        int get_destino_index(Codigo destino_id);
+
+        /**
+         * @brief Obtém um ponteiro para um destino associado à viagem.
+         * @param destino_id Código do destino a ser buscado.
+         * @return Ponteiro para o destino associado à viagem.
+         */
+        Destino* get_destino_ptr(Codigo destino_id);
+
+        /**
+         * @brief Adiciona um destino ao vetor de destinos associados à viagem.
+         * @param destino Ponteiro para o destino a ser adicionado.
+         */
+        void add_destino(Destino* destino);
+
+        /**
+         * @brief Remove um destino do vetor de destinos associados à viagem.
+         * @param destino_id Código do destino a ser removido.
+         */
+        void remove_destino(Codigo destino_id);
 };
 
 /**
@@ -79,6 +140,16 @@ inline void Viagem::set_codigo(const Codigo &codigo)
 inline Codigo Viagem::get_codigo() const
 {
     return codigo;
+}
+
+inline void Viagem::set_conta_id(const Codigo &codigo)
+{
+    this->conta_id = codigo;
+}
+
+inline Codigo Viagem::get_conta_id() const
+{
+    return conta_id;
 }
 
 inline void Viagem::set_nome(const Nome &nome)
@@ -99,6 +170,16 @@ inline void Viagem::set_avaliacao(const Avaliacao &avaliacao)
 inline Avaliacao Viagem::get_avaliacao() const
 {
     return avaliacao;
+}
+
+inline bool Viagem::is_destino_ptr_empty()
+{
+    return destinos_ptr.empty();
+}
+
+inline vector<Destino*> Viagem::get_destinos_ptr()
+{
+    return destinos_ptr;
 }
 
 #endif

@@ -43,8 +43,9 @@ class Senha : public SuperDominio<string>
      * 
      * @throw std::invalid_argument Se a sequência não atender aos critérios.
      */
-
         void validar(string) override;
+    public:
+        friend bool operator==(const Senha&, const Senha&);
 };
 
 #endif // SENHA_HPP

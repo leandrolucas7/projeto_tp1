@@ -30,6 +30,8 @@ class Hospedagem
 {
     private:
         Codigo codigo; ///< Código único associado ao usuário.
+        Codigo destino_id; ///< Código do destino associado à viagem.
+        Codigo conta_id; ///< Código da conta associada à viagem.
         Nome nome; ///< Texto de identificação de usuário.
         Dinheiro diaria; ///< Valor que informa o custo da diária.
         Avaliacao avaliacao; ///< Análise sobre a qualidade e características do local.
@@ -48,6 +50,20 @@ public:
          * @return Instância de `Codigo` que representa o código de identificação do usuário.
          */
         Codigo get_codigo() const;
+
+        /**
+         * @brief Define um identificador para o destino associado à hospedagem.
+         * 
+         * @param destino_id Referência constante para uma instância da classe `Codigo`.
+         */
+        void set_destino_id(const Codigo&);
+
+        /**
+         * @brief Retorna o identificador do destino associado à hospedagem.
+         * 
+         * @return Instância de `Codigo` que representa o identificador do destino associado à hospedagem.
+         */
+        Codigo get_destino_id() const;
 
         /**
          * @brief Define o texto de identificação associada ao usuário.
@@ -102,6 +118,16 @@ inline void Hospedagem::set_codigo(const Codigo &codigo)
 inline Codigo Hospedagem::get_codigo() const
 {
     return codigo;
+}
+
+inline void Hospedagem::set_destino_id(const Codigo &destino_id)
+{
+    this->destino_id = destino_id;
+}
+
+inline Codigo Hospedagem::get_destino_id() const
+{
+    return destino_id;
 }
 
 inline void Hospedagem::set_nome(const Nome &nome)
