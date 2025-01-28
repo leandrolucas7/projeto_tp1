@@ -19,6 +19,7 @@ void CntrAprInicial::executar()
         {
         case 1:
             this->cntrAprCRUDConta->create(conta_ptr);
+            break;
         case 2:
             this->cntrAprAutenticacao->autenticar(conta_ptr);
             break;
