@@ -36,8 +36,7 @@ $(TARGET): $(OBJ)
 
 # Rule to clean up generated files
 clean:
-	for %%f in ($(OBJ)) do del "%%f" 
-	del $(TARGET).exe
+	rm -f $(OBJ) $(TARGET)
 
 # Rule to force recompilation of the target
 rebuild: clean $(TARGET)
