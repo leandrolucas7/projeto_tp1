@@ -18,9 +18,9 @@ class ContainerContas
     public:
         static ContainerContas* get_instancia();
         static void delete_instancia();
-        bool add_conta(Conta*);
-        void remove_conta(Conta*);
-        bool fetch_conta(Conta*);
+        bool add_conta(Conta*&);
+        void remove_conta(Conta*&);
+        bool fetch_conta(Conta*&);
 };
 
 #endif

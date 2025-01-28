@@ -24,7 +24,7 @@ class CntrSerCUDConta : public IntSerCUDConta
 class CntrSerCUDViagem : public IntSerCUDViagem
 {
     public:
-        void create(Conta*,Codigo,Nome,Avaliacao) override;
+        bool create(Conta*,Codigo,Nome,Avaliacao) override;
         void update(Viagem*,Nome,Avaliacao) override;
         void destroy(Conta*,Viagem*) override;
 };
@@ -32,7 +32,7 @@ class CntrSerCUDViagem : public IntSerCUDViagem
 class CntrSerCUDDestino : public IntSerCUDDestino
 {
     public:
-        void create(Viagem*,Codigo,Nome,Data,Data,Avaliacao) override;
+        bool create(Viagem*,Codigo,Nome,Data,Data,Avaliacao) override;
         void update(Destino*,Nome,Data,Data,Avaliacao) override;
         void destroy(Viagem*,Destino*) override;
 };
@@ -40,7 +40,7 @@ class CntrSerCUDDestino : public IntSerCUDDestino
 class CntrSerCUDHospedagem: public IntSerCUDHospedagem
 {
     public:
-        void create(Destino*,Codigo,Nome,Dinheiro,Avaliacao) override;
+        bool create(Destino*,Codigo,Nome,Dinheiro,Avaliacao) override;
         void update(Hospedagem*,Nome,Dinheiro,Avaliacao) override;
         void destroy(Destino*,Hospedagem*) override;
 };
@@ -48,7 +48,7 @@ class CntrSerCUDHospedagem: public IntSerCUDHospedagem
 class CntrSerCUDAtividade : public IntSerCUDAtividade
 {
     public:
-        void create(Destino*,Codigo,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) override;
+        bool create(Destino*,Codigo,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) override;
         void update(Atividade*,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) override;
         void destroy(Destino*,Atividade*) override;
 };

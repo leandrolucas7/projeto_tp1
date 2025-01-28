@@ -101,6 +101,11 @@ class Viagem
          */
         vector<Destino*> get_destinos_ptr();
 
+        /**
+         * @brief Obtém o índice de um destino na viagem. Retorna -1 caso o destino não exista.
+         * @param destino_id Código do destino a ser buscado.
+         * @return Índice do destino.
+         */
         int get_destino_index(Codigo destino_id);
 
         /**

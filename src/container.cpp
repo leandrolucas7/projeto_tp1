@@ -1,4 +1,6 @@
 #include "../include/container.hpp"
+#include <iostream>
+using namespace std;
 
 ContainerContas* ContainerContas::instancia = nullptr;
 
@@ -26,7 +28,7 @@ ContainerContas::~ContainerContas()
 }
 
 
-bool ContainerContas::add_conta(Conta* conta_ptr)
+bool ContainerContas::add_conta(Conta* &conta_ptr)
 {
     for (int i = 0; i < contas.size(); i++)
     {
@@ -37,16 +39,13 @@ bool ContainerContas::add_conta(Conta* conta_ptr)
             return false;
         }
     }
-    Conta* nova_conta = new Conta();
-    nova_conta->set_codigo(conta_ptr->get_codigo());
-    nova_conta->set_senha(conta_ptr->get_senha());
+    Conta* nova_conta = conta_ptr;
     contas.push_back(nova_conta);
-    delete conta_ptr;
     conta_ptr = nullptr;
     return true;
 }
 
-void ContainerContas::remove_conta(Conta* conta_ptr)
+void ContainerContas::remove_conta(Conta* &conta_ptr)
 {
     for (int i = 0; i < contas.size(); i++)
     {
@@ -61,17 +60,20 @@ void ContainerContas::remove_conta(Conta* conta_ptr)
     conta_ptr = nullptr;
 }
 
-bool ContainerContas::fetch_conta(Conta* conta_ptr)
+bool ContainerContas::fetch_conta(Conta* &conta_ptr)
 {
     for (int i = 0; i < contas.size(); i++)
     {
         if (contas[i]->get_codigo() == conta_ptr->get_codigo() && contas[i]->get_senha() == conta_ptr->get_senha())
         {
+            if (conta_ptr != nullptr)
+                delete conta_ptr;
             conta_ptr = contas[i];
             return true;
         }
     }
-    delete conta_ptr;
+    if (conta_ptr != nullptr)
+        delete conta_ptr;
     conta_ptr = nullptr;
     return false;
 }

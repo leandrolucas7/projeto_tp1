@@ -35,7 +35,7 @@ class IntSerCUDConta
 class IntSerCUDViagem
 {
     public:
-        virtual void create(Conta*,Codigo,Nome,Avaliacao) = 0;
+        virtual bool create(Conta*,Codigo,Nome,Avaliacao) = 0;
         virtual void update(Viagem*,Nome,Avaliacao) = 0;
         virtual void destroy(Conta*,Viagem*) = 0;
 };
@@ -43,7 +43,7 @@ class IntSerCUDViagem
 class IntSerCUDDestino
 {
     public:
-        virtual void create(Viagem*,Codigo,Nome,Data,Data,Avaliacao) = 0;
+        virtual bool create(Viagem*,Codigo,Nome,Data,Data,Avaliacao) = 0;
         virtual void update(Destino*,Nome,Data,Data,Avaliacao) = 0;
         virtual void destroy(Viagem*,Destino*) = 0;
 };
@@ -51,7 +51,7 @@ class IntSerCUDDestino
 class IntSerCUDHospedagem
 {
     public:
-        virtual void create(Destino*,Codigo,Nome,Dinheiro,Avaliacao) = 0;
+        virtual bool create(Destino*,Codigo,Nome,Dinheiro,Avaliacao) = 0;
         virtual void update(Hospedagem*,Nome,Dinheiro,Avaliacao) = 0;
         virtual void destroy(Destino*,Hospedagem*) = 0;
 };
@@ -60,7 +60,7 @@ class IntSerCUDHospedagem
 class IntSerCUDAtividade
 {
     public:
-        virtual void create(Destino*,Codigo,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) = 0;
+        virtual bool create(Destino*,Codigo,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) = 0;
         virtual void update(Atividade*,Nome,Data,Horario,Duracao,Dinheiro,Avaliacao) = 0;
         virtual void destroy(Destino*,Atividade*) = 0;
 };
