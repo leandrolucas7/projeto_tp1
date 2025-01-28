@@ -3,18 +3,16 @@
 
 #include "banco_de_dados.hpp"
 #include "../entidades/ENTIDADES.hpp"
-
-class BancoHospedagens : public BancoDados<Hospedagem, string>
+#include <iostream>
+using namespace std;
+class BancoHospedagens : public BancoDados<Hospedagem, Hospedagem>
 {
     protected:
-        bool criar(string codigo, string senha) override;
-        bool atualizar(string codigo, string novo_valor) override;
+        bool criar(Hospedagem valor) override;
+        bool atualizar(Hospedagem novo_valor) override;
     public:
-        void test(string s1, string s2)
-        {
-            criar(s1, s2);
-            atualizar(s1, s2);
-        }
+        BancoHospedagens();
+        void test();
 };
 
 #endif
