@@ -2,7 +2,7 @@
 	# Não vai reconhecer mudanças nos headers
 
 # Compiler and flags
-CXX = g++
+CXX = clang++
 CXXFLAGS = -Wall -O2 -std=c++17
 
 # Directories
@@ -18,28 +18,31 @@ SRC = $(DOM)avaliacao.cpp \
       $(DOM)nome.cpp \
       $(DOM)senha.cpp \
       $(DOM)super_dominio.cpp \
-            src/dominios/testes/super_teste.cpp \
-            src/dominios/testes/teste_avaliacao.cpp \
-            src/dominios/testes/teste_codigo.cpp \
-            src/dominios/testes/teste_data.cpp \
-            src/dominios/testes/teste_dinheiro.cpp \
-            src/dominios/testes/teste_duracao.cpp \
-            src/dominios/testes/teste_horario.cpp \
-            src/dominios/testes/teste_nome.cpp \
-            src/dominios/testes/teste_senha.cpp \
-            testes_dominios.cpp \
+      src/dominios/testes/super_teste.cpp \
+      src/dominios/testes/teste_avaliacao.cpp \
+      src/dominios/testes/teste_codigo.cpp \
+      src/dominios/testes/teste_data.cpp \
+      src/dominios/testes/teste_dinheiro.cpp \
+      src/dominios/testes/teste_duracao.cpp \
+      src/dominios/testes/teste_horario.cpp \
+      src/dominios/testes/teste_nome.cpp \
+      src/dominios/testes/teste_senha.cpp \
       src/entidades/testes/teste_conta.cpp \
-	  src/entidades/testes/teste_destino.cpp \
-	  src/entidades/testes/teste_hospedagem.cpp \
-	  src/entidades/testes/teste_atividade.cpp \
-	  src/entidades/testes/teste_viagem.cpp \
-
+      src/entidades/testes/teste_destino.cpp \
+      src/entidades/testes/teste_hospedagem.cpp \
+      src/entidades/testes/teste_atividade.cpp \
+      src/entidades/testes/teste_viagem.cpp \
+      src/bancos/banco_de_dados.cpp \
+      src/bancos/banco_hospedagens.cpp \
+      main.cpp \
+      #testes_dominios.cpp \
 
 
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = testes_dominios
+#TARGET = testes_dominios
+TARGET = main
 
 # Rule to build the target executable
 $(TARGET): $(OBJ)
