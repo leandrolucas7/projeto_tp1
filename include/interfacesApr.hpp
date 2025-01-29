@@ -19,6 +19,7 @@ class IntSerAutenticacao;
 class IntAprInput
 {
     public:
+        virtual ~IntAprInput() {}
         virtual void limpa_buffer() = 0;
         virtual int get_user_input() = 0;
         virtual Codigo get_codigo() = 0;
