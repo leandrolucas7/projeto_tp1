@@ -4,18 +4,441 @@
 using namespace std;
 
 
+CntrAprInput* CntrAprInput::instancia = nullptr;
+
+CntrAprInput* CntrAprInput::get_instancia()
+{
+    if (instancia == nullptr)
+    {
+        instancia = new CntrAprInput();
+    }
+    return instancia;
+}
+
+void CntrAprInput::delete_instancia()
+{
+    delete instancia;
+    instancia = nullptr;
+}
+
+
+
+void CntrAprInput::limpa_buffer()
+{
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+
+int CntrAprInput::get_user_input()
+{
+    int user_input;
+    while (true)
+    {
+        cin >> user_input;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "Entrada invalida. Por favor, digite um inteiro: ";
+            continue;
+        }
+        return user_input;
+    }
+}
+
+Codigo CntrAprInput::get_codigo()
+{
+    Codigo codigo; string codigo_string;
+    while (true)
+    {
+        cout << "Digite um codigo: ";
+        cin >> codigo_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "O codigo deve ser uma string sem espacos." << endl;
+            continue;
+        }
+        try
+        {
+            codigo.set_valor(codigo_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return codigo;
+    }
+}
+
+Senha CntrAprInput::get_senha()
+{
+    Senha senha; string senha_string;
+    while (true)
+    {
+        cout << "Digite uma senha: ";
+        cin >> senha_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A senha deve ser uma string sem espacos" << endl;
+            continue;
+        }
+        try
+        {
+            senha.set_valor(senha_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return senha;
+    }
+}
+
+Nome CntrAprInput::get_nome()
+{
+    Nome nome; string nome_string;
+    while (true)
+    {
+        cout << "Digite um nome: ";
+        getline(cin,nome_string);
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "Erro na leitura da linha." << endl;
+            continue;
+        }
+        try
+        {
+            nome.set_valor(nome_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return nome;
+    }
+}
+
+Avaliacao CntrAprInput::get_avaliacao()
+{
+    Avaliacao avaliacao; int avaliacao_int;
+    while (true)
+    {
+        cout << "Digite uma avaliacao: ";
+        cin >> avaliacao_int;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A avaliacao deve ser um inteiro" << endl;
+            continue;
+        }
+        try
+        {
+            avaliacao.set_valor(avaliacao_int);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+    }
+}
+
+Dinheiro CntrAprInput::get_diaria()
+{
+    Dinheiro dinheiro; double dinheiro_double;
+    while (true)
+    {
+        cout << "Digite uma diaria: ";
+        cin >> dinheiro_double;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A diaria deve ser um double" << endl;
+            continue;
+        }
+        try
+        {
+            dinheiro.set_valor(dinheiro_double);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+    }
+}
+
+Dinheiro CntrAprInput::get_preco()
+{
+    Dinheiro dinheiro; double dinheiro_double;
+    while (true)
+    {
+        cout << "Digite um preco: ";
+        cin >> dinheiro_double;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "O preco deve ser um double" << endl;
+            continue;
+        }
+        try
+        {
+            dinheiro.set_valor(dinheiro_double);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+    }
+}
+
+Duracao CntrAprInput::get_duracao()
+{
+    Duracao duracao; int duracao_int;
+    while (true)
+    {
+        cout << "Digite uma duracao: ";
+        cin >> duracao_int;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A duracao deve ser um inteiro" << endl;
+            continue;
+        }
+        try
+        {
+            duracao.set_valor(duracao_int);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return duracao;
+    }
+}
+
+Horario CntrAprInput::get_horario()
+{
+    Horario horario; string horario_string;
+    while (true)
+    {
+        cout << "Digite um horario: ";
+        cin >> horario_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "O horario deve ser uma string sem espacos" << endl;
+            continue;
+        }
+        try
+        {
+            horario.set_valor(horario_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return horario;
+    }
+}
+
+Data CntrAprInput::get_data_inicio()
+{
+    Data data_inicio; string data_inicio_string;
+    while (true)
+    {
+        cout << "Digite a data de inicio: ";
+        cin >> data_inicio_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A data deve ser uma string sem espacos" << endl;
+            continue;
+        }
+        try
+        {
+            data_inicio.set_valor(data_inicio_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        return data_inicio;
+    }
+}
+
+Data CntrAprInput::get_data_termino(Data data_inicio)
+{
+    Data data_termino; string data_termino_string;
+    while (true)
+    {
+        cout << "Data de termino: ";
+        cin >> data_termino_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A data deve ser uma string sem espacos" << endl;
+            continue;
+        }
+        try
+        {
+            data_termino.set_valor(data_termino_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+        //Verificando se data_inicio <= data_termino
+        bool flag = true;
+        int dia_data_inicio = stoi(data_inicio.get_valor().substr(0, 2));
+        int mes_data_inicio = stoi(data_inicio.get_valor().substr(3, 2));
+        int ano_data_inicio = stoi(data_inicio.get_valor().substr(6, 2));
+        int dia_data_termino = stoi(data_termino.get_valor().substr(0, 2));
+        int mes_data_termino = stoi(data_termino.get_valor().substr(3, 2));
+        int ano_data_termino = stoi(data_termino.get_valor().substr(6, 2));
+        if (ano_data_termino < ano_data_inicio)
+        {
+            flag = false;
+        }
+        else if (ano_data_termino == ano_data_inicio)
+        {
+            if (mes_data_termino < mes_data_inicio && ano_data_termino == ano_data_inicio)
+            {
+                flag = false;
+            }
+            else if (mes_data_termino == mes_data_inicio)
+            {
+                if (dia_data_termino < dia_data_inicio)
+                {
+                    flag = false;
+                }
+            }
+        }
+        if (! flag)
+            {
+                cout << "Data de termino nao pode ser anterior a data de inicio" << endl;
+                continue;
+            }
+        return data_termino;
+    }
+}
+
+Data CntrAprInput::get_data_atividade(Data data_inicio, Data data_termino)
+{
+    Data data_atividade; string data_atividade_string;
+    while (true)
+    {
+        cout << "Data da atividade: ";
+        cin >> data_atividade_string;
+        if (cin.fail())
+        {
+            limpa_buffer();
+            cout << "A data deve ser uma string sem espacos" << endl;
+            continue;
+        }
+        try
+        {
+            data_atividade.set_valor(data_atividade_string);
+        }
+        catch(const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+            continue;
+        }
+
+        bool flag = true;
+        int dia_data_inicio = stoi(data_inicio.get_valor().substr(0, 2));
+        int mes_data_inicio = stoi(data_inicio.get_valor().substr(3, 2));
+        int ano_data_inicio = stoi(data_inicio.get_valor().substr(6, 2));
+
+        int dia_data_atividade = stoi(data_atividade.get_valor().substr(0, 2));
+        int mes_data_atividade = stoi(data_atividade.get_valor().substr(3, 2));
+        int ano_data_atividade = stoi(data_atividade.get_valor().substr(6, 2));
+
+        int dia_data_termino = stoi(data_termino.get_valor().substr(0, 2));
+        int mes_data_termino = stoi(data_termino.get_valor().substr(3, 2));
+        int ano_data_termino = stoi(data_termino.get_valor().substr(6, 2));
+
+        //Verificando se data_inicio <= data_atividade
+        if (ano_data_atividade < ano_data_inicio)
+        {
+            flag = false;
+        }
+        else if (ano_data_atividade == ano_data_inicio)
+        {
+            if (mes_data_atividade < mes_data_inicio)
+            {
+                flag = false;
+            }
+            else if (mes_data_atividade == mes_data_inicio)
+            {
+                if (dia_data_atividade < dia_data_inicio)
+                {
+                    flag = false;
+                }
+            }
+        }
+        if (! flag)
+            {
+                cout << "Data da atividade nao pode ser anterior a data de inicio do destino" << endl;
+                continue;
+            }
+
+        //Verificando se data_atividade <= data_termino
+        if (ano_data_termino < ano_data_atividade)
+        {
+            flag = false;
+        }
+        else if (ano_data_termino == ano_data_atividade)
+        {
+            if (mes_data_termino < mes_data_atividade)
+            {
+                flag = false;
+            }
+            else if (mes_data_termino == mes_data_atividade)
+            {
+                if (dia_data_termino < dia_data_atividade)
+                {
+                    flag = false;
+                }
+            }
+        }
+        if (! flag)
+            {
+                cout << "Data da atividade nao pode ser posterios a data de termino do destino" << endl;
+                continue;
+            }
+        return data_atividade;
+    }
+}
+
+
 void CntrAprInicial::executar()
 {
     Conta* conta_ptr = nullptr;
-    int entrada_do_usuario;
+    CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
+    int user_input;
     while (true)
     {
         cout << "Essa eh a tela inicial. Selecione uma das opcoes abaixo:" << endl;
         cout << "1. Criar conta" << endl;
         cout << "2. Login" << endl;
         cout << "-1. Sair" << endl;
-        cin >> entrada_do_usuario; if (cin.fail()) cin.clear();
-        switch(entrada_do_usuario)
+
+        user_input = cntrAprInput->get_user_input();
+
+        switch(user_input)
         {
         case 1:
             this->cntrAprCRUDConta->create(conta_ptr);
@@ -33,22 +456,14 @@ void CntrAprInicial::executar()
 
 void CntrAprAutenticacao::autenticar(Conta* conta_ptr)
 {   
-    Codigo codigo; string codigo_string;
-    Senha senha; string senha_string;
+    CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
+    Codigo codigo; 
+    Senha senha; 
 
     cout << "Tela de autenticacao" << endl;
-    cout << "Digite o codigo: " << endl; cin >> codigo_string;
-    cout << "Digite a senha: " << endl; cin >> senha_string;
-    try
-    {
-        codigo.set_valor(codigo_string);
-        senha.set_valor(senha_string);
-    }
-    catch(const invalid_argument& e)
-    {
-        cout << "Valor inválido" << '\n';
-        return;
-    }
+    codigo = cntrAprInput->get_codigo();
+    senha = cntrAprInput->get_senha();
+    
     conta_ptr = new Conta();
     conta_ptr->set_codigo(codigo);
     conta_ptr->set_senha(senha);
