@@ -1,7 +1,7 @@
 //232024572
 
 /**
- * @file IntAprConta.hpp
+ * @file int_apr_conta.hpp
  * @brief Interface para gerenciamento de contas.
  *
  * Este arquivo contém a definição de uma interface responsável pela criação e execução de ações

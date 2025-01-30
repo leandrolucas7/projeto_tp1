@@ -1,7 +1,7 @@
 //232006215
 
 /**
- * @file IntAprAutenticacao.hpp
+ * @file int_apr_autenticacao.hpp
  * @brief Interface para autenticação de usuários.
  *
  * Este arquivo contém a definição de uma interface responsável pelo processo de autenticação

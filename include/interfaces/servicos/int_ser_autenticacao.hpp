@@ -1,7 +1,7 @@
 //23202472
 
 /**
- * @file IntSerAutenticacao.hpp
+ * @file int_ser_autenticacao.hpp
  * @brief Interface para autenticação de contas no serviço.
  *
  * Este arquivo define a interface responsável por validar credenciais de uma conta
