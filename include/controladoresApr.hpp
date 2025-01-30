@@ -1,5 +1,3 @@
-//232023969
-
 #ifndef controladoresApr_HPP
 #define controladoresApr_HPP
 
@@ -9,7 +7,6 @@
 #include "entidades/ENTIDADES.hpp"
 #include <iostream>
 
-// Declaração das classes controladoras
 class CntrAprInicial;
 class CntrAprInput;
 class CntrAprAutenticacao;
@@ -19,15 +16,12 @@ class CntrAprCRUDDestino;
 class CntrAprCRUDHospedagem;
 class CntrAprCRUDAtividade;
 
-/**
- * @brief Classe responsável pela inicialização do sistema e controle de fluxo.
- */
 class CntrAprInicial
 {
     private:
-        bool usuarioLogado; ///< Indica se o usuário está autenticado.
-        IntAprCRUDConta* cntrAprCRUDConta; ///< Controlador CRUD de conta.
-        IntAprAutenticacao* cntrAprAutenticacao; ///< Controlador de autenticação.
+        bool usuarioLogado;
+        IntAprCRUDConta* cntrAprCRUDConta;
+        IntAprAutenticacao* cntrAprAutenticacao;
     public:
         CntrAprInicial() {}
         void set_cntrAprCRUDConta(IntAprCRUDConta*);
@@ -35,20 +29,18 @@ class CntrAprInicial
         void executar();
 };
 
-/**
- * @brief Classe Singleton para manipulação de entrada do usuário.
- */
+
 class CntrAprInput : public IntAprInput
 {
     private:
-        static CntrAprInput* instancia; ///< Instância única da classe.
+        static CntrAprInput* instancia;
         CntrAprInput(){}
         ~CntrAprInput(){}
         CntrAprInput(const CntrAprInput&) = delete;
         CntrAprInput& operator=(const CntrAprInput&) = delete;
     public:
-        static CntrAprInput* get_instancia(); ///< Retorna a instância única.
-        static void delete_instancia(); ///< Deleta a instância existente.
+        static CntrAprInput* get_instancia();
+        static void delete_instancia();
         void limpa_buffer() override;
         int get_user_input() override;
         Codigo get_codigo() override;
@@ -64,19 +56,16 @@ class CntrAprInput : public IntAprInput
         Data get_data_atividade(Data, Data) override;
 };
 
-/**
- * @brief Classe de controle de autenticação de usuários.
- */
+
+
 class CntrAprAutenticacao : public IntAprAutenticacao
 {
     private:
-        IntAprCRUDConta* cntrAprCRUDConta; ///< Controlador CRUD de conta.
+        IntAprCRUDConta* cntrAprCRUDConta;
     public:
         void set_cntrAprCRUDConta(IntAprCRUDConta*) override;
         void autenticar(Conta*) override;
 };
-
-// Classes de controle para operações CRUD em diferentes entidades
 
 class CntrAprCRUDConta : public IntAprCRUDConta
 {
@@ -92,9 +81,64 @@ class CntrAprCRUDConta : public IntAprCRUDConta
         bool destroy(Conta*) override;
 };
 
-// Implementações semelhantes para Viagem, Destino, Hospedagem e Atividade
+class CntrAprCRUDViagem : public IntAprCRUDViagem
+{
+    private:
+        IntSerCUDViagem* cntrSerCUDViagem;
+        IntAprCRUDDestino* cntrAprCRUDDestino;
+    public:
+        void set_cntrSerCUDViagem(IntSerCUDViagem*) override;
+        void set_cntrAprCRUDDestino(IntAprCRUDDestino*) override;
+        void create(Conta*) override;
+        void read(Conta*,Viagem*) override;
+        void update(Conta*,Viagem*) override;
+        bool destroy(Conta*,Viagem*) override;
+};
 
-// Definições inline dos setters
+class CntrAprCRUDDestino : public IntAprCRUDDestino
+{
+    private:
+        IntSerCUDDestino* cntrSerCUDDestino;
+        IntAprCRUDHospedagem* cntrAprCRUDHospedagem;
+        IntAprCRUDAtividade* cntrAprCRUDAtividade;
+    public:
+        void set_cntrSerCUDDestino(IntSerCUDDestino*) override;
+        void set_cntrAprCRUDHospedagem(IntAprCRUDHospedagem*) override;
+        void set_cntrAprCRUDAtividade(IntAprCRUDAtividade*) override;
+        void create(Viagem*) override;
+        void read(Viagem*,Destino*) override;
+        void update(Viagem*,Destino*) override;
+        bool destroy(Viagem*,Destino*) override;
+};
+
+class CntrAprCRUDHospedagem : public IntAprCRUDHospedagem
+{
+    private:
+        IntSerCUDHospedagem* cntrSerCUDHospedagem;
+    public:
+        void set_cntrSerCUDHospedagem(IntSerCUDHospedagem*) override;
+        void create(Destino*) override;
+        void read(Destino*,Hospedagem*) override;
+        void update(Destino*,Hospedagem*) override;
+        bool destroy(Destino*,Hospedagem*) override;
+};
+
+class CntrAprCRUDAtividade : public IntAprCRUDAtividade
+{
+    private:
+        IntSerCUDAtividade* cntrSerCUDAtividade;
+    public:
+        void set_cntrSerCUDAtividade(IntSerCUDAtividade*);
+        void create(Destino*) override;
+        void read(Destino*,Atividade*) override;
+        void update(Destino*,Atividade*) override;
+        bool destroy(Destino*,Atividade*) override;
+};
+
+
+
+
+
 inline void CntrAprInicial::set_cntrAprCRUDConta(IntAprCRUDConta* ptr)
 {
     cntrAprCRUDConta = ptr;
@@ -110,6 +154,50 @@ inline void CntrAprAutenticacao::set_cntrAprCRUDConta(IntAprCRUDConta* ptr)
     cntrAprCRUDConta = ptr;
 }
 
-// Outras implementações de setters
+
+inline void CntrAprCRUDConta::set_cntrSerCUDConta(IntSerCUDConta* ptr)
+{
+    cntrSerCUDConta = ptr;
+}
+
+inline void CntrAprCRUDConta::set_cntrAprCRUDViagem(IntAprCRUDViagem* ptr)
+{
+    cntrAprCRUDViagem = ptr;
+}
+
+inline void CntrAprCRUDViagem::set_cntrSerCUDViagem(IntSerCUDViagem* ptr)
+{
+    cntrSerCUDViagem = ptr;
+}
+
+inline void CntrAprCRUDViagem::set_cntrAprCRUDDestino(IntAprCRUDDestino* ptr)
+{
+    cntrAprCRUDDestino = ptr;
+}
+
+inline void CntrAprCRUDDestino::set_cntrSerCUDDestino(IntSerCUDDestino* ptr)
+{
+    cntrSerCUDDestino = ptr;
+}
+
+inline void CntrAprCRUDDestino::set_cntrAprCRUDHospedagem(IntAprCRUDHospedagem* ptr)
+{
+    cntrAprCRUDHospedagem = ptr;
+}
+
+inline void CntrAprCRUDDestino::set_cntrAprCRUDAtividade(IntAprCRUDAtividade* ptr)
+{
+    cntrAprCRUDAtividade = ptr;
+}
+
+inline void CntrAprCRUDHospedagem::set_cntrSerCUDHospedagem(IntSerCUDHospedagem* ptr)
+{
+    cntrSerCUDHospedagem = ptr;
+}
+
+inline void CntrAprCRUDAtividade::set_cntrSerCUDAtividade(IntSerCUDAtividade* ptr)
+{
+    cntrSerCUDAtividade = ptr;
+}
 
 #endif
