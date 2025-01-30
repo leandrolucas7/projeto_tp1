@@ -45,6 +45,7 @@ void CntrAprInput::limpa_buffer()
 int CntrAprInput::get_user_input()
 {
     int user_input;
+    limpa_buffer();
     while (true)
     {
         cin >> user_input;
@@ -61,6 +62,7 @@ int CntrAprInput::get_user_input()
 Codigo CntrAprInput::get_codigo()
 {
     Codigo codigo; string codigo_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite um codigo: ";
@@ -87,6 +89,7 @@ Codigo CntrAprInput::get_codigo()
 Senha CntrAprInput::get_senha()
 {
     Senha senha; string senha_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite uma senha: ";
@@ -140,6 +143,7 @@ Nome CntrAprInput::get_nome()
 Avaliacao CntrAprInput::get_avaliacao()
 {
     Avaliacao avaliacao; int avaliacao_int;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite uma avaliacao: ";
@@ -166,6 +170,7 @@ Avaliacao CntrAprInput::get_avaliacao()
 Dinheiro CntrAprInput::get_diaria()
 {
     Dinheiro dinheiro; double dinheiro_double;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite uma diaria: ";
@@ -192,6 +197,7 @@ Dinheiro CntrAprInput::get_diaria()
 Dinheiro CntrAprInput::get_preco()
 {
     Dinheiro dinheiro; double dinheiro_double;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite um preco: ";
@@ -218,6 +224,7 @@ Dinheiro CntrAprInput::get_preco()
 Duracao CntrAprInput::get_duracao()
 {
     Duracao duracao; int duracao_int;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite uma duracao: ";
@@ -244,6 +251,7 @@ Duracao CntrAprInput::get_duracao()
 Horario CntrAprInput::get_horario()
 {
     Horario horario; string horario_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite um horario: ";
@@ -270,6 +278,7 @@ Horario CntrAprInput::get_horario()
 Data CntrAprInput::get_data_inicio()
 {
     Data data_inicio; string data_inicio_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Digite a data de inicio: ";
@@ -296,6 +305,7 @@ Data CntrAprInput::get_data_inicio()
 Data CntrAprInput::get_data_termino(Data data_inicio)
 {
     Data data_termino; string data_termino_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Data de termino: ";
@@ -353,6 +363,7 @@ Data CntrAprInput::get_data_termino(Data data_inicio)
 Data CntrAprInput::get_data_atividade(Data data_inicio, Data data_termino)
 {
     Data data_atividade; string data_atividade_string;
+    limpa_buffer();
     while (true)
     {
         cout << "Data da atividade: ";
