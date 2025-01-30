@@ -5,6 +5,7 @@
 #include "entidades/ENTIDADES.hpp"
 #include "./interfacesSer.hpp"
 
+class IntAprInput;
 class IntAprAutenticacao;
 class IntAprCRUDConta;
 template <typename T, typename U>
@@ -14,6 +15,25 @@ class IntAprCRUDDestino;
 class IntAprCRUDHospedagem;
 class IntAprCRUDAtividade;
 class IntSerAutenticacao;
+
+class IntAprInput
+{
+    public:
+        virtual ~IntAprInput() {}
+        virtual void limpa_buffer() = 0;
+        virtual int get_user_input() = 0;
+        virtual Codigo get_codigo() = 0;
+        virtual Senha get_senha() = 0;
+        virtual Nome get_nome() = 0;
+        virtual Avaliacao get_avaliacao() = 0;
+        virtual Dinheiro get_diaria() = 0;
+        virtual Dinheiro get_preco() = 0;
+        virtual Duracao get_duracao() = 0;
+        virtual Horario get_horario() = 0;
+        virtual Data get_data_inicio() = 0;
+        virtual Data get_data_termino(Data) = 0;
+        virtual Data get_data_atividade(Data, Data) = 0;
+};
 
 
 class IntAprAutenticacao
@@ -85,15 +105,6 @@ class IntAprCRUDAtividade : public IntAprCRUD<Destino, Atividade>
         virtual void read(Destino*,Atividade*) = 0;
         virtual void update(Destino*,Atividade*) = 0;
         virtual bool destroy(Destino*,Atividade*) = 0;
-};
-
-
-
-
-class IntSerAutenticacao
-{
-    public:
-        virtual bool autenticar(Conta) = 0;
 };
 
 #endif

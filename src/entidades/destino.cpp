@@ -25,13 +25,13 @@ void Destino::set_data_termino(const Data &data_termino)
     {
         throw invalid_argument("Data de término inválida.");
     }
-    if (ano_data_termino == ano_data_inicio)
+    else if (ano_data_termino == ano_data_inicio)
     {
-        if (mes_data_termino < mes_data_inicio && ano_data_termino == ano_data_inicio)
+        if (mes_data_termino < mes_data_inicio)
         {
             throw invalid_argument("Data de término inválida.");
         }
-        if(mes_data_termino == mes_data_inicio)
+        else if(mes_data_termino == mes_data_inicio)
         {
             if(dia_data_termino < dia_data_inicio)
             {

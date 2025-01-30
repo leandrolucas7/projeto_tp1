@@ -16,7 +16,8 @@ void Codigo::validar(string v)
     }
     if (flag)
         return;
-    throw invalid_argument("Argumento (" + v + ") inválido.");
+    //throw invalid_argument("Argumento (" + v + ") inválido.");
+    throw invalid_argument("O codigo deve conter 6 digitos.");
 }
 
 bool operator==(const Codigo &codigo1, const Codigo &codigo2)

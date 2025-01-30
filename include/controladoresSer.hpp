@@ -53,10 +53,4 @@ class CntrSerCUDAtividade : public IntSerCUDAtividade
         void destroy(Destino*,Atividade*) override;
 };
 
-class CntrSerAutenticacao : public IntSerAutenticacao
-{
-    public:
-        bool autenticar(Conta) override;
-};
-
 #endif

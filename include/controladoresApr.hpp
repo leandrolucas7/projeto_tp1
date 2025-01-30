@@ -8,6 +8,7 @@
 #include <iostream>
 
 class CntrAprInicial;
+class CntrAprInput;
 class CntrAprAutenticacao;
 class CntrAprCRUDConta;
 class CntrAprCRUDViagem;
@@ -26,6 +27,33 @@ class CntrAprInicial
         void set_cntrAprCRUDConta(IntAprCRUDConta*);
         void set_cntrAprAutenticacao(IntAprAutenticacao*);
         void executar();
+};
+
+
+class CntrAprInput : public IntAprInput
+{
+    private:
+        static CntrAprInput* instancia;
+        CntrAprInput(){}
+        ~CntrAprInput(){}
+        CntrAprInput(const CntrAprInput&) = delete;
+        CntrAprInput& operator=(const CntrAprInput&) = delete;
+    public:
+        static CntrAprInput* get_instancia();
+        static void delete_instancia();
+        void limpa_buffer() override;
+        int get_user_input() override;
+        Codigo get_codigo() override;
+        Senha get_senha() override;
+        Nome get_nome() override;
+        Dinheiro get_diaria() override;
+        Dinheiro get_preco() override;
+        Duracao get_duracao() override;
+        Horario get_horario() override;
+        Avaliacao get_avaliacao() override;
+        Data get_data_inicio() override;
+        Data get_data_termino(Data) override;
+        Data get_data_atividade(Data, Data) override;
 };
 
 
