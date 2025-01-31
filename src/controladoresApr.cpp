@@ -37,8 +37,13 @@ void CntrAprInput::delete_instancia()
 
 void CntrAprInput::limpa_buffer()
 {
-    cin.clear();
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    if (contador != 0)
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    contador++;
 }
 
 
