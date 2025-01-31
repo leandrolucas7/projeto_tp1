@@ -7,6 +7,14 @@
 #include "entidades/ENTIDADES.hpp"
 #include <list>
 
+class ContainerContas;
+class ContainerViagens;
+class ContainerDestinos;
+class ContainerHospedagens;
+class ContainerAtividades;
+
+
+
 class ContainerContas
 {
     private:
@@ -38,23 +46,6 @@ class ContainerViagens
         static void delete_instancia();
         bool create(Viagem*&);
         void destroy(Viagem*&);
-        //bool fetch(Viagem*&);
-};
-
-class ContainerDestinos
-{
-    private:
-        static ContainerDestinos* instancia;
-        ContainerDestinos() {}
-        ~ContainerDestinos();
-        ContainerDestinos(const ContainerDestinos&) = delete;
-        ContainerDestinos& operator=(const ContainerDestinos&) = delete;
-        list<Destino*> container;
-    public:
-        static ContainerDestinos* get_instancia();
-        static void delete_instancia();
-        bool create(Destino*&);
-        void destroy(Destino*&);
         //bool fetch(Viagem*&);
 };
 

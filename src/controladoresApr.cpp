@@ -507,7 +507,7 @@ void CntrAprAutenticacao::autenticar(Conta* conta_ptr)
     conta_ptr->set_codigo(codigo);
     conta_ptr->set_senha(senha);
 
-	autenticado = container_contas->fetch_conta(conta_ptr);
+	autenticado = container_contas->fetch(conta_ptr);
 
     if (autenticado)
         this->cntrAprCRUDConta->read(conta_ptr);

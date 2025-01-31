@@ -3,11 +3,11 @@
 
 bool CntrSerCUDConta::create(Conta* conta_ptr,Codigo codigo, Senha senha)
 {
+    ContainerContas* container = ContainerContas::get_instancia();
     conta_ptr = new Conta();
     conta_ptr->set_codigo(codigo);
     conta_ptr->set_senha(senha);
-    ContainerContas* container = ContainerContas::get_instancia();
-    bool resultado = container->add_conta(conta_ptr);
+    bool resultado = container->create(conta_ptr);
     return resultado;
 }
 
@@ -19,23 +19,25 @@ void CntrSerCUDConta::update(Conta* conta, Senha senha)
 void CntrSerCUDConta::destroy(Conta* conta_ptr)
 {
     ContainerContas* container = ContainerContas::get_instancia();
-    container->remove_conta(conta_ptr);
+    container->destroy(conta_ptr);
 }
 
 
 
 bool CntrSerCUDViagem::create(Conta* conta, Codigo codigo, Nome nome, Avaliacao avaliacao)
 {
+    ContainerViagens* container = ContainerViagens::get_instancia();
     Viagem* viagem_ptr;
     viagem_ptr = new Viagem();
     viagem_ptr->set_codigo(codigo);
     viagem_ptr->set_nome(nome);
     viagem_ptr->set_avaliacao(avaliacao);
-    if (conta->get_viagem_index(codigo) == -1 )
+    if (container->create(viagem_ptr))
         {
         conta->add_viagem(viagem_ptr);
         return true;
         }
+    delete viagem_ptr;
     return false;
 }
 
@@ -47,12 +49,15 @@ void CntrSerCUDViagem::update(Viagem* viagem, Nome nome, Avaliacao avaliacao)
 
 void CntrSerCUDViagem::destroy(Conta* conta, Viagem* viagem)
 {
+    ContainerViagens* container = ContainerViagens::get_instancia();
+    container->destroy(viagem);
     conta->remove_viagem(viagem->get_codigo());
 }
 
 
 bool CntrSerCUDDestino::create(Viagem* viagem_prt, Codigo codigo, Nome nome, Data data_inicio, Data data_fim, Avaliacao avaliacao)
 {
+    ContainerDestinos* container = ContainerDestinos::get_instancia();
     Destino* destino_ptr;
     destino_ptr = new Destino();
     destino_ptr->set_codigo(codigo);
@@ -60,11 +65,12 @@ bool CntrSerCUDDestino::create(Viagem* viagem_prt, Codigo codigo, Nome nome, Dat
     destino_ptr->set_data_inicio(data_inicio);
     destino_ptr->set_data_termino(data_fim);
     destino_ptr->set_avaliacao(avaliacao);
-    if (viagem_prt->get_destino_index(codigo) == -1)
+    if (container->create(destino_ptr))
     {
         viagem_prt->add_destino(destino_ptr);
         return true;
     }
+    delete destino_ptr;
     return false;
 }
 
@@ -78,22 +84,26 @@ void CntrSerCUDDestino::update(Destino* destino, Nome nome, Data data_inicio, Da
 
 void CntrSerCUDDestino::destroy(Viagem* viagem, Destino* destino)
 {
+    ContainerDestinos* container = ContainerDestinos::get_instancia();
+    container->destroy(destino);
     viagem->remove_destino(destino->get_codigo());
 }
 
 bool CntrSerCUDHospedagem::create(Destino* destino_ptr, Codigo codigo, Nome nome, Dinheiro diaria, Avaliacao avaliacao)
 {
+    ContainerHospedagens* container = ContainerHospedagens::get_instancia();
     Hospedagem* hospedagem_ptr;
     hospedagem_ptr = new Hospedagem();
     hospedagem_ptr->set_codigo(codigo);
     hospedagem_ptr->set_nome(nome);
     hospedagem_ptr->set_diaria(diaria);
     hospedagem_ptr->set_avaliacao(avaliacao);  
-    if (destino_ptr->get_hospedagem_index(codigo) == -1)
+    if (container->create(hospedagem_ptr))
     {
         destino_ptr->add_hospedagem(hospedagem_ptr);
         return true;
     }
+    delete hospedagem_ptr;
     return false;
 }
 
@@ -106,11 +116,14 @@ void CntrSerCUDHospedagem::update(Hospedagem* hospedagem, Nome nome, Dinheiro di
 
 void CntrSerCUDHospedagem::destroy(Destino* destino, Hospedagem* hospedagem)
 {
+    ContainerHospedagens* container = ContainerHospedagens::get_instancia();
+    container->destroy(hospedagem);
     destino->remove_hospedagem(hospedagem->get_codigo());
 }
 
 bool CntrSerCUDAtividade::create(Destino* destino_ptr, Codigo codigo, Nome nome, Data data, Horario horario, Duracao duracao, Dinheiro preco, Avaliacao avaliacao)
 {
+    ContainerAtividades* container = ContainerAtividades::get_instancia();
     Atividade* atividade_ptr;
     atividade_ptr = new Atividade();
     atividade_ptr->set_codigo(codigo);
@@ -120,11 +133,12 @@ bool CntrSerCUDAtividade::create(Destino* destino_ptr, Codigo codigo, Nome nome,
     atividade_ptr->set_duracao(duracao);
     atividade_ptr->set_preco(preco);
     atividade_ptr->set_avaliacao(avaliacao);
-    if (destino_ptr->get_atividade_index(codigo) == -1)
+    if (container->create(atividade_ptr))
     {
         destino_ptr->add_atividade(atividade_ptr);
         return true;
     }
+    delete atividade_ptr;
     return false;
 }
 
@@ -140,5 +154,7 @@ void CntrSerCUDAtividade::update(Atividade* atividade, Nome nome, Data data, Hor
 
 void CntrSerCUDAtividade::destroy(Destino* destino, Atividade* atividade)
 {
+    ContainerAtividades* container = ContainerAtividades::get_instancia();
+    container->destroy(atividade);
     destino->remove_atividade(atividade->get_codigo());
 }
