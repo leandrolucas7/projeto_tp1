@@ -62,6 +62,7 @@ class CntrAprInicial
 class CntrAprInput : public IntAprInput
 {
     private:
+        int contador = 0;
         static CntrAprInput* instancia;            ///< Instância única da classe
         CntrAprInput(){}                          ///< Construtor privado
         ~CntrAprInput(){}                         ///< Destrutor privado
