@@ -993,6 +993,15 @@ void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
 	bool resultado;
 
     cout << "Tela de criacao de hospedagem" << endl;
+
+    if (!destino_ptr->is_hospedagem_ptr_empty())
+    {
+        cout << "Deve haver somente uma hospedagem associada a cada destino" << endl;
+        cout << "Ja ha uma hospedagem associada a esse destino" << endl;
+        cout << "Saindo ..." << endl;
+        return;
+    }
+
     cout << "Criando hospedagem para o destino " << destino_ptr->get_nome().get_valor() << "(codigo " << destino_ptr->get_codigo().get_valor() << ")" << endl;
     
 	codigo = cntrAprInput->get_codigo();
@@ -1070,13 +1079,6 @@ bool CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem
 	int user_input;
 
     cout << "Tela de delecao de hospedagem" << endl;
-    if (!destino_ptr->is_hospedagem_ptr_empty())
-    {
-        cout << "Deve haver somente uma hospedagem associada a cada destino" << endl;
-        cout << "Ja ha uma hospedagem associada a esse destino" << endl;
-        cout << "Saindo ..." << endl;
-        return false;
-    }
     cout << "Deletando hospedagem do destino " << destino_ptr->get_nome().get_valor() << "(codigo" << destino_ptr->get_codigo().get_valor() << endl;
     cout << "Nome da hospedagem: " << hospedagem_ptr->get_nome().get_valor() << endl;
     cout << "Codigo da hospedagem: " << hospedagem_ptr->get_codigo().get_valor() << endl;
