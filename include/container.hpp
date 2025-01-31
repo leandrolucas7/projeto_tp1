@@ -5,6 +5,7 @@
 #include "./interfacesSer.hpp"
 #include "dominios/DOMINIOS.hpp"
 #include "entidades/ENTIDADES.hpp"
+#include <list>
 
 class ContainerContas
 {
@@ -23,5 +24,22 @@ class ContainerContas
         bool fetch_conta(Conta*&);
 };
 
-#endif
+class ContainerViagens
+{
+    private:
+        static ContainerViagens* instancia;
+        ContainerViagens() {}
+        ~ContainerViagens();
+        ContainerViagens(const ContainerViagens&) = delete;
+        ContainerViagens& operator=(const ContainerViagens&) = delete;
+        list<Viagem*> container;
+    public:
+        static ContainerViagens* get_instancia();
+        static void delete_instancia();
+        bool create(Viagem*&);
+        void destroy(Viagem*&);
+        //bool fetch(Viagem*&);
+};
 
+
+#endif

@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+//Implementacao dos singletons
+
 ContainerContas* ContainerContas::instancia = nullptr;
 
 ContainerContas* ContainerContas::get_instancia()
@@ -13,7 +15,22 @@ ContainerContas* ContainerContas::get_instancia()
     return instancia;
 }
 
+ContainerViagens* ContainerViagens::get_instancia()
+{
+    if (instancia == nullptr)
+    {
+        instancia = new ContainerViagens();
+    }
+    return instancia;
+}
+
 void ContainerContas::delete_instancia()
+{
+    delete instancia;
+    instancia = nullptr;
+}
+
+void ContainerViagens::delete_instancia()
 {
     delete instancia;
     instancia = nullptr;
@@ -26,6 +43,16 @@ ContainerContas::~ContainerContas()
         delete contas[i];
     }
 }
+
+ContainerViagens::~ContainerViagens()
+{
+    for (auto it = container.begin(); it != container.end(); it++)
+    {
+        delete *it;
+    }
+}
+
+//Implementacao dos metodos CUD(create, update, delete)
 
 
 bool ContainerContas::add_conta(Conta* &conta_ptr)
@@ -77,3 +104,50 @@ bool ContainerContas::fetch_conta(Conta* &conta_ptr)
     conta_ptr = nullptr;
     return false;
 }
+
+bool ContainerViagens::create(Viagem* &ptr)
+{
+    for (auto it = container.begin(); it != container.end(); it++)
+        {
+            if ((*it)->get_codigo() == ptr->get_codigo())
+                return false;
+        }
+    container.push_back(ptr);
+    return true;
+}
+
+void ContainerViagens::destroy(Viagem* &ptr)
+{
+    for (auto it = container.begin(); it != container.end(); it++)
+        {
+            if ((*it)->get_codigo() == ptr->get_codigo())
+                container.erase(it);
+                delete ptr;
+                ptr = nullptr;
+                break;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
