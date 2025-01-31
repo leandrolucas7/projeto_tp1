@@ -15,13 +15,13 @@ class ContainerContas
         ~ContainerContas();
         ContainerContas(const ContainerContas&) = delete;
         ContainerContas& operator=(const ContainerContas&) = delete;
-        vector<Conta*> contas;
+        list<Conta*> container;
     public:
         static ContainerContas* get_instancia();
         static void delete_instancia();
-        bool add_conta(Conta*&);
-        void remove_conta(Conta*&);
-        bool fetch_conta(Conta*&);
+        bool create(Conta*&);
+        void destroy(Conta*&);
+        bool fetch(Conta*&);
 };
 
 class ContainerViagens
@@ -39,6 +39,71 @@ class ContainerViagens
         bool create(Viagem*&);
         void destroy(Viagem*&);
         //bool fetch(Viagem*&);
+};
+
+class ContainerDestinos
+{
+    private:
+        static ContainerDestinos* instancia;
+        ContainerDestinos() {}
+        ~ContainerDestinos();
+        ContainerDestinos(const ContainerDestinos&) = delete;
+        ContainerDestinos& operator=(const ContainerDestinos&) = delete;
+        list<Destino*> container;
+    public:
+        static ContainerDestinos* get_instancia();
+        static void delete_instancia();
+        bool create(Destino*&);
+        void destroy(Destino*&);
+        //bool fetch(Viagem*&);
+};
+
+class ContainerDestinos
+{
+    private:
+        static ContainerDestinos* instancia;
+        ContainerDestinos() {}
+        ~ContainerDestinos();
+        ContainerDestinos(const ContainerDestinos&) = delete;
+        ContainerDestinos& operator=(const ContainerDestinos&) = delete;
+        list<Destino*> container;
+    public:
+        static ContainerDestinos* get_instancia();
+        static void delete_instancia();
+        bool create(Destino*&);
+        void destroy(Destino*&);
+};
+
+class ContainerHospedagens
+{
+    private:
+        static ContainerHospedagens* instancia;
+        ContainerHospedagens() {}
+        ~ContainerHospedagens();
+        ContainerHospedagens(const ContainerHospedagens&) = delete;
+        ContainerHospedagens& operator=(const ContainerHospedagens&) = delete;
+        list<Hospedagem*> container;
+    public:
+        static ContainerHospedagens* get_instancia();
+        static void delete_instancia();
+        bool create(Hospedagem*&);
+        void destroy(Hospedagem*&);
+};
+
+class ContainerAtividades
+{
+    private:
+        static ContainerAtividades* instancia;
+        ContainerAtividades() {}
+        ~ContainerAtividades();
+        ContainerAtividades(const ContainerAtividades&) = delete;
+        ContainerAtividades& operator=(const ContainerAtividades&) = delete;
+        list<Atividade*> container;
+    public:
+        static ContainerAtividades* get_instancia();
+        static void delete_instancia();
+        bool create(Atividade*&);
+        void destroy(Atividade*&);
 };
 
 
