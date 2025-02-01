@@ -75,7 +75,7 @@ Codigo CntrAprInput::get_codigo()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "O codigo deve ser uma string sem espacos." << endl;
+            cout << "O codigo nao deve ter espacos." << endl;
             continue;
         }
         try
@@ -102,7 +102,7 @@ Senha CntrAprInput::get_senha()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A senha deve ser uma string sem espacos" << endl;
+            cout << "A senha nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -121,11 +121,12 @@ Senha CntrAprInput::get_senha()
 Nome CntrAprInput::get_nome()
 {
     Nome nome; string nome_string;
-	limpa_buffer();
+    limpa_buffer();
     while (true)
     {
         cout << "Digite um nome: ";
-        getline(cin,nome_string);
+        getline(cin, nome_string);
+        cin.putback('\n');
         if (cin.fail())
         {
             limpa_buffer();
@@ -264,7 +265,7 @@ Horario CntrAprInput::get_horario()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "O horario deve ser uma string sem espacos" << endl;
+            cout << "O horario nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -291,7 +292,7 @@ Data CntrAprInput::get_data_inicio()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos" << endl;
+            cout << "A data nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -318,7 +319,7 @@ Data CntrAprInput::get_data_termino(Data data_inicio)
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos." << endl;
+            cout << "A data nao deve ter espacos." << endl;
             continue;
         }
         try
@@ -376,7 +377,7 @@ Data CntrAprInput::get_data_atividade(Data data_inicio, Data data_termino)
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos." << endl;
+            cout << "A data nao deve ter espacos." << endl;
             continue;
         }
         try
@@ -512,7 +513,7 @@ void CntrAprAutenticacao::autenticar(Conta* conta_ptr)
     conta_ptr->set_codigo(codigo);
     conta_ptr->set_senha(senha);
 
-	autenticado = container_contas->fetch_conta(conta_ptr);
+	autenticado = container_contas->fetch(conta_ptr);
 
     if (autenticado)
         this->cntrAprCRUDConta->read(conta_ptr);
@@ -540,7 +541,7 @@ void CntrAprCRUDConta::create(Conta* conta_ptr)
 
     if (ja_existe)
     {
-        cout << "Ja existe uma conta com esse codigo" << endl;
+        cout << "Esse codigo ja esta em uso" << endl;
         return;
     }
     else
@@ -671,15 +672,15 @@ void CntrAprCRUDViagem::create(Conta* conta_ptr)
 
     cout << "Tela de criacao de viagem" << endl;
     cout << "Criando viagem para a conta " << conta_ptr->get_codigo().get_valor() << endl;
+    codigo = cntrAprInput->get_codigo();
 	nome = cntrAprInput->get_nome();
 	avaliacao = cntrAprInput->get_avaliacao();
-    codigo = cntrAprInput->get_codigo();
 
     resultado = this->cntrSerCUDViagem->create(conta_ptr, codigo, nome, avaliacao);
     if (resultado)
         cout << "Viagem criada com sucesso" << endl;
     else
-        cout << "Ja existe uma viagem com esse codigo" << endl;
+        cout << "Esse codigo ja esta em uso" << endl;
 }
 
 
@@ -825,7 +826,7 @@ void CntrAprCRUDDestino::create(Viagem* viagem_ptr)
     if (resultado)
         cout << "Destino criado com sucesso" << endl;
     else
-        cout << "Ja existe um destino com esse  codigo" << endl;
+        cout << "Esse codigo ja esta em uso" << endl;
 }
 
 void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
@@ -993,6 +994,15 @@ void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
 	bool resultado;
 
     cout << "Tela de criacao de hospedagem" << endl;
+
+    if (!destino_ptr->is_hospedagem_ptr_empty())
+    {
+        cout << "Deve haver somente uma hospedagem associada a cada destino" << endl;
+        cout << "Ja ha uma hospedagem associada a esse destino" << endl;
+        cout << "Saindo ..." << endl;
+        return;
+    }
+
     cout << "Criando hospedagem para o destino " << destino_ptr->get_nome().get_valor() << "(codigo " << destino_ptr->get_codigo().get_valor() << ")" << endl;
     
 	codigo = cntrAprInput->get_codigo();
@@ -1004,7 +1014,7 @@ void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
     if (resultado)
         cout << "Hospedagem criada com sucesso" << endl;
     else
-        cout << "Ja existe uma hospedagem com esse  codigo" << endl;
+        cout << "Esse codigo ja esta em uso" << endl;
 }
 
 void CntrAprCRUDHospedagem::read(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
@@ -1119,7 +1129,7 @@ void CntrAprCRUDAtividade::create(Destino* destino_ptr)
     if (resultado)
         cout << "Atividade criada com sucesso" << endl;
     else
-        cout << "Ja existe uma atividade com esse codigo" << endl;
+        cout << "Esse codigo ja esta em uso" << endl;
 }
 
 void CntrAprCRUDAtividade::read(Destino* destino_ptr, Atividade* atividade_ptr)

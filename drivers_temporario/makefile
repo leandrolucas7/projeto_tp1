@@ -3,7 +3,7 @@
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -O2 -std=c++17 -g3
+CXXFLAGS = -g3 -Wall -O2 -std=c++17 
 
 # Directories
 DOM = ../src/dominios/
