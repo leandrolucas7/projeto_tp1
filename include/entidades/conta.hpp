@@ -91,14 +91,14 @@ class Conta
          * @param viagem_id Código da viagem a ser buscada.
          * @return Ponteiro para a viagem associada ao usuário.
          */
-        Viagem* get_viagem_ptr(Codigo viagem_id);
+        Viagem** get_viagem_ptr(Codigo viagem_id);
 
         /**
          * @brief Adiciona uma viagem ao vetor de viagens associadas ao usuário.
          * 
          * @param viagem Ponteiro para a viagem a ser adicionada.
          */
-        void add_viagem(Viagem* viagem);
+        void add_viagem(Viagem* &viagem);
 
         /**
          * @brief Remove uma viagem do vetor de viagens associadas ao usuário.
@@ -106,6 +106,14 @@ class Conta
          * @param viagem_id Código da viagem a ser removida.
          */
         void remove_viagem(Codigo viagem_id);
+
+        /**
+         * @brief Remove ponteiros nulos do vetor de ponteiros de viagens associadas ao usuário.
+         * 
+         */
+        void remove_null_pointers();
+
+        void imprime_viagem_ptr();
 };
 
 // Implementação inline dos métodos

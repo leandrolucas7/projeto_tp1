@@ -496,7 +496,7 @@ void CntrAprInicial::executar()
     }
 }
 
-void CntrAprAutenticacao::autenticar(Conta* conta_ptr)
+void CntrAprAutenticacao::autenticar(Conta*& conta_ptr)
 {   
 	separa_telas();
     ContainerContas* container_contas = ContainerContas::get_instancia();
@@ -525,7 +525,7 @@ void CntrAprAutenticacao::autenticar(Conta* conta_ptr)
 }
 
 
-void CntrAprCRUDConta::create(Conta* conta_ptr)
+void CntrAprCRUDConta::create(Conta*& conta_ptr)
 {
 	separa_telas();
     CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -551,12 +551,12 @@ void CntrAprCRUDConta::create(Conta* conta_ptr)
     }
 }
 
-void CntrAprCRUDConta::read(Conta* conta_ptr)
+void CntrAprCRUDConta::read(Conta*& conta_ptr)
 {
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
 	int user_input;
     Codigo viagem_codigo;
-    Viagem* viagem_ptr = nullptr;
+    Viagem** viagem_ptr_duplo = nullptr;
 
     while (true)
     {
@@ -572,6 +572,8 @@ void CntrAprCRUDConta::read(Conta* conta_ptr)
                 for (Viagem* viagem_ptr : conta_ptr->get_viagens_ptr())
                 {
                     cout << viagem_ptr->get_nome().get_valor() << "(codigo " <<  viagem_ptr->get_codigo().get_valor() << ")" << endl;
+                    cout << "enderecos" << endl;
+                    conta_ptr->imprime_viagem_ptr();
                 }
             }
         cout << "Escolha uma opcao:" << endl;
@@ -597,13 +599,15 @@ void CntrAprCRUDConta::read(Conta* conta_ptr)
             cout << "Qual viagem deseja acessar?" << endl;
             viagem_codigo = cntrAprInput->get_codigo();
 
-            viagem_ptr = conta_ptr->get_viagem_ptr(viagem_codigo);
-            if (viagem_ptr == nullptr)
+            viagem_ptr_duplo = conta_ptr->get_viagem_ptr(viagem_codigo);
+            cout << "endereco recebido em viagem_ptr: " << viagem_ptr_duplo << endl;
+
+            if (viagem_ptr_duplo == nullptr)
             {
                 cout << "Viagem nao encontrada." << endl;
                 break;
             }
-            else this->cntrAprCRUDViagem->read(conta_ptr, viagem_ptr);
+            else this->cntrAprCRUDViagem->read(conta_ptr, *viagem_ptr_duplo);
             break;
         case -1:
             conta_ptr = nullptr;
@@ -614,7 +618,7 @@ void CntrAprCRUDConta::read(Conta* conta_ptr)
     }
 }
 
-void CntrAprCRUDConta::update(Conta* conta_ptr)
+void CntrAprCRUDConta::update(Conta*& conta_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -627,7 +631,7 @@ void CntrAprCRUDConta::update(Conta* conta_ptr)
     cout << "Conta atualizada com sucesso" << endl;
 }
 
-bool CntrAprCRUDConta::destroy(Conta* conta_ptr)
+bool CntrAprCRUDConta::destroy(Conta*& conta_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -661,7 +665,7 @@ bool CntrAprCRUDConta::destroy(Conta* conta_ptr)
 
 
 
-void CntrAprCRUDViagem::create(Conta* conta_ptr)
+void CntrAprCRUDViagem::create(Conta*& conta_ptr)
 {   
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -684,17 +688,18 @@ void CntrAprCRUDViagem::create(Conta* conta_ptr)
 }
 
 
-void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
+void CntrAprCRUDViagem::read(Conta*& conta_ptr, Viagem*& viagem_ptr)
 {
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
     int user_input;
 	Codigo destino_codigo; 
-    Destino* destino_ptr = nullptr;
+    Destino** destino_ptr_duplo = nullptr;
 
     while (true)
     {
 		separa_telas();
         cout << "Tela de leitura de viagem" << endl;
+        cout << "endereco de viagem em read viagem " << &viagem_ptr << endl;
         cout << "Detalhes da viagem " << viagem_ptr->get_codigo().get_valor() << ":" << endl;
         cout << "Nome da viagem: " << viagem_ptr->get_nome().get_valor() << endl;
         cout << "Avaliacao da viagem: " << viagem_ptr->get_avaliacao().get_valor() << endl;
@@ -734,13 +739,13 @@ void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
             cout << "Qual destino deseja acessar?" << endl;
             
             destino_codigo = cntrAprInput->get_codigo();
-            destino_ptr = viagem_ptr->get_destino_ptr(destino_codigo);
-            if (destino_ptr == nullptr)
+            destino_ptr_duplo = viagem_ptr->get_destino_ptr(destino_codigo);
+            if (destino_ptr_duplo == nullptr)
             {
                 cout << "Destino nao encontrado" << endl;
                 break;
             }
-            else this->cntrAprCRUDDestino->read(viagem_ptr, destino_ptr);
+            else this->cntrAprCRUDDestino->read(viagem_ptr, *destino_ptr_duplo);
             break;
         case -1:
             return;
@@ -750,7 +755,7 @@ void CntrAprCRUDViagem::read(Conta* conta_ptr, Viagem* viagem_ptr)
     }
 }
 
-void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
+void CntrAprCRUDViagem::update(Conta*& conta_ptr, Viagem*& viagem_ptr)
 {   
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -767,13 +772,14 @@ void CntrAprCRUDViagem::update(Conta* conta_ptr, Viagem* viagem_ptr)
     cout << "Viagem atualizada com sucesso !" << endl;
 }
 
-bool CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)
+bool CntrAprCRUDViagem::destroy(Conta*& conta_ptr, Viagem*& viagem_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
 	int user_input;
 
     cout << "Tela de delecao de viagem" << endl;
+    cout << "endereco de viagem em destroy viagem" << &viagem_ptr;
 	if (!viagem_ptr->is_destino_ptr_empty())
 	{
 		cout << "A viagem nao pode ser deletada, pois ha destinos associados a ela." << endl;
@@ -802,7 +808,7 @@ bool CntrAprCRUDViagem::destroy(Conta* conta_ptr, Viagem* viagem_ptr)
 }
 
 
-void CntrAprCRUDDestino::create(Viagem* viagem_ptr)
+void CntrAprCRUDDestino::create(Viagem*& viagem_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -829,13 +835,13 @@ void CntrAprCRUDDestino::create(Viagem* viagem_ptr)
         cout << "Esse codigo ja esta em uso" << endl;
 }
 
-void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
+void CntrAprCRUDDestino::read(Viagem*& viagem_ptr, Destino*& destino_ptr)
 {
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
     int user_input;
 	Codigo codigo; 
-    Hospedagem* hospedagem_ptr = nullptr;
-    Atividade* atividade_ptr = nullptr;
+    Hospedagem** hospedagem_ptr_duplo = nullptr;
+    Atividade** atividade_ptr_duplo = nullptr;
 
 
     while (true)
@@ -898,25 +904,25 @@ void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
         case 5:
             cout << "Qual hospedagem deseja acessar?" << endl;
             codigo = cntrAprInput->get_codigo();
-            hospedagem_ptr = destino_ptr->get_hospedagem_ptr(codigo);
-            if (hospedagem_ptr == nullptr)
+            hospedagem_ptr_duplo = destino_ptr->get_hospedagem_ptr(codigo);
+            if (hospedagem_ptr_duplo == nullptr)
             {
                 cout << "Hospedagem nao encontrada" << endl;
                 break;
             }
-            else this->cntrAprCRUDHospedagem->read(destino_ptr, hospedagem_ptr);
+            else this->cntrAprCRUDHospedagem->read(destino_ptr, *hospedagem_ptr_duplo);
             break;
 
         case 6:
             cout << "Qual atividade desja acessar? " << endl;
             codigo = cntrAprInput->get_codigo();
-            atividade_ptr = destino_ptr->get_atividade_ptr(codigo);
-            if (atividade_ptr == nullptr)
+            atividade_ptr_duplo = destino_ptr->get_atividade_ptr(codigo);
+            if (atividade_ptr_duplo == nullptr)
             {
                 cout << "Atividade nao encontrada" << endl;
                 break;
             }
-            else this->cntrAprCRUDAtividade->read(destino_ptr, atividade_ptr);
+            else this->cntrAprCRUDAtividade->read(destino_ptr, *atividade_ptr_duplo);
             break;
         case -1:
             return;
@@ -926,7 +932,7 @@ void CntrAprCRUDDestino::read(Viagem* viagem_ptr, Destino* destino_ptr)
     }
 }
 
-void CntrAprCRUDDestino::update(Viagem* viagem_ptr, Destino* destino_ptr)
+void CntrAprCRUDDestino::update(Viagem*& viagem_ptr, Destino*& destino_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -947,7 +953,7 @@ void CntrAprCRUDDestino::update(Viagem* viagem_ptr, Destino* destino_ptr)
     cout << "Destino atualizado com sucesso" << endl;
 }
 
-bool CntrAprCRUDDestino::destroy(Viagem* viagem_ptr, Destino* destino_ptr)
+bool CntrAprCRUDDestino::destroy(Viagem*& viagem_ptr, Destino*& destino_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -983,7 +989,7 @@ bool CntrAprCRUDDestino::destroy(Viagem* viagem_ptr, Destino* destino_ptr)
 
 
 
-void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
+void CntrAprCRUDHospedagem::create(Destino*& destino_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1017,7 +1023,7 @@ void CntrAprCRUDHospedagem::create(Destino* destino_ptr)
         cout << "Esse codigo ja esta em uso" << endl;
 }
 
-void CntrAprCRUDHospedagem::read(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
+void CntrAprCRUDHospedagem::read(Destino*& destino_ptr, Hospedagem*& hospedagem_ptr)
 {
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
 	int user_input;
@@ -1054,7 +1060,7 @@ void CntrAprCRUDHospedagem::read(Destino* destino_ptr, Hospedagem* hospedagem_pt
     }
 }
 
-void CntrAprCRUDHospedagem::update(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
+void CntrAprCRUDHospedagem::update(Destino*& destino_ptr, Hospedagem*& hospedagem_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1073,7 +1079,7 @@ void CntrAprCRUDHospedagem::update(Destino* destino_ptr, Hospedagem* hospedagem_
 }
 
 
-bool CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem_ptr)
+bool CntrAprCRUDHospedagem::destroy(Destino*& destino_ptr, Hospedagem*& hospedagem_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1102,7 +1108,7 @@ bool CntrAprCRUDHospedagem::destroy(Destino* destino_ptr, Hospedagem* hospedagem
     }
 }
 
-void CntrAprCRUDAtividade::create(Destino* destino_ptr)
+void CntrAprCRUDAtividade::create(Destino*& destino_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1132,7 +1138,7 @@ void CntrAprCRUDAtividade::create(Destino* destino_ptr)
         cout << "Esse codigo ja esta em uso" << endl;
 }
 
-void CntrAprCRUDAtividade::read(Destino* destino_ptr, Atividade* atividade_ptr)
+void CntrAprCRUDAtividade::read(Destino*& destino_ptr, Atividade*& atividade_ptr)
 {   
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1173,7 +1179,7 @@ void CntrAprCRUDAtividade::read(Destino* destino_ptr, Atividade* atividade_ptr)
 }
 
 
-void CntrAprCRUDAtividade::update(Destino* destino_ptr, Atividade* atividade_ptr)
+void CntrAprCRUDAtividade::update(Destino*& destino_ptr, Atividade*& atividade_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();
@@ -1199,7 +1205,7 @@ void CntrAprCRUDAtividade::update(Destino* destino_ptr, Atividade* atividade_ptr
 }
 
 
-bool CntrAprCRUDAtividade::destroy(Destino* destino_ptr, Atividade* atividade_ptr)
+bool CntrAprCRUDAtividade::destroy(Destino*& destino_ptr, Atividade*& atividade_ptr)
 {
 	separa_telas();
 	CntrAprInput* cntrAprInput = CntrAprInput::get_instancia();

@@ -113,19 +113,25 @@ class Viagem
          * @param destino_id Código do destino a ser buscado.
          * @return Ponteiro para o destino associado à viagem.
          */
-        Destino* get_destino_ptr(Codigo destino_id);
+        Destino** get_destino_ptr(Codigo destino_id);
 
         /**
          * @brief Adiciona um destino ao vetor de destinos associados à viagem.
          * @param destino Ponteiro para o destino a ser adicionado.
          */
-        void add_destino(Destino* destino);
+        void add_destino(Destino* &destino);
 
         /**
          * @brief Remove um destino do vetor de destinos associados à viagem.
          * @param destino_id Código do destino a ser removido.
          */
         void remove_destino(Codigo destino_id);
+
+        /**
+         * @brief Remove ponteiros nulos do vetor de ponteiros de destinos associadas à viagem.
+         * 
+         */
+        void remove_null_pointers();
 };
 
 /**

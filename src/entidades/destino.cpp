@@ -57,18 +57,18 @@ int Destino::get_atividade_index(Codigo atividade_id)
 
 
 
-Atividade* Destino::get_atividade_ptr(Codigo atividade_id)
+Atividade** Destino::get_atividade_ptr(Codigo atividade_id)
 {
     int index = get_atividade_index(atividade_id);
     if (index == -1)
     {
         return nullptr;
     }
-    return atividades_ptr[index];
+    return &(atividades_ptr[index]);
 }
 
 
-void Destino::add_atividade(Atividade* atividade)
+void Destino::add_atividade(Atividade* &atividade)
 {
     atividade->set_destino_id(codigo);
     atividades_ptr.push_back(atividade);
@@ -94,17 +94,17 @@ int Destino::get_hospedagem_index(Codigo hospedagem_id)
 
 
 
-Hospedagem* Destino::get_hospedagem_ptr(Codigo hospedagem_id)
+Hospedagem** Destino::get_hospedagem_ptr(Codigo hospedagem_id)
 {
     int index = get_hospedagem_index(hospedagem_id);
     if (index == -1)
     {
         return nullptr;
     }
-    return hospedagens_ptr[index];
+    return &(hospedagens_ptr[index]);
 }
 
-void Destino::add_hospedagem(Hospedagem* hospedagem)
+void Destino::add_hospedagem(Hospedagem* &hospedagem)
 {
     hospedagem->set_destino_id(codigo);
     hospedagens_ptr.push_back(hospedagem);
@@ -116,4 +116,28 @@ void Destino::remove_hospedagem(Codigo hospedagem_id)
     int index = get_hospedagem_index(hospedagem_id);
     delete this->hospedagens_ptr[index];
     hospedagens_ptr.erase(hospedagens_ptr.begin() + index);
+}
+
+void Destino::remove_null_pointers_hospedagem()
+{
+    for (int i = 0; i < static_cast<int>(this->hospedagens_ptr.size()); i++)
+    {
+        if (this->hospedagens_ptr[i] == nullptr)
+        {
+            this->hospedagens_ptr.erase(this->hospedagens_ptr.begin() + i);
+            break;
+        }
+    }
+}
+
+void Destino::remove_null_pointers_atividade()
+{
+    for (int i = 0; i < static_cast<int>(this->atividades_ptr.size()); i++)
+    {
+        if (this->atividades_ptr[i] == nullptr)
+        {
+            this->atividades_ptr.erase(this->atividades_ptr.begin() + i);
+            break;
+        }
+    }
 }

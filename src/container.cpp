@@ -239,10 +239,14 @@ void ContainerViagens::destroy(Viagem* &ptr)
     for (auto it = container.begin(); it != container.end(); it++)
         {
             if ((*it)->get_codigo() == ptr->get_codigo())
+            {
+                cout << "endereco do ponteiro no container" << &ptr;
                 container.erase(it);
-            delete ptr;
-            ptr = nullptr;
-            break;
+                delete ptr;
+                ptr = nullptr;
+                cout << "passou aqui" << endl;
+                break;
+            }
         }
 }
 
