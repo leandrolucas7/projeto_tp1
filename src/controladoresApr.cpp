@@ -121,11 +121,12 @@ Senha CntrAprInput::get_senha()
 Nome CntrAprInput::get_nome()
 {
     Nome nome; string nome_string;
-	limpa_buffer();
+    limpa_buffer();
     while (true)
     {
         cout << "Digite um nome: ";
-        getline(cin,nome_string);
+        getline(cin, nome_string);
+        cin.putback('\n');1
         if (cin.fail())
         {
             limpa_buffer();
