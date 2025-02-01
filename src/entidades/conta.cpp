@@ -2,7 +2,7 @@
 
 Conta::~Conta()
 {
-    for (int i = 0; i < this->viagens_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(this->viagens_ptr.size()); i++)
     {
         delete this->viagens_ptr[i];
     }
@@ -10,7 +10,7 @@ Conta::~Conta()
 
 int Conta::get_viagem_index(Codigo viagem_id)
 {
-    for (int i = 0; i < this->viagens_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(this->viagens_ptr.size()); i++)
     {
         if ((this->viagens_ptr[i])->get_codigo() == viagem_id)
         {

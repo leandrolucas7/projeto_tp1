@@ -62,6 +62,7 @@ class IntAprInput
 class IntAprAutenticacao
 {
     public:
+        virtual ~IntAprAutenticacao() {} 
         virtual void set_cntrAprCRUDConta(IntAprCRUDConta*) = 0;
         virtual void autenticar(Conta*) = 0;
 };
@@ -74,6 +75,7 @@ class IntAprAutenticacao
 class IntAprCRUDConta
 {
     public:
+        virtual ~IntAprCRUDConta() {}
         virtual void set_cntrSerCUDConta(IntSerCUDConta*) = 0;
         virtual void set_cntrAprCRUDViagem(IntAprCRUDViagem*) = 0;
         virtual void create(Conta*) = 0;
@@ -92,6 +94,7 @@ template <typename T, typename U>
 class IntAprCRUD
 {
     public:
+        virtual ~IntAprCRUD() {}
         virtual void create(T*) = 0;
         virtual void read(T*, U*) = 0;
         virtual void update(T*, U*) = 0;

@@ -3,11 +3,11 @@
 
 Destino::~Destino()
 {
-    for (int i = 0; i < atividades_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(atividades_ptr.size()); i++)
     {
         delete atividades_ptr[i];
     }
-    for (int i = 0; i < hospedagens_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(hospedagens_ptr.size()); i++)
     {
         delete hospedagens_ptr[i];
     }
@@ -45,7 +45,7 @@ void Destino::set_data_termino(const Data &data_termino)
 
 int Destino::get_atividade_index(Codigo atividade_id)
 {
-    for (int i = 0; i < atividades_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(atividades_ptr.size()); i++)
     {
         if (atividades_ptr[i]->get_codigo() == atividade_id)
         {
@@ -82,7 +82,7 @@ void Destino::remove_atividade(Codigo atividade_id)
 
 int Destino::get_hospedagem_index(Codigo hospedagem_id)
 {
-    for (int i = 0; i < hospedagens_ptr.size(); i++)
+    for (int i = 0; i < static_cast<int>(hospedagens_ptr.size()); i++)
     {
         if (hospedagens_ptr[i]->get_codigo() == hospedagem_id)
         {
