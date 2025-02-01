@@ -126,7 +126,7 @@ Nome CntrAprInput::get_nome()
     {
         cout << "Digite um nome: ";
         getline(cin, nome_string);
-        cin.putback('\n');1
+        cin.putback('\n');
         if (cin.fail())
         {
             limpa_buffer();
