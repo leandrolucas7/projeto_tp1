@@ -2,7 +2,6 @@
 #include <string>
 #include <cmath>
 #include <stdexcept>
-using namespace std;
 
 void Dinheiro::validar(double v)
 {
