@@ -43,7 +43,7 @@ void Senha::validar(string v)
     if (flag)
         return;
     //throw invalid_argument("Argumento (" + v + ") inválido.");
-    throw invalid_argument("Formato invalido! A senha deve ter 5 digitos, sem repeticao, sem ordem crescente e sem ordem decrescente");
+    throw invalid_argument("A senha deve ter 5 digitos, sem repeticao, sem ordem crescente e sem ordem decrescente");
 }
 
 

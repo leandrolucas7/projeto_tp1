@@ -75,7 +75,7 @@ Codigo CntrAprInput::get_codigo()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "O codigo deve ser uma string sem espacos." << endl;
+            cout << "O codigo nao deve ter espacos." << endl;
             continue;
         }
         try
@@ -102,7 +102,7 @@ Senha CntrAprInput::get_senha()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A senha deve ser uma string sem espacos" << endl;
+            cout << "A senha nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -265,7 +265,7 @@ Horario CntrAprInput::get_horario()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "O horario deve ser uma string sem espacos" << endl;
+            cout << "O horario nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -292,7 +292,7 @@ Data CntrAprInput::get_data_inicio()
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos" << endl;
+            cout << "A data nao deve ter espacos" << endl;
             continue;
         }
         try
@@ -319,7 +319,7 @@ Data CntrAprInput::get_data_termino(Data data_inicio)
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos." << endl;
+            cout << "A data nao deve ter espacos." << endl;
             continue;
         }
         try
@@ -377,7 +377,7 @@ Data CntrAprInput::get_data_atividade(Data data_inicio, Data data_termino)
         if (cin.fail())
         {
             limpa_buffer();
-            cout << "A data deve ser uma string sem espacos." << endl;
+            cout << "A data nao deve ter espacos." << endl;
             continue;
         }
         try
