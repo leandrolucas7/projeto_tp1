@@ -159,7 +159,6 @@ void ContainerContas::destroy(Conta* &conta_ptr)
     {
         if ((*it)->get_codigo()== conta_ptr->get_codigo())
         {
-            break;
             container.erase(it);
             delete conta_ptr;
             conta_ptr = nullptr;
