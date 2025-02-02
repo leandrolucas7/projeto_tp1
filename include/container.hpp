@@ -4,10 +4,9 @@
 
 /**
  * @file container.hpp
- * @brief Definição do container de contas.
+ * @brief Definição dos containers para gerenciamento de contas, viagens, destinos, hospedagens e atividades.
  *
- * Este arquivo contém a implementação de um singleton responsável por armazenar e gerenciar
- * as contas dentro do sistema.
+ * Este arquivo contém a definição de singletons responsáveis por armazenar, gerenciar e fornecer acesso aos dados do usuário os dados dentro do sistema.
  */
 
 #ifndef CONTAINER_HPP
@@ -236,7 +235,7 @@ class ContainerDestinos
          * @brief Verifica se um destino de código especificado está no container.
          *
          * @param codigo Código do destino a ser buscado.
-         * @return true se o destino com o código especificado foi encontrada ou false caso contrário.
+         * @return true se o destino com o código especificado foi encontrado ou false caso contrário.
          */
         bool ja_existe(Codigo);
 };
