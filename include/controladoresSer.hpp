@@ -84,6 +84,11 @@ class CntrSerCUDViagem : public IntSerCUDViagem {
          */
         void destroy(Conta*& conta, Viagem*& viagem) override;
 
+        /**
+         * @brief Verifica se uma viagem de código especificado já existe.
+         * @param codigo Código da viagem a ser verificada.
+         * @return true caso a viagem de código especificado já exista ou false caso contrário.
+         */
         bool ja_existe(Codigo) override;
 };
 
@@ -122,6 +127,11 @@ class CntrSerCUDDestino : public IntSerCUDDestino {
          */
         void destroy(Viagem*& viagem, Destino*& destino) override;
 
+        /**
+         * @brief Verifica se um destino de código especificado já existe.
+         * @param codigo Código do destino a ser verificado.
+         * @return true caso o destino de código especificado já exista ou false caso contrário.
+         */
         bool ja_existe(Codigo) override;
 };
 
@@ -158,6 +168,11 @@ class CntrSerCUDHospedagem: public IntSerCUDHospedagem {
          */
         void destroy(Destino*& destino, Hospedagem*& hospedagem) override;
         
+        /**
+         * @brief Verifica se uma hospedagem de código especificado já existe.
+         * @param codigo Código da hospedagem a ser verificada.
+         * @return true caso a hospedagem de código especificado já exista ou false caso contrário.
+         */
         bool ja_existe(Codigo) override;
 };
 
@@ -200,6 +215,11 @@ class CntrSerCUDAtividade : public IntSerCUDAtividade {
          */
         void destroy(Destino*& destino, Atividade*& atividade) override;
 
+        /**
+         * @brief Verifica se uma atividade de código especificado já existe.
+         * @param codigo Código da atividade a ser verificada.
+         * @return true caso a atividade de código especificado já exista ou false caso contrário.
+         */
         bool ja_existe(Codigo) override;
 };
 
