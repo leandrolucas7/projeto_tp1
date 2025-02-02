@@ -37,9 +37,10 @@ template <typename TipoAnterior, typename TipoAtual>
 class IntSerCUD
 {
     public:
-        virtual void create(TipoAnterior*, TipoAtual*) = 0;
-        virtual void update(TipoAtual*) = 0;
-        virtual void destroy(TipoAnterior*, TipoAtual*) = 0;
+        virtual ~IntSerCUD() {}
+        virtual void create(TipoAnterior*&, TipoAtual*&) = 0;
+        virtual void update(TipoAtual*&) = 0;
+        virtual void destroy(TipoAnterior*&, TipoAtual*&) = 0;
 };
 
 /**
@@ -50,9 +51,10 @@ class IntSerCUD
 class IntSerCUDConta
 {
     public:
-        virtual bool create(Conta*, Codigo, Senha) = 0;
-        virtual void update(Conta*, Senha) = 0;
-        virtual void destroy(Conta*) = 0;
+        virtual ~IntSerCUDConta() {}
+        virtual bool create(Conta*&, Codigo, Senha) = 0;
+        virtual void update(Conta*&, Senha) = 0;
+        virtual void destroy(Conta*&) = 0;
 };
 
 /**
@@ -63,9 +65,11 @@ class IntSerCUDConta
 class IntSerCUDViagem
 {
     public:
-        virtual bool create(Conta*, Codigo, Nome, Avaliacao) = 0;
-        virtual void update(Viagem*, Nome, Avaliacao) = 0;
-        virtual void destroy(Conta*, Viagem*) = 0;
+        virtual ~IntSerCUDViagem() {}
+        virtual void create(Conta*&, Codigo, Nome, Avaliacao) = 0;
+        virtual void update(Viagem*&, Nome, Avaliacao) = 0;
+        virtual void destroy(Conta*&, Viagem*&) = 0;
+        virtual bool ja_existe(Codigo) = 0;
 };
 
 /**
@@ -76,9 +80,11 @@ class IntSerCUDViagem
 class IntSerCUDDestino
 {
     public:
-        virtual bool create(Viagem*, Codigo, Nome, Data, Data, Avaliacao) = 0;
-        virtual void update(Destino*, Nome, Data, Data, Avaliacao) = 0;
-        virtual void destroy(Viagem*, Destino*) = 0;
+        virtual ~IntSerCUDDestino() {}
+        virtual void create(Viagem*&, Codigo, Nome, Data, Data, Avaliacao) = 0;
+        virtual void update(Destino*&, Nome, Data, Data, Avaliacao) = 0;
+        virtual void destroy(Viagem*&, Destino*&) = 0;
+        virtual bool ja_existe(Codigo) = 0;
 };
 
 /**
@@ -89,9 +95,11 @@ class IntSerCUDDestino
 class IntSerCUDHospedagem
 {
     public:
-        virtual bool create(Destino*, Codigo, Nome, Dinheiro, Avaliacao) = 0;
-        virtual void update(Hospedagem*, Nome, Dinheiro, Avaliacao) = 0;
-        virtual void destroy(Destino*, Hospedagem*) = 0;
+        virtual ~IntSerCUDHospedagem() {}
+        virtual void create(Destino*&, Codigo, Nome, Dinheiro, Avaliacao) = 0;
+        virtual void update(Hospedagem*&, Nome, Dinheiro, Avaliacao) = 0;
+        virtual void destroy(Destino*&, Hospedagem*&) = 0;
+        virtual bool ja_existe(Codigo) = 0;
 };
 
 /**
@@ -102,9 +110,11 @@ class IntSerCUDHospedagem
 class IntSerCUDAtividade
 {
     public:
-        virtual bool create(Destino*, Codigo, Nome, Data, Horario, Duracao, Dinheiro, Avaliacao) = 0;
-        virtual void update(Atividade*, Nome, Data, Horario, Duracao, Dinheiro, Avaliacao) = 0;
-        virtual void destroy(Destino*, Atividade*) = 0;
+        virtual ~IntSerCUDAtividade() {}
+        virtual void create(Destino*&, Codigo, Nome, Data, Horario, Duracao, Dinheiro, Avaliacao) = 0;
+        virtual void update(Atividade*&, Nome, Data, Horario, Duracao, Dinheiro, Avaliacao) = 0;
+        virtual void destroy(Destino*&, Atividade*&) = 0;
+        virtual bool ja_existe(Codigo) = 0;
 };
 
 #endif // INTERFACES_SER_HPP

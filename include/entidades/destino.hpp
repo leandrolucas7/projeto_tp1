@@ -152,13 +152,13 @@ class Destino {
          * @param atividade_id Código da atividade a ser buscada.
          * @return Ponteiro para a atividade associada ao destino.
          */
-        Atividade* get_atividade_ptr(Codigo atividade_id);
+        Atividade** get_atividade_ptr(Codigo atividade_id);
 
         /**
          * @brief Adiciona uma atividade ao vetor de atividades associadas ao destino.
          * @param atividade Ponteiro para a atividade a ser adicionada.
          */
-        void add_atividade(Atividade* atividade);
+        void add_atividade(Atividade* &atividade);
 
         /**
          * @brief Remove uma atividade do vetor de atividades associadas ao destino.
@@ -192,19 +192,31 @@ class Destino {
          * @param hospedagem_id Código da hospedagem a ser buscada.
          * @return Ponteiro para a hospedagem associada ao destino.
          */
-        Hospedagem* get_hospedagem_ptr(Codigo hospedagem_id);
+        Hospedagem** get_hospedagem_ptr(Codigo hospedagem_id);
 
         /**
          * @brief Adiciona uma hospedagem ao vetor de hospedagens associadas ao destino.
          * @param hospedagem Ponteiro para a hospedagem a ser adicionada.
          */
-        void add_hospedagem(Hospedagem* hospedagem);
+        void add_hospedagem(Hospedagem* &hospedagem);
 
         /**
          * @brief Remove uma hospedagem do vetor de hospedagens associadas ao destino.
          * @param hospedagem_id Código da hospedagem a ser removida.
          */
         void remove_hospedagem(Codigo hospedagem_id);
+
+        /**
+         * @brief Remove ponteiros nulos do vetor de ponteiros de hospedagens associadas ao destino.
+         * 
+         */
+        void remove_null_pointers_hospedagem();
+
+        /**
+         * @brief Remove ponteiros nulos do vetor de ponteiros de atividades associadas ao destino.
+         * 
+         */
+        void remove_null_pointers_atividade();
 };
 
 // Implementação inline dos métodos

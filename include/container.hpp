@@ -106,9 +106,9 @@ class ContainerViagens
     public:
         static ContainerViagens* get_instancia();
         static void delete_instancia();
-        bool create(Viagem*&);
+        void create(Viagem*&);
         void destroy(Viagem*&);
-        //bool fetch(Viagem*&);
+        bool ja_existe(Codigo);
 };
 
 class ContainerDestinos
@@ -123,8 +123,9 @@ class ContainerDestinos
     public:
         static ContainerDestinos* get_instancia();
         static void delete_instancia();
-        bool create(Destino*&);
+        void create(Destino*&);
         void destroy(Destino*&);
+        bool ja_existe(Codigo);
 };
 
 class ContainerHospedagens
@@ -139,8 +140,9 @@ class ContainerHospedagens
     public:
         static ContainerHospedagens* get_instancia();
         static void delete_instancia();
-        bool create(Hospedagem*&);
+        void create(Hospedagem*&);
         void destroy(Hospedagem*&);
+        bool ja_existe(Codigo);
 };
 
 class ContainerAtividades
@@ -155,8 +157,9 @@ class ContainerAtividades
     public:
         static ContainerAtividades* get_instancia();
         static void delete_instancia();
-        bool create(Atividade*&);
+        void create(Atividade*&);
         void destroy(Atividade*&);
+        bool ja_existe(Codigo);
 };
 
 #endif // CONTAINER_HPP
