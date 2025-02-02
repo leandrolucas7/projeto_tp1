@@ -473,7 +473,7 @@ void CntrAprInicial::executar()
     while (true)
     {
 		separa_telas();
-        std::cout << "Essa eh a tela inicial. Selecione uma das opcoes abaixo:" << endl;
+        std::cout << "Tela inicial. Selecione uma das opcoes abaixo:" << endl;
         std::cout << "1. Criar conta" << endl;
         std::cout << "2. Login" << endl;
         std::cout << "-1. Sair" << endl;
