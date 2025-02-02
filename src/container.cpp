@@ -126,7 +126,7 @@ ContainerAtividades::~ContainerAtividades()
     }
 }
 
-//Implementacao dos metodos CUD(create, update, delete)
+//Implementacao dos metodos CUD(create, update, delete) e do fetch para conta
 
 bool ContainerContas::create(Conta* &conta_ptr)
 {
@@ -184,48 +184,68 @@ bool ContainerContas::fetch(Conta* &conta_ptr)
     return false;
 }
 
-bool ContainerViagens::create(Viagem* &ptr)
+//Verifica existencia de dados com mesmo codigo no banco de dados
+
+bool ContainerViagens::ja_existe(Codigo codigo)
 {
-    for (auto it = container.begin(); it != container.end(); it++)
-        {
-            if ((*it)->get_codigo() == ptr->get_codigo())
-                return false;
-        }
-    container.push_back(ptr);
-    return true;
+    for (auto it = container.begin(); it != container.end();it++)
+    {
+        if ((*it)->get_codigo() == codigo)
+            return true;
+    }
+    return false;
 }
 
-bool ContainerDestinos::create(Destino* &ptr)
+bool ContainerDestinos::ja_existe(Codigo codigo)
 {
-    for (auto it = container.begin(); it != container.end(); it++)
-        {
-            if ((*it)->get_codigo() == ptr->get_codigo())
-                return false;
-        }
-    container.push_back(ptr);
-    return true;
+    for (auto it = container.begin(); it != container.end();it++)
+    {
+        if ((*it)->get_codigo() == codigo)
+            return true;
+    }
+    return false;
 }
 
-bool ContainerHospedagens::create(Hospedagem* &ptr)
+bool ContainerHospedagens::ja_existe(Codigo codigo)
 {
-    for (auto it = container.begin(); it != container.end(); it++)
-        {
-            if ((*it)->get_codigo() == ptr->get_codigo())
-                return false;
-        }
-    container.push_back(ptr);
-    return true;
+    for (auto it = container.begin(); it != container.end();it++)
+    {
+        if ((*it)->get_codigo() == codigo)
+            return true;
+    }
+    return false;
 }
 
-bool ContainerAtividades::create(Atividade* &ptr)
+bool ContainerAtividades::ja_existe(Codigo codigo)
 {
-    for (auto it = container.begin(); it != container.end(); it++)
-        {
-            if ((*it)->get_codigo() == ptr->get_codigo())
-                return false;
-        }
+    for (auto it = container.begin(); it != container.end();it++)
+    {
+        if ((*it)->get_codigo() == codigo)
+            return true;
+    }
+    return false;
+}
+
+//Implementacao de create e destroy para as demais entidades
+
+void ContainerViagens::create(Viagem* &ptr)
+{
     container.push_back(ptr);
-    return true;
+}
+
+void ContainerDestinos::create(Destino* &ptr)
+{
+    container.push_back(ptr);
+}
+
+void ContainerHospedagens::create(Hospedagem* &ptr)
+{
+    container.push_back(ptr);
+}
+
+void ContainerAtividades::create(Atividade* &ptr)
+{
+    container.push_back(ptr);
 }
 
 void ContainerViagens::destroy(Viagem* &ptr)
@@ -240,11 +260,9 @@ void ContainerViagens::destroy(Viagem* &ptr)
         {
             if ((*it)->get_codigo() == ptr->get_codigo())
             {
-                cout << "endereco do ponteiro no container" << &ptr;
                 container.erase(it);
                 delete ptr;
                 ptr = nullptr;
-                cout << "passou aqui" << endl;
                 break;
             }
         }

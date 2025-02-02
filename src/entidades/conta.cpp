@@ -28,8 +28,6 @@ Viagem** Conta::get_viagem_ptr(Codigo viagem_id)
     {
         return nullptr;
     }
-    cout << "index " << index << endl;
-    cout << "endereco de viagem em get_viagem_ptr" << &this->viagens_ptr[index];
     return &this->viagens_ptr[index];
 }
 
@@ -52,7 +50,6 @@ void Conta::remove_null_pointers()
     {
         if (this->viagens_ptr[i] == nullptr)
         {
-            cout << "ha ponteiros nulos" << endl;
             this->viagens_ptr.erase(this->viagens_ptr.begin() + i);
             break;
         }
@@ -63,7 +60,6 @@ void Conta::remove_null_pointers()
 
 void Conta::imprime_viagem_ptr()
 {
-    cout << "Esses são os ponteiros armazenados no vetor viagens_ptr:" << endl;
     for (size_t i = 0; i < this->viagens_ptr.size(); i++)
     {
         cout << i << ": " << &(this->viagens_ptr[i]) << endl; // Endereço do ponteiro armazenado no vetor
