@@ -104,8 +104,8 @@ class CntrAprAutenticacao : public IntAprAutenticacao
     private:
         IntAprCRUDConta* cntrAprCRUDConta;        ///< Ponteiro para interface de gerenciamento de conta
     public:
-        void set_cntrAprCRUDConta(IntAprCRUDConta*) override;
-        void autenticar(Conta*) override;          ///< Realiza autenticação do usuário
+        void set_cntrAprCRUDConta(IntAprCRUDConta*) override;    ///< Define o controlador para operações CRUD de conta.
+        void autenticar(Conta*&) override;          ///< Realiza autenticação do usuário
 };
 
 /**
@@ -117,12 +117,12 @@ class CntrAprCRUDConta : public IntAprCRUDConta
         IntSerCUDConta* cntrSerCUDConta;          ///< Interface da camada de serviço para operações de conta
         IntAprCRUDViagem* cntrAprCRUDViagem;      ///< Interface de gerenciamento de viagem
     public:
-        void set_cntrSerCUDConta(IntSerCUDConta*) override;
-        void set_cntrAprCRUDViagem(IntAprCRUDViagem*) override;
-        void create(Conta*) override;              ///< Cria nova conta
-        void read(Conta*) override;                ///< Recupera informações da conta
-        void update(Conta*) override;              ///< Atualiza informações da conta
-        bool destroy(Conta*) override;             ///< Remove conta
+        void set_cntrSerCUDConta(IntSerCUDConta*) override;  ///< Define a interface da camada de serviço para operações de conta.
+        void set_cntrAprCRUDViagem(IntAprCRUDViagem*) override;  ///< Define a interface para o gerenciamento de viagens.
+        void create(Conta*&) override;              ///< Cria nova conta
+        void read(Conta*&) override;                ///< Recupera informações da conta
+        void update(Conta*&) override;              ///< Atualiza informações da conta
+        bool destroy(Conta*&) override;             ///< Remove conta
 };
 
 /**
@@ -134,12 +134,12 @@ class CntrAprCRUDViagem : public IntAprCRUDViagem
         IntSerCUDViagem* cntrSerCUDViagem;        ///< Interface da camada de serviço para operações de viagem
         IntAprCRUDDestino* cntrAprCRUDDestino;    ///< Interface de gerenciamento de destino
     public:
-        void set_cntrSerCUDViagem(IntSerCUDViagem*) override;
-        void set_cntrAprCRUDDestino(IntAprCRUDDestino*) override;
-        void create(Conta*) override;              ///< Cria nova viagem
-        void read(Conta*,Viagem*) override;        ///< Recupera informações da viagem
-        void update(Conta*,Viagem*) override;      ///< Atualiza informações da viagem
-        bool destroy(Conta*,Viagem*) override;     ///< Remove viagem
+        void set_cntrSerCUDViagem(IntSerCUDViagem*) override;    ///< Define a interface da camada de serviço para operações de viagem.
+        void set_cntrAprCRUDDestino(IntAprCRUDDestino*) override;   ///< Define a interface para o gerenciamento de destinos.
+        void create(Conta*&) override;              ///< Cria nova viagem
+        void read(Conta*&,Viagem*&) override;        ///< Recupera informações da viagem
+        void update(Conta*&,Viagem*&) override;      ///< Atualiza informações da viagem
+        bool destroy(Conta*&,Viagem*&) override;     ///< Remove viagem
 };
 
 /**
@@ -152,13 +152,13 @@ class CntrAprCRUDDestino : public IntAprCRUDDestino
         IntAprCRUDHospedagem* cntrAprCRUDHospedagem; ///< Interface de gerenciamento de hospedagem
         IntAprCRUDAtividade* cntrAprCRUDAtividade;   ///< Interface de gerenciamento de atividade
     public:
-        void set_cntrSerCUDDestino(IntSerCUDDestino*) override;
-        void set_cntrAprCRUDHospedagem(IntAprCRUDHospedagem*) override;
-        void set_cntrAprCRUDAtividade(IntAprCRUDAtividade*) override;
-        void create(Viagem*) override;             ///< Cria novo destino
-        void read(Viagem*,Destino*) override;      ///< Recupera informações do destino
-        void update(Viagem*,Destino*) override;    ///< Atualiza informações do destino
-        bool destroy(Viagem*,Destino*) override;   ///< Remove destino
+        void set_cntrSerCUDDestino(IntSerCUDDestino*) override;   ///< Define a interface da camada de serviço para operações de destino.
+        void set_cntrAprCRUDHospedagem(IntAprCRUDHospedagem*) override;   ///< Define a interface para o gerenciamento de hospedagem.
+        void set_cntrAprCRUDAtividade(IntAprCRUDAtividade*) override;   ///< Define a interface para o gerenciamento de atividades.
+        void create(Viagem*&) override;             ///< Cria novo destino
+        void read(Viagem*&,Destino*&) override;      ///< Recupera informações do destino
+        void update(Viagem*&,Destino*&) override;    ///< Atualiza informações do destino
+        bool destroy(Viagem*&,Destino*&) override;   ///< Remove destino
 };
 
 /**
@@ -169,11 +169,11 @@ class CntrAprCRUDHospedagem : public IntAprCRUDHospedagem
     private:
         IntSerCUDHospedagem* cntrSerCUDHospedagem; ///< Interface da camada de serviço para operações de hospedagem
     public:
-        void set_cntrSerCUDHospedagem(IntSerCUDHospedagem*) override;
-        void create(Destino*) override;            ///< Cria nova hospedagem
-        void read(Destino*,Hospedagem*) override;  ///< Recupera informações da hospedagem
-        void update(Destino*,Hospedagem*) override; ///< Atualiza informações da hospedagem
-        bool destroy(Destino*,Hospedagem*) override; ///< Remove hospedagem
+        void set_cntrSerCUDHospedagem(IntSerCUDHospedagem*) override;  ///< Define a interface da camada de serviço para operações de hospedagem.
+        void create(Destino*&) override;            ///< Cria nova hospedagem
+        void read(Destino*&,Hospedagem*&) override;  ///< Recupera informações da hospedagem
+        void update(Destino*&,Hospedagem*&) override; ///< Atualiza informações da hospedagem
+        bool destroy(Destino*&,Hospedagem*&) override; ///< Remove hospedagem
 };
 
 /**
@@ -184,11 +184,11 @@ class CntrAprCRUDAtividade : public IntAprCRUDAtividade
     private:
         IntSerCUDAtividade* cntrSerCUDAtividade;   ///< Interface da camada de serviço para operações de atividade
     public:
-        void set_cntrSerCUDAtividade(IntSerCUDAtividade*);
-        void create(Destino*) override;            ///< Cria nova atividade
-        void read(Destino*,Atividade*) override;   ///< Recupera informações da atividade
-        void update(Destino*,Atividade*) override; ///< Atualiza informações da atividade
-        bool destroy(Destino*,Atividade*) override; ///< Remove atividade
+        void set_cntrSerCUDAtividade(IntSerCUDAtividade*);   ///< Define a interface da camada de serviço para operações de atividade.
+        void create(Destino*&) override;            ///< Cria nova atividade
+        void read(Destino*&,Atividade*&) override;   ///< Recupera informações da atividade
+        void update(Destino*&,Atividade*&) override; ///< Atualiza informações da atividade
+        bool destroy(Destino*&,Atividade*&) override; ///< Remove atividade
 };
 
 // Implementações inline dos métodos set

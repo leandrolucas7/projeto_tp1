@@ -37,20 +37,20 @@ class CntrSerCUDConta : public IntSerCUDConta {
          * @param senha Senha da conta
          * @return true se a criação for bem-sucedida, false caso contrário
          */
-        bool create(Conta* conta, Codigo codigo, Senha senha) override;
+        bool create(Conta*& conta, Codigo codigo, Senha senha) override;
 
         /**
          * @brief Atualiza uma conta existente
          * @param conta Ponteiro para o objeto Conta
          * @param senha Nova senha da conta
          */
-        void update(Conta* conta, Senha senha) override;
+        void update(Conta*& conta, Senha senha) override;
 
         /**
          * @brief Remove uma conta
          * @param conta Ponteiro para o objeto Conta a ser removido
          */
-        void destroy(Conta* conta) override;
+        void destroy(Conta*& conta) override;
 };
 
 /**
@@ -66,9 +66,8 @@ class CntrSerCUDViagem : public IntSerCUDViagem {
          * @param codigo Código da viagem
          * @param nome Nome da viagem
          * @param avaliacao Avaliação da viagem
-         * @return true se a criação for bem-sucedida, false caso contrário
          */
-        bool create(Conta* conta, Codigo codigo, Nome nome, Avaliacao avaliacao) override;
+        void create(Conta*& conta, Codigo codigo, Nome nome, Avaliacao avaliacao) override;
 
         /**
          * @brief Atualiza uma viagem existente
@@ -76,14 +75,21 @@ class CntrSerCUDViagem : public IntSerCUDViagem {
          * @param nome Novo nome da viagem
          * @param avaliacao Nova avaliação da viagem
          */
-        void update(Viagem* viagem, Nome nome, Avaliacao avaliacao) override;
+        void update(Viagem*& viagem, Nome nome, Avaliacao avaliacao) override;
 
         /**
          * @brief Remove uma viagem
          * @param conta Ponteiro para a conta associada
          * @param viagem Ponteiro para o objeto Viagem a ser removido
          */
-        void destroy(Conta* conta, Viagem* viagem) override;
+        void destroy(Conta*& conta, Viagem*& viagem) override;
+
+        /**
+         * @brief Verifica se uma viagem de código especificado já existe.
+         * @param codigo Código da viagem a ser verificada.
+         * @return true caso a viagem de código especificado já exista ou false caso contrário.
+         */
+        bool ja_existe(Codigo) override;
 };
 
 /**
@@ -101,9 +107,8 @@ class CntrSerCUDDestino : public IntSerCUDDestino {
          * @param dataInicio Data de início
          * @param dataTermino Data de término
          * @param avaliacao Avaliação do destino
-         * @return true se a criação for bem-sucedida, false caso contrário
          */
-        bool create(Viagem* viagem, Codigo codigo, Nome nome, Data dataInicio, Data dataTermino, Avaliacao avaliacao) override;
+        void create(Viagem*& viagem, Codigo codigo, Nome nome, Data dataInicio, Data dataTermino, Avaliacao avaliacao) override;
 
         /**
          * @brief Atualiza um destino existente
@@ -113,14 +118,21 @@ class CntrSerCUDDestino : public IntSerCUDDestino {
          * @param dataTermino Nova data de término
          * @param avaliacao Nova avaliação do destino
          */
-        void update(Destino* destino, Nome nome, Data dataInicio, Data dataTermino, Avaliacao avaliacao) override;
+        void update(Destino*& destino, Nome nome, Data dataInicio, Data dataTermino, Avaliacao avaliacao) override;
 
         /**
          * @brief Remove um destino
          * @param viagem Ponteiro para a viagem associada
          * @param destino Ponteiro para o objeto Destino a ser removido
          */
-        void destroy(Viagem* viagem, Destino* destino) override;
+        void destroy(Viagem*& viagem, Destino*& destino) override;
+
+        /**
+         * @brief Verifica se um destino de código especificado já existe.
+         * @param codigo Código do destino a ser verificado.
+         * @return true caso o destino de código especificado já exista ou false caso contrário.
+         */
+        bool ja_existe(Codigo) override;
 };
 
 /**
@@ -137,9 +149,8 @@ class CntrSerCUDHospedagem: public IntSerCUDHospedagem {
          * @param nome Nome da hospedagem
          * @param dinheiro Valor da hospedagem
          * @param avaliacao Avaliação da hospedagem
-         * @return true se a criação for bem-sucedida, false caso contrário
          */
-        bool create(Destino* destino, Codigo codigo, Nome nome, Dinheiro dinheiro, Avaliacao avaliacao) override;
+        void create(Destino*& destino, Codigo codigo, Nome nome, Dinheiro dinheiro, Avaliacao avaliacao) override;
 
         /**
          * @brief Atualiza uma hospedagem existente
@@ -148,14 +159,21 @@ class CntrSerCUDHospedagem: public IntSerCUDHospedagem {
          * @param dinheiro Novo valor da hospedagem
          * @param avaliacao Nova avaliação da hospedagem
          */
-        void update(Hospedagem* hospedagem, Nome nome, Dinheiro dinheiro, Avaliacao avaliacao) override;
+        void update(Hospedagem*& hospedagem, Nome nome, Dinheiro dinheiro, Avaliacao avaliacao) override;
 
         /**
          * @brief Remove uma hospedagem
          * @param destino Ponteiro para o destino associado
          * @param hospedagem Ponteiro para o objeto Hospedagem a ser removido
          */
-        void destroy(Destino* destino, Hospedagem* hospedagem) override;
+        void destroy(Destino*& destino, Hospedagem*& hospedagem) override;
+        
+        /**
+         * @brief Verifica se uma hospedagem de código especificado já existe.
+         * @param codigo Código da hospedagem a ser verificada.
+         * @return true caso a hospedagem de código especificado já exista ou false caso contrário.
+         */
+        bool ja_existe(Codigo) override;
 };
 
 /**
@@ -175,9 +193,8 @@ class CntrSerCUDAtividade : public IntSerCUDAtividade {
          * @param duracao Duração da atividade
          * @param dinheiro Valor da atividade
          * @param avaliacao Avaliação da atividade
-         * @return true se a criação for bem-sucedida, false caso contrário
          */
-        bool create(Destino* destino, Codigo codigo, Nome nome, Data data, Horario horario, Duracao duracao, Dinheiro dinheiro, Avaliacao avaliacao) override;
+        void create(Destino*& destino, Codigo codigo, Nome nome, Data data, Horario horario, Duracao duracao, Dinheiro dinheiro, Avaliacao avaliacao) override;
 
         /**
          * @brief Atualiza uma atividade existente
@@ -189,14 +206,21 @@ class CntrSerCUDAtividade : public IntSerCUDAtividade {
          * @param dinheiro Novo valor da atividade
          * @param avaliacao Nova avaliação da atividade
          */
-        void update(Atividade* atividade, Nome nome, Data data, Horario horario, Duracao duracao, Dinheiro dinheiro, Avaliacao avaliacao) override;
+        void update(Atividade*& atividade, Nome nome, Data data, Horario horario, Duracao duracao, Dinheiro dinheiro, Avaliacao avaliacao) override;
 
         /**
          * @brief Remove uma atividade
          * @param destino Ponteiro para o destino associado
          * @param atividade Ponteiro para o objeto Atividade a ser removido
          */
-        void destroy(Destino* destino, Atividade* atividade) override;
+        void destroy(Destino*& destino, Atividade*& atividade) override;
+
+        /**
+         * @brief Verifica se uma atividade de código especificado já existe.
+         * @param codigo Código da atividade a ser verificada.
+         * @return true caso a atividade de código especificado já exista ou false caso contrário.
+         */
+        bool ja_existe(Codigo) override;
 };
 
 #endif
