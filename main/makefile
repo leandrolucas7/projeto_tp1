@@ -18,13 +18,13 @@ SRC =   $(wildcard $(DOM)*.cpp) \
 		../src/controladoresApr.cpp \
 		../src/container.cpp \
 		../src/builder.cpp \
-		driver_projeto_tp1.cpp \
+		main_projeto_tp1.cpp \
 
 
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = driver_projeto_tp1
+TARGET = main_projeto_tp1
 
 # Rule to build the target executable
 $(TARGET): $(OBJ)
